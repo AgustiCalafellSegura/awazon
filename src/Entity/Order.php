@@ -18,40 +18,30 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Order extends AbstractBase
 {
-
     /**
      * @var string
      * @ORM\Column(type="string")
-     *
-     * @var Customes
-     * @ORM\ManyToOne(targetEntity="Artist", inversedBy="albums")
-     * @ORM\JoinColumn(name="artist_id", referencedColumnName="id")
      */
-    private $client;
+    private $date;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    private $datepurchose;
+    private $orderItems;
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
+     * @var Provider
+     * @ORM\ManyToOne(targetEntity="App\Entity\Provider", inversedBy="orders")
+     * @ORM\JoinColumn(name="provider_id", referencedColumnName="id")
      */
-    private $product;
+    private $provider;
 
     /**
      * @var integer
      * @ORM\Column(type="integer")
      */
-    private $amount;
-
-    /**
-     * @var integer
-     * @ORM\Column(type="integer")
-     */
-    private $item;
+    private $customer;
 
 
 }

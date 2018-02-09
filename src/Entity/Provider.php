@@ -50,8 +50,8 @@ class Provider extends AbstractBase
     private $products;
 
     /**
-     * @var integer
-     * @ORM\Column(type="integer")
+     * @var array
+     * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="provider", cascade={"persist"})
      */
     private $orders;
 
