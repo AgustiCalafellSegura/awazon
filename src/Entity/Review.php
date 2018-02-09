@@ -11,12 +11,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Provider
+ * Class Review
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\Provider")
- * @ORM\Table(name="Providers")
+ * @ORM\Entity(repositoryClass="App\Repository\Review")
+ * @ORM\Table(name="Reviews")
  */
-class Provider extends AbstractBase
+class Review extends AbstractBase
 {
 
     /**
@@ -46,7 +46,7 @@ class Provider extends AbstractBase
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -55,7 +55,7 @@ class Provider extends AbstractBase
      * @param string $name
      * @return Provider
      */
-    public function setName(string $name)
+    public function setName(string $name): Provider
     {
         $this->name = $name;
         return $this;
@@ -64,7 +64,7 @@ class Provider extends AbstractBase
     /**
      * @return string
      */
-    public function getAddress()
+    public function getAddress(): string
     {
         return $this->address;
     }
@@ -73,7 +73,7 @@ class Provider extends AbstractBase
      * @param string $address
      * @return Provider
      */
-    public function setAddress(string $address)
+    public function setAddress(string $address): Provider
     {
         $this->address = $address;
         return $this;
@@ -82,7 +82,7 @@ class Provider extends AbstractBase
     /**
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -91,7 +91,7 @@ class Provider extends AbstractBase
      * @param string $email
      * @return Provider
      */
-    public function setEmail(string $email)
+    public function setEmail(string $email): Provider
     {
         $this->email = $email;
         return $this;
@@ -100,7 +100,7 @@ class Provider extends AbstractBase
     /**
      * @return int
      */
-    public function getPhone()
+    public function getPhone(): int
     {
         return $this->phone;
     }
@@ -109,7 +109,7 @@ class Provider extends AbstractBase
      * @param int $phone
      * @return Provider
      */
-    public function setPhone(int $phone)
+    public function setPhone(int $phone): Provider
     {
         $this->phone = $phone;
         return $this;

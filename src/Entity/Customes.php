@@ -11,12 +11,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Provider
+ * Class Customes
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\Provider")
- * @ORM\Table(name="Providers")
+ * @ORM\Entity(repositoryClass="App\Repository\Customes")
+ * @ORM\Table(name="Customes")
  */
-class Provider extends AbstractBase
+class Customes extends AbstractBase
 {
 
     /**
@@ -53,7 +53,7 @@ class Provider extends AbstractBase
 
     /**
      * @param string $name
-     * @return Provider
+     * @return Customes
      */
     public function setName(string $name)
     {
@@ -71,7 +71,7 @@ class Provider extends AbstractBase
 
     /**
      * @param string $address
-     * @return Provider
+     * @return Customes
      */
     public function setAddress(string $address)
     {
@@ -89,7 +89,7 @@ class Provider extends AbstractBase
 
     /**
      * @param string $email
-     * @return Provider
+     * @return Customes
      */
     public function setEmail(string $email)
     {
@@ -107,7 +107,7 @@ class Provider extends AbstractBase
 
     /**
      * @param int $phone
-     * @return Provider
+     * @return Customes
      */
     public function setPhone(int $phone)
     {
