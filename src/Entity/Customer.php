@@ -11,12 +11,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Provider
+ * Class Customer
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\Provider")
- * @ORM\Table(name="Providers")
+ * @ORM\Entity(repositoryClass="App\Repository\Customer")
+ * @ORM\Table(name="Customer")
  */
-class Provider extends AbstractBase
+class Customer extends AbstractBase
 {
 
     /**
@@ -45,21 +45,21 @@ class Provider extends AbstractBase
 
     /**
      * @var array
-     * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="provider", cascade={"persist"})
-     */
-    private $products;
-
-    /**
-     * @var array
-     * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="provider", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="customer", cascade={"persist"})
      */
     private $orders;
 
-    public function __construct()
-    {
-        $this->products = array();
-        $this->orders = array();
-    }
+    /**
+     * @var array
+     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="customer", cascade={"persist"})
+     */
+    private $reviews;
+
+    /**
+     * @var array
+     * @ORM\OneToMany(targetEntity="App\Entity\Rating", mappedBy="customer", cascade={"persist"})
+     */
+    private $ratings;
 
     /**
      * @return string
@@ -71,7 +71,7 @@ class Provider extends AbstractBase
 
     /**
      * @param string $name
-     * @return Provider
+     * @return Customer
      */
     public function setName(string $name)
     {
@@ -89,7 +89,7 @@ class Provider extends AbstractBase
 
     /**
      * @param string $address
-     * @return Provider
+     * @return Customer
      */
     public function setAddress(string $address)
     {
@@ -107,7 +107,7 @@ class Provider extends AbstractBase
 
     /**
      * @param string $email
-     * @return Provider
+     * @return Customer
      */
     public function setEmail(string $email)
     {
@@ -125,7 +125,7 @@ class Provider extends AbstractBase
 
     /**
      * @param int $phone
-     * @return Provider
+     * @return Customer
      */
     public function setPhone(int $phone)
     {
@@ -134,33 +134,14 @@ class Provider extends AbstractBase
     }
 
     /**
-     * @param Product $product
+     * @param Order $order
      * @return $this
      */
-    public function addProduct(Product $product)
+    public function addOrder(Order $order)
     {
-        $this->products[] = $product;
-        $product->setProvider($this);
+        $this->orders[] = $order;
+        $order->setOrderItems($this);
 
-        return $this;
-    }
-
-
-    /**
-     * @return array
-     */
-    public function getProducts(): array
-    {
-        return $this->products;
-    }
-
-    /**
-     * @param array $products
-     * @return Provider
-     */
-    public function setProducts(array $products): Provider
-    {
-        $this->products = $products;
         return $this;
     }
 
@@ -174,13 +155,47 @@ class Provider extends AbstractBase
 
     /**
      * @param array $orders
-     * @return Provider
+     * @return Customer
      */
-    public function setOrders(array $orders): Provider
+    public function setOrders(array $orders): Customer
     {
         $this->orders = $orders;
         return $this;
     }
 
+    /**
+     * @return array
+     */
+    public function getReviews(): array
+    {
+        return $this->reviews;
+    }
 
+    /**
+     * @param array $reviews
+     * @return Customer
+     */
+    public function setReviews(array $reviews): Customer
+    {
+        $this->reviews = $reviews;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRatings(): array
+    {
+        return $this->ratings;
+    }
+
+    /**
+     * @param array $ratings
+     * @return Customer
+     */
+    public function setRatings(array $ratings): Customer
+    {
+        $this->ratings = $ratings;
+        return $this;
+    }
 }

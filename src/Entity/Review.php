@@ -23,95 +23,73 @@ class Review extends AbstractBase
      * @var string
      * @ORM\Column(type="string")
      */
-    private $name;
+    private $review;
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
+     * @var Customer
+     * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="orders")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
-    private $address;
+    private $customer;
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
+     * @var Product
+     * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="orders")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
-    private $email;
-
-    /**
-     * @var integer
-     * @ORM\Column(type="integer")
-     */
-    private $phone;
+    private $product;
 
     /**
      * @return string
      */
-    public function getName(): string
+    public function getReview(): string
     {
-        return $this->name;
+        return $this->review;
     }
 
     /**
-     * @param string $name
-     * @return Provider
+     * @param string $review
+     * @return Review
      */
-    public function setName(string $name): Provider
+    public function setReview(string $review): Review
     {
-        $this->name = $name;
+        $this->review = $review;
         return $this;
     }
 
     /**
-     * @return string
+     * @return Customer
      */
-    public function getAddress(): string
+    public function getCustomer(): Customer
     {
-        return $this->address;
+        return $this->customer;
     }
 
     /**
-     * @param string $address
-     * @return Provider
+     * @param Customer $customer
+     * @return Review
      */
-    public function setAddress(string $address): Provider
+    public function setCustomer(Customer $customer): Review
     {
-        $this->address = $address;
+        $this->customer = $customer;
         return $this;
     }
 
     /**
-     * @return string
+     * @return Product
      */
-    public function getEmail(): string
+    public function getProduct(): Product
     {
-        return $this->email;
+        return $this->product;
     }
 
     /**
-     * @param string $email
-     * @return Provider
+     * @param Product $product
+     * @return Review
      */
-    public function setEmail(string $email): Provider
+    public function setProduct(Product $product): Review
     {
-        $this->email = $email;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getPhone(): int
-    {
-        return $this->phone;
-    }
-
-    /**
-     * @param int $phone
-     * @return Provider
-     */
-    public function setPhone(int $phone): Provider
-    {
-        $this->phone = $phone;
+        $this->product = $product;
         return $this;
     }
 }
