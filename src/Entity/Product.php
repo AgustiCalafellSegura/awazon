@@ -166,21 +166,72 @@ class Product extends AbstractBase
     /**
      * @return int
      */
-    public function getRating()
+    public function getRatings(): int
     {
-        return $this->rating;
+        return $this->ratings;
     }
 
     /**
-     * @param int $rating
+     * @param int $ratings
      * @return Product
      */
-    public function setRating(int $rating)
+    public function setRatings(int $ratings): Product
     {
-        $this->rating = $rating;
+        $this->ratings = $ratings;
         return $this;
     }
 
+    /**
+     * @return int
+     */
+    public function getOrderItems(): int
+    {
+        return $this->orderItems;
+    }
 
+    /**
+     * @param int $orderItems
+     * @return Product
+     */
+    public function setOrderItems(int $orderItems): Product
+    {
+        $this->orderItems = $orderItems;
+        return $this;
+    }
 
+    /**
+     * @return int
+     */
+    public function getReviews(): int
+    {
+        return $this->reviews;
+    }
+
+    /**
+     * @param int $reviews
+     * @return Product
+     */
+    public function setReviews(int $reviews): Product
+    {
+        $this->reviews = $reviews;
+        return $this;
+    }
+
+    /**
+     * @return Provider
+     */
+    public function getProvider(): Provider
+    {
+        return $this->provider;
+    }
+
+    /**
+     * @param Provider $provider
+     * @return Product
+     */
+    public function setProvider(Provider $provider): Product
+    {
+        $this->provider = $provider;
+        return $this;
+    }
 }

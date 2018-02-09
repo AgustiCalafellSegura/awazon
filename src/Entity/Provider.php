@@ -55,6 +55,12 @@ class Provider extends AbstractBase
      */
     private $orders;
 
+    public function __construct()
+    {
+        $this->products = array();
+        $this->orders = array();
+    }
+
     /**
      * @return string
      */
@@ -126,4 +132,56 @@ class Provider extends AbstractBase
         $this->phone = $phone;
         return $this;
     }
+
+    /**
+     * @param Product $product
+     * @return $this
+     */
+    public function addProduct(Product $product)
+    {
+        $this->products[] = $product;
+        $product->setProvider($this);
+
+        return $this;
+    }
+
+
+
+    /**
+     * @return array
+     */
+    public function getProducts(): array
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param array $products
+     * @return Provider
+     */
+    public function setProducts(array $products): Provider
+    {
+        $this->products = $products;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOrders(): array
+    {
+        return $this->orders;
+    }
+
+    /**
+     * @param array $orders
+     * @return Provider
+     */
+    public function setOrders(array $orders): Provider
+    {
+        $this->orders = $orders;
+        return $this;
+    }
+
+
 }
