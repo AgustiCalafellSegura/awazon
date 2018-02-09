@@ -9,6 +9,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\File;
 
 /**
  * Class Image
@@ -23,95 +24,72 @@ class Image extends AbstractBase
      * @var string
      * @ORM\Column(type="string")
      */
-    private $name;
+    private $image;
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
+     * @var File
+     *
      */
-    private $address;
+    private $imageFile;
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
+     * @var Product
+     * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="orders")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
-    private $email;
-
-    /**
-     * @var integer
-     * @ORM\Column(type="integer")
-     */
-    private $phone;
+    private $product;
 
     /**
      * @return string
      */
-    public function getName(): string
+    public function getImage(): string
     {
-        return $this->name;
+        return $this->image;
     }
 
     /**
-     * @param string $name
-     * @return Provider
+     * @param string $image
+     * @return Image
      */
-    public function setName(string $name): Provider
+    public function setImage(string $image): Image
     {
-        $this->name = $name;
+        $this->image = $image;
         return $this;
     }
 
     /**
-     * @return string
+     * @return File
      */
-    public function getAddress(): string
+    public function getImageFile(): File
     {
-        return $this->address;
+        return $this->imageFile;
     }
 
     /**
-     * @param string $address
-     * @return Provider
+     * @param File $imageFile
+     * @return Image
      */
-    public function setAddress(string $address): Provider
+    public function setImageFile(File $imageFile): Image
     {
-        $this->address = $address;
+        $this->imageFile = $imageFile;
         return $this;
     }
 
     /**
-     * @return string
+     * @return Product
      */
-    public function getEmail(): string
+    public function getProduct(): Product
     {
-        return $this->email;
+        return $this->product;
     }
 
     /**
-     * @param string $email
-     * @return Provider
+     * @param Product $product
+     * @return Image
      */
-    public function setEmail(string $email): Provider
+    public function setProduct(Product $product): Image
     {
-        $this->email = $email;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getPhone(): int
-    {
-        return $this->phone;
-    }
-
-    /**
-     * @param int $phone
-     * @return Provider
-     */
-    public function setPhone(int $phone): Provider
-    {
-        $this->phone = $phone;
+        $this->product = $product;
         return $this;
     }
 }

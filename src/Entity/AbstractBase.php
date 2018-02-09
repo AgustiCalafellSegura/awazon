@@ -85,6 +85,4 @@ abstract class AbstractBase
         $this->updatedAt = $updatedAt;
         return $this;
     }
-
-
 }

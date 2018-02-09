@@ -26,15 +26,15 @@ class Category extends AbstractBase
     private $name;
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
+     * @var array
+     * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="category", cascade={"persist"})
      */
-    private $product;
+    private $products;
 
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -43,27 +43,27 @@ class Category extends AbstractBase
      * @param string $name
      * @return Category
      */
-    public function setName(string $name)
+    public function setName(string $name): Category
     {
         $this->name = $name;
         return $this;
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function getProduct()
+    public function getProducts(): array
     {
-        return $this->product;
+        return $this->products;
     }
 
     /**
-     * @param string $product
+     * @param array $products
      * @return Category
      */
-    public function setProduct(string $product)
+    public function setProducts(array $products): Category
     {
-        $this->product = $product;
+        $this->products = $products;
         return $this;
     }
 }

@@ -38,8 +38,8 @@ class Provider extends AbstractBase
     private $email;
 
     /**
-     * @var integer
-     * @ORM\Column(type="integer")
+     * @var string
+     * @ORM\Column(type="string")
      */
     private $phone;
 
@@ -116,22 +116,23 @@ class Provider extends AbstractBase
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getPhone()
+    public function getPhone(): string
     {
         return $this->phone;
     }
 
     /**
-     * @param int $phone
+     * @param string $phone
      * @return Provider
      */
-    public function setPhone(int $phone)
+    public function setPhone(string $phone): Provider
     {
         $this->phone = $phone;
         return $this;
     }
+
 
     /**
      * @param Product $product
@@ -145,6 +146,16 @@ class Provider extends AbstractBase
         return $this;
     }
 
+
+    public function removeProduct(Product $product)
+    {
+        foreach ($this->products as $itemSong)
+        {
+            if($itemSong->getName()){
+                $this->products = array_diff($product);
+            }
+        }
+    }
 
     /**
      * @return array
