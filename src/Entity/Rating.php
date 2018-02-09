@@ -20,98 +20,76 @@ class Rating extends AbstractBase
 {
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
-     */
-    private $name;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string")
-     */
-    private $address;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string")
-     */
-    private $email;
-
-    /**
-     * @var integer
+     * @var int
      * @ORM\Column(type="integer")
      */
-    private $phone;
+    private $rate;
 
     /**
-     * @return string
+     * @var Customer
+     * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="orders")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
-    public function getName(): string
-    {
-        return $this->name;
-    }
+    private $customer;
 
     /**
-     * @param string $name
-     * @return Provider
+     * @var Product
+     * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="orders")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
-    public function setName(string $name): Provider
-    {
-        $this->name = $name;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAddress(): string
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param string $address
-     * @return Provider
-     */
-    public function setAddress(string $address): Provider
-    {
-        $this->address = $address;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param string $email
-     * @return Provider
-     */
-    public function setEmail(string $email): Provider
-    {
-        $this->email = $email;
-        return $this;
-    }
+    private $product;
 
     /**
      * @return int
      */
-    public function getPhone(): int
+    public function getRate(): int
     {
-        return $this->phone;
+        return $this->rate;
     }
 
     /**
-     * @param int $phone
-     * @return Provider
+     * @param int $rate
+     * @return Rating
      */
-    public function setPhone(int $phone): Provider
+    public function setRate(int $rate): Rating
     {
-        $this->phone = $phone;
+        $this->rate = $rate;
+        return $this;
+    }
+
+    /**
+     * @return Customer
+     */
+    public function getCustomer(): Customer
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param Customer $customer
+     * @return Rating
+     */
+    public function setCustomer(Customer $customer): Rating
+    {
+        $this->customer = $customer;
+        return $this;
+    }
+
+    /**
+     * @return Product
+     */
+    public function getProduct(): Product
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param Product $product
+     * @return Rating
+     */
+    public function setProduct(Product $product): Rating
+    {
+        $this->product = $product;
         return $this;
     }
 }
