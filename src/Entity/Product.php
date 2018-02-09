@@ -53,7 +53,25 @@ class Product extends AbstractBase
      * @var integer
      * @ORM\Column(type="integer")
      */
-    private $rating;
+    private $ratings;
+
+    /**
+     * @var integer
+     * @ORM\Column(type="integer")
+     */
+    private $orderItems;
+    /**
+     * @var integer
+     * @ORM\Column(type="integer")
+     */
+    private $reviews;
+
+    /**
+     * @var Provider
+     * @ORM\ManyToOne(targetEntity="App\Entity\Provider", inversedBy="products")
+     * @ORM\JoinColumn(name="provider_id", referencedColumnName="id")
+     */
+    private $provider;
 
     /**
      * @return string

@@ -44,6 +44,18 @@ class Provider extends AbstractBase
     private $phone;
 
     /**
+     * @var array
+     * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="provider", cascade={"persist"})
+     */
+    private $products;
+
+    /**
+     * @var integer
+     * @ORM\Column(type="integer")
+     */
+    private $orders;
+
+    /**
      * @return string
      */
     public function getName()
