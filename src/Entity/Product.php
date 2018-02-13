@@ -35,7 +35,7 @@ class Product extends AbstractBase
      * @var array
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="product", cascade={"persist"})
      */
-    private $image;
+    private $images;
 
     /**
      * @var float
@@ -113,18 +113,18 @@ class Product extends AbstractBase
     /**
      * @return array
      */
-    public function getImage(): array
+    public function getImages(): array
     {
-        return $this->image;
+        return $this->images;
     }
 
     /**
-     * @param array $image
+     * @param array $images
      * @return Product
      */
-    public function setImage(array $image): Product
+    public function setImages(array $images): Product
     {
-        $this->image = $image;
+        $this->images = $images;
         return $this;
     }
 

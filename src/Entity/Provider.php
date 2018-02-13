@@ -146,7 +146,9 @@ class Provider extends AbstractBase
         return $this;
     }
 
-
+    /**
+     * @param Product $product
+     */
     public function removeProduct(Product $product)
     {
         foreach ($this->products as $itemSong)
