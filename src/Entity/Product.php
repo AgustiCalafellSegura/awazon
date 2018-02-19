@@ -8,6 +8,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,52 +33,62 @@ class Product extends AbstractBase
     private $description;
 
     /**
-     * @var array
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="product", cascade={"persist"})
-     */
-    private $images;
-
-    /**
      * @var float
      * @ORM\Column(type="float")
      */
     private $price;
 
     /**
-     * @var Category
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="orders")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true)
      */
-    private $category;
+    private $images;
 
     /**
-     * @var array
-     * @ORM\OneToMany(targetEntity="App\Entity\Rating", mappedBy="product", cascade={"persist"})
-     */
-    private $ratings;
-
-    /**
-     * @var array
-     * @ORM\OneToMany(targetEntity="App\Entity\OrderItem", mappedBy="product", cascade={"persist"})
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="OrderItem", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $orderItems;
+
     /**
-     * @var array
-     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="product", cascade={"persist"})
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Review", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $reviews;
 
     /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Rating", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true)
+     */
+    private $ratings;
+
+    /**
      * @var Provider
-     * @ORM\ManyToOne(targetEntity="App\Entity\Provider", inversedBy="products")
-     * @ORM\JoinColumn(name="provider_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Provider", inversedBy="products")
      */
     private $provider;
 
     /**
+     * @var Category
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
+     */
+    private $category;
+
+    /**
+     * Product constructor.
+     */
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+        $this->orderItems = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
+        $this->ratings = new ArrayCollection();
+    }
+
+    /**
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -86,7 +97,7 @@ class Product extends AbstractBase
      * @param string $name
      * @return Product
      */
-    public function setName(string $name): Product
+    public function setName($name)
     {
         $this->name = $name;
         return $this;
@@ -95,7 +106,7 @@ class Product extends AbstractBase
     /**
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription()
     {
         return $this->description;
     }
@@ -104,34 +115,16 @@ class Product extends AbstractBase
      * @param string $description
      * @return Product
      */
-    public function setDescription(string $description): Product
+    public function setDescription($description)
     {
         $this->description = $description;
         return $this;
     }
 
     /**
-     * @return array
-     */
-    public function getImages(): array
-    {
-        return $this->images;
-    }
-
-    /**
-     * @param array $images
-     * @return Product
-     */
-    public function setImages(array $images): Product
-    {
-        $this->images = $images;
-        return $this;
-    }
-
-    /**
      * @return float
      */
-    public function getPrice(): float
+    public function getPrice()
     {
         return $this->price;
     }
@@ -140,88 +133,204 @@ class Product extends AbstractBase
      * @param float $price
      * @return Product
      */
-    public function setPrice(float $price): Product
+    public function setPrice($price)
     {
         $this->price = $price;
         return $this;
     }
 
     /**
-     * @return Category
+     * @return ArrayCollection
      */
-    public function getCategory(): Category
+    public function getImages()
     {
-        return $this->category;
+        return $this->images;
     }
 
     /**
-     * @param Category $category
+     * @param ArrayCollection $images
      * @return Product
      */
-    public function setCategory(Category $category): Product
+    public function setImages($images)
     {
-        $this->category = $category;
+        $this->images = $images;
         return $this;
     }
 
     /**
-     * @return array
+     * @param Image $image
+     *
+     * @return $this
      */
-    public function getRatings(): array
+    public function addImage(Image $image)
     {
-        return $this->ratings;
-    }
-
-    /**
-     * @param array $ratings
-     * @return Product
-     */
-    public function setRatings(array $ratings): Product
-    {
-        $this->ratings = $ratings;
+        if (!$this->images->contains($image))
+        {
+            $this->images->add($image);
+            $image->setProduct($this);
+        }
         return $this;
     }
 
     /**
-     * @return array
+     * @param Image $image
+     *
+     * @return $this
      */
-    public function getOrderItems(): array
+    public function removeImage(Image $image)
+    {
+        if ($this->images->contains($image))
+        {
+            $this->images->remove($image);
+        }
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getOrderItems()
     {
         return $this->orderItems;
     }
 
     /**
-     * @param array $orderItems
+     * @param ArrayCollection $orderItems
      * @return Product
      */
-    public function setOrderItems(array $orderItems): Product
+    public function setOrderItems($orderItems)
     {
         $this->orderItems = $orderItems;
         return $this;
     }
 
     /**
-     * @return array
+     * @param OrderItem $orderItem
+     *
+     * @return $this
      */
-    public function getReviews(): array
+    public function addOrderItem(OrderItem $orderItem)
+    {
+        if (!$this->orderItems->contains($orderItem))
+        {
+            $this->orderItems->add($orderItem);
+            $orderItem->setProduct($this);
+        }
+        return $this;
+    }
+
+    /**
+     * @param OrderItem $orderItem
+     *
+     * @return $this
+     */
+    public function removeOrderItem(OrderItem $orderItem)
+    {
+        if ($this->orderItems->contains($orderItem))
+        {
+            $this->orderItems->remove($orderItem);
+        }
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getReviews()
     {
         return $this->reviews;
     }
 
     /**
-     * @param array $reviews
+     * @param ArrayCollection $reviews
      * @return Product
      */
-    public function setReviews(array $reviews): Product
+    public function setReviews($reviews)
     {
         $this->reviews = $reviews;
         return $this;
     }
 
     /**
+     * @param Review $review
+     *
+     * @return $this
+     */
+    public function addReview(Review $review)
+    {
+        if (!$this->reviews->contains($review))
+        {
+            $this->reviews->add($review);
+            $review->setProduct($this);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Review $review
+     *
+     * @return $this
+     */
+    public function removeReview(Review $review)
+    {
+        if ($this->reviews->contains($review))
+        {
+            $this->reviews->remove($review);
+        }
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getRatings()
+    {
+        return $this->ratings;
+    }
+
+    /**
+     * @param ArrayCollection $ratings
+     * @return Product
+     */
+    public function setRatings($ratings)
+    {
+        $this->ratings = $ratings;
+        return $this;
+    }
+
+    /**
+     * @param Rating $rating
+     *
+     * @return $this
+     */
+    public function addRating(Rating $rating)
+    {
+        if (!$this->ratings->contains($rating))
+        {
+            $this->ratings->add($rating);
+            $rating->setProduct($this);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Rating $rating
+     *
+     * @return $this
+     */
+    public function removeRating(Rating $rating)
+    {
+        if ($this->ratings->contains($rating))
+        {
+            $this->ratings->remove($rating);
+        }
+        return $this;
+    }
+
+    /**
      * @return Provider
      */
-    public function getProvider(): Provider
+    public function getProvider()
     {
         return $this->provider;
     }
@@ -230,9 +339,32 @@ class Product extends AbstractBase
      * @param Provider $provider
      * @return Product
      */
-    public function setProvider(Provider $provider): Product
+    public function setProvider($provider)
     {
         $this->provider = $provider;
         return $this;
+    }
+
+    /**
+     * @return Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param Category $category
+     * @return Product
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

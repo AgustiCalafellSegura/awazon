@@ -22,27 +22,26 @@ class Rating extends AbstractBase
     /**
      * @var int
      * @ORM\Column(type="integer")
+     * @Assert\Range(min="1", max="5")
      */
     private $rate;
 
     /**
      * @var Customer
-     * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="orders")
-     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="ratings")
      */
     private $customer;
 
     /**
      * @var Product
-     * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="orders")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="ratings")
      */
     private $product;
 
     /**
      * @return int
      */
-    public function getRate(): int
+    public function getRate()
     {
         return $this->rate;
     }
@@ -51,7 +50,7 @@ class Rating extends AbstractBase
      * @param int $rate
      * @return Rating
      */
-    public function setRate(int $rate): Rating
+    public function setRate($rate)
     {
         $this->rate = $rate;
         return $this;
@@ -60,7 +59,7 @@ class Rating extends AbstractBase
     /**
      * @return Customer
      */
-    public function getCustomer(): Customer
+    public function getCustomer()
     {
         return $this->customer;
     }
@@ -69,7 +68,7 @@ class Rating extends AbstractBase
      * @param Customer $customer
      * @return Rating
      */
-    public function setCustomer(Customer $customer): Rating
+    public function setCustomer($customer)
     {
         $this->customer = $customer;
         return $this;
@@ -78,7 +77,7 @@ class Rating extends AbstractBase
     /**
      * @return Product
      */
-    public function getProduct(): Product
+    public function getProduct()
     {
         return $this->product;
     }
@@ -87,9 +86,14 @@ class Rating extends AbstractBase
      * @param Product $product
      * @return Rating
      */
-    public function setProduct(Product $product): Rating
+    public function setProduct($product)
     {
         $this->product = $product;
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getCustomer()->getName().' · '.$this->getProduct()->getName().' · '.$this->getRate();
     }
 }

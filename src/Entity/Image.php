@@ -28,68 +28,85 @@ class Image extends AbstractBase
 
     /**
      * @var File
-     *
+     * @Vich\UploadableField(mapping="products", fileNameProperty="image")
+     * @Assert\Image()
      */
     private $imageFile;
 
     /**
      * @var Product
-     * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="orders")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="images")
      */
     private $product;
 
     /**
      * @return string
      */
-    public function getImage(): string
+    public function getImage()
     {
         return $this->image;
     }
 
     /**
      * @param string $image
-     * @return Image
      */
-    public function setImage(string $image): Image
+    public function setImage($image)
     {
         $this->image = $image;
-        return $this;
     }
 
     /**
      * @return File
      */
-    public function getImageFile(): File
+    public function getImageFile()
     {
         return $this->imageFile;
     }
 
     /**
      * @param File $imageFile
-     * @return Image
      */
-    public function setImageFile(File $imageFile): Image
+    public function setImageFile($imageFile)
     {
         $this->imageFile = $imageFile;
-        return $this;
     }
 
     /**
      * @return Product
      */
-    public function getProduct(): Product
+    public function getProduct()
     {
         return $this->product;
     }
 
     /**
      * @param Product $product
-     * @return Image
      */
-    public function setProduct(Product $product): Image
+    public function setProduct($product)
     {
         $this->product = $product;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return Image
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getProduct()->getName().' · '.$this->getImage();
     }
 }

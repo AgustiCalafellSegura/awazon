@@ -9,25 +9,30 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 abstract class AbstractBase
 {
     /**
-     * @var integer
+     * @var int
      * @ORM\Id
      * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue()
      */
     protected $id;
 
     /**
-     * @var \DateTime
+     * @var \DateTime $createdAt
+     *
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     protected $createdAt;
 
     /**
-     * @var \DateTime
+     * @var \DateTime $updatedAt
+     *
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
     protected $updatedAt;
@@ -35,25 +40,15 @@ abstract class AbstractBase
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
-     * @return AbstractBase
-     */
-    public function setId(int $id): AbstractBase
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
      * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt()
     {
         return $this->createdAt;
     }
@@ -62,7 +57,7 @@ abstract class AbstractBase
      * @param \DateTime $createdAt
      * @return AbstractBase
      */
-    public function setCreatedAt(\DateTime $createdAt): AbstractBase
+    public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
         return $this;
@@ -71,7 +66,7 @@ abstract class AbstractBase
     /**
      * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt()
     {
         return $this->updatedAt;
     }
@@ -80,7 +75,7 @@ abstract class AbstractBase
      * @param \DateTime $updatedAt
      * @return AbstractBase
      */
-    public function setUpdatedAt(\DateTime $updatedAt): AbstractBase
+    public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
         return $this;

@@ -8,6 +8,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,44 +27,91 @@ class Category extends AbstractBase
     private $name;
 
     /**
-     * @var array
-     * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="category", cascade={"persist"})
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="category", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $products;
 
     /**
+     * Category constructor.
+     */
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
+
+    /**
+     * Methods
+     */
+    /**
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
 
     /**
      * @param string $name
+     *
      * @return Category
      */
-    public function setName(string $name): Category
+    public function setName($name)
     {
         $this->name = $name;
         return $this;
     }
 
     /**
-     * @return array
+     * @return ArrayCollection
      */
-    public function getProducts(): array
+    public function getProducts()
     {
         return $this->products;
     }
 
     /**
-     * @param array $products
+     * @param ArrayCollection $products
+     *
      * @return Category
      */
-    public function setProducts(array $products): Category
+    public function setProducts($products)
     {
         $this->products = $products;
         return $this;
+    }
+
+    /**
+     * @param Product $product
+     *
+     * @return $this
+     */
+    public function addProduct(Product $product)
+    {
+        if (!$this->products->contains($product))
+        {
+            $this->products->add($product);
+            $product->setCategory($this);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Product $product
+     *
+     * @return $this
+     */
+    public function removeProduct(Product $product)
+    {
+        if ($this->products->contains($product))
+        {
+            $this->products->remove($product);
+        }
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

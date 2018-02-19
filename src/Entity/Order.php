@@ -8,6 +8,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,104 +19,141 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Order extends AbstractBase
 {
+
     /**
-     * @var string
-     * @ORM\Column(type="string")
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $date;
 
     /**
-     * @var array
-     * @ORM\OneToMany(targetEntity="App\Entity\OrderItem", mappedBy="order", cascade={"persist"})
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="OrderItem", mappedBy="order", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $orderItems;
 
     /**
      * @var Provider
-     * @ORM\ManyToOne(targetEntity="App\Entity\Provider", inversedBy="orders")
-     * @ORM\JoinColumn(name="provider_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Provider", inversedBy="orders")
      */
     private $provider;
 
     /**
      * @var Customer
+     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="orders")
      */
     private $customer;
 
+    /**
+     * Order constructor.
+     */
     public function __construct()
     {
-        $this->customer = array();
+        $this->orderItems = new ArrayCollection();
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
-    public function getDate(): string
+    public function getDate()
     {
         return $this->date;
     }
 
     /**
-     * @param string $date
+     * @param \DateTime $date
      * @return Order
      */
-    public function setDate(string $date): Order
+    public function setDate($date)
     {
         $this->date = $date;
         return $this;
     }
 
     /**
-     * @return array
+     * @return ArrayCollection
      */
-    public function getOrderItems(): array
+    public function getOrderItems()
     {
         return $this->orderItems;
     }
 
     /**
-     * @param array $orderItems
+     * @param ArrayCollection $orderItems
+     *
      * @return Order
      */
-    public function setOrderItems(array $orderItems): Order
+    public function setOrderItems($orderItems)
     {
         $this->orderItems = $orderItems;
         return $this;
     }
 
     /**
+     * @param OrderItem $orderItem
+     *
+     * @return $this
+     */
+    public function addOrderItem (OrderItem $orderItem)
+    {
+        if (!$this->orderItems->contains($orderItem))
+        {
+            $this->orderItems->add($orderItem);
+            $orderItem->setOrder($this);
+        }
+        return $this;
+    }
+
+    /**
+     * @param OrderItem $orderItem
+     *
+     * @return $this
+     */
+    public function removeOrderItem (OrderItem $orderItem)
+    {
+        if ($this->orderItems->contains($orderItem))
+        {
+            $this->orderItems->remove($orderItem);
+        }
+        return $this;
+    }
+
+    /**
      * @return Provider
      */
-    public function getProvider(): Provider
+    public function getProvider()
     {
         return $this->provider;
     }
 
     /**
      * @param Provider $provider
-     * @return Order
      */
-    public function setProvider(Provider $provider): Order
+    public function setProvider($provider)
     {
         $this->provider = $provider;
-        return $this;
     }
 
     /**
-     * @return int
+     * @return Customer
      */
-    public function getCustomer(): int
+    public function getCustomer()
     {
         return $this->customer;
     }
 
     /**
-     * @param int $customer
+     * @param Customer $customer
      * @return Order
      */
-    public function setCustomer(int $customer): Order
+    public function setCustomer($customer)
     {
         $this->customer = $customer;
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getDate()->format('d/m/Y').' · '.$this->getProvider()->getName().' · '.$this->getCustomer()->getName();
     }
 }

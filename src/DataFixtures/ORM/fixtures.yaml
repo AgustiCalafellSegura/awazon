@@ -1,0 +1,17 @@
+App\Entity\Provider:
+    provider{1..1000}:
+        name: <company()>
+        address: <address()>
+        email: <email()>
+        phone: <phoneNumber()>
+
+App\Entity\Category:
+    category{1..10}:
+        name: <word()>
+
+App\Entity\Product:
+    product{1..100}:
+        name: <word()>
+        description: <sentence()>
+        price: <randomFloat(1,5)>
+        category: '@category<numberBetween(1,10)>'

@@ -20,37 +20,61 @@ class OrderItem extends AbstractBase
 {
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
+     * @var int
+     * @ORM\Column(type="integer")
      */
-    private $unit;
+    private $units;
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
+     * @var Order
+     * @ORM\ManyToOne(targetEntity="Order", inversedBy="orderItems")
+     */
+    private $order;
+
+    /**
+     * @var Product
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="orderItems")
      */
     private $product;
 
     /**
-     * @return string
+     * @return int
      */
-    public function getUnit()
+    public function getUnits()
     {
-        return $this->unit;
+        return $this->units;
     }
 
     /**
-     * @param string $unit
+     * @param int $units
      * @return OrderItem
      */
-    public function setUnit(string $unit)
+    public function setUnits($units)
     {
-        $this->unit = $unit;
+        $this->units = $units;
         return $this;
     }
 
     /**
-     * @return string
+     * @return Order
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * @param Order $order
+     * @return OrderItem
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
+        return $this;
+    }
+
+    /**
+     * @return Product
      */
     public function getProduct()
     {
@@ -58,14 +82,17 @@ class OrderItem extends AbstractBase
     }
 
     /**
-     * @param string $product
+     * @param Product $product
      * @return OrderItem
      */
-    public function setProduct(string $product)
+    public function setProduct($product)
     {
         $this->product = $product;
         return $this;
     }
 
-
+    public function __toString()
+    {
+        return $this->getOrder()->getProvider()->getName().' · '.$this->getProduct()->getName();
+    }
 }

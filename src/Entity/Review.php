@@ -27,22 +27,20 @@ class Review extends AbstractBase
 
     /**
      * @var Customer
-     * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="orders")
-     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="reviews")
      */
     private $customer;
 
     /**
      * @var Product
-     * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="orders")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="reviews")
      */
     private $product;
 
     /**
      * @return string
      */
-    public function getReview(): string
+    public function getReview()
     {
         return $this->review;
     }
@@ -51,7 +49,7 @@ class Review extends AbstractBase
      * @param string $review
      * @return Review
      */
-    public function setReview(string $review): Review
+    public function setReview($review)
     {
         $this->review = $review;
         return $this;
@@ -60,7 +58,7 @@ class Review extends AbstractBase
     /**
      * @return Customer
      */
-    public function getCustomer(): Customer
+    public function getCustomer()
     {
         return $this->customer;
     }
@@ -69,7 +67,7 @@ class Review extends AbstractBase
      * @param Customer $customer
      * @return Review
      */
-    public function setCustomer(Customer $customer): Review
+    public function setCustomer($customer)
     {
         $this->customer = $customer;
         return $this;
@@ -78,7 +76,7 @@ class Review extends AbstractBase
     /**
      * @return Product
      */
-    public function getProduct(): Product
+    public function getProduct()
     {
         return $this->product;
     }
@@ -87,9 +85,14 @@ class Review extends AbstractBase
      * @param Product $product
      * @return Review
      */
-    public function setProduct(Product $product): Review
+    public function setProduct($product)
     {
         $this->product = $product;
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getReview();
     }
 }

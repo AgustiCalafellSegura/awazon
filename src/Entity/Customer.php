@@ -8,13 +8,14 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Customer
  * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\Customer")
- * @ORM\Table(name="Customer")
+ * @ORM\Table(name="Customers")
  */
 class Customer extends AbstractBase
 {
@@ -34,32 +35,43 @@ class Customer extends AbstractBase
     /**
      * @var string
      * @ORM\Column(type="string")
+     * @Assert\Email()
      */
     private $email;
 
     /**
-     * @var integer
-     * @ORM\Column(type="integer")
+     * @var string
+     * @ORM\Column(type="string")
      */
     private $phone;
 
     /**
-     * @var array
-     * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="customer", cascade={"persist"})
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Order", mappedBy="customer", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $orders;
 
     /**
-     * @var array
-     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="customer", cascade={"persist"})
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Review", mappedBy="customer", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $reviews;
 
     /**
-     * @var array
-     * @ORM\OneToMany(targetEntity="App\Entity\Rating", mappedBy="customer", cascade={"persist"})
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Rating", mappedBy="customer", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $ratings;
+
+    /**
+     * Customer constructor.
+     */
+    public function __construct()
+    {
+        $this->orders = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
+        $this->ratings = new ArrayCollection();
+    }
 
     /**
      * @return string
@@ -73,7 +85,7 @@ class Customer extends AbstractBase
      * @param string $name
      * @return Customer
      */
-    public function setName(string $name)
+    public function setName($name)
     {
         $this->name = $name;
         return $this;
@@ -91,7 +103,7 @@ class Customer extends AbstractBase
      * @param string $address
      * @return Customer
      */
-    public function setAddress(string $address)
+    public function setAddress($address)
     {
         $this->address = $address;
         return $this;
@@ -109,14 +121,14 @@ class Customer extends AbstractBase
      * @param string $email
      * @return Customer
      */
-    public function setEmail(string $email)
+    public function setEmail($email)
     {
         $this->email = $email;
         return $this;
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getPhone()
     {
@@ -124,12 +136,30 @@ class Customer extends AbstractBase
     }
 
     /**
-     * @param int $phone
+     * @param string $phone
      * @return Customer
      */
-    public function setPhone(int $phone)
+    public function setPhone($phone)
     {
         $this->phone = $phone;
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getOrders()
+    {
+        return $this->orders;
+    }
+
+    /**
+     * @param ArrayCollection $orders
+     * @return Customer
+     */
+    public function setOrders($orders)
+    {
+        $this->orders = $orders;
         return $this;
     }
 
@@ -139,63 +169,118 @@ class Customer extends AbstractBase
      */
     public function addOrder(Order $order)
     {
-        $this->orders[] = $order;
-        $order->setOrderItems($this);
+        if (!$this->orders->contains($order))
+        {
+            $this->orders->add($order);
+            $order->setCustomer($this);
+        }
+        return $this;
+    }
 
+    public function removeOrder (Order $order)
+    {
+        if ($this->orders->contains($order))
+        {
+            $this->orders->remove($order);
+        }
         return $this;
     }
 
     /**
-     * @return array
+     * @return ArrayCollection
      */
-    public function getOrders(): array
-    {
-        return $this->orders;
-    }
-
-    /**
-     * @param array $orders
-     * @return Customer
-     */
-    public function setOrders(array $orders): Customer
-    {
-        $this->orders = $orders;
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getReviews(): array
+    public function getReviews()
     {
         return $this->reviews;
     }
 
     /**
-     * @param array $reviews
+     * @param ArrayCollection $reviews
      * @return Customer
      */
-    public function setReviews(array $reviews): Customer
+    public function setReviews($reviews)
     {
         $this->reviews = $reviews;
         return $this;
     }
 
     /**
-     * @return array
+     * @param Review $review
+     *
+     * @return $this
      */
-    public function getRatings(): array
+    public function addReview(Review $review)
+    {
+        if (!$this->reviews->contains($review)){
+            $this->reviews->add($review);
+            $review->setCustomer($this);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Review $review
+     *
+     * @return $this
+     */
+    public function removeReview(Review $review)
+    {
+        if ($this->reviews->contains($review))
+        {
+            $this->reviews->remove($review);
+        }
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getRatings()
     {
         return $this->ratings;
     }
 
     /**
-     * @param array $ratings
+     * @param ArrayCollection $ratings
      * @return Customer
      */
-    public function setRatings(array $ratings): Customer
+    public function setRatings($ratings)
     {
         $this->ratings = $ratings;
         return $this;
+    }
+
+    /**
+     * @param Rating $rating
+     *
+     * @return $this
+     */
+    public function addRating(Rating  $rating)
+    {
+        if (!$this->ratings->contains($rating))
+        {
+            $this->ratings->add($rating);
+            $rating->setCustomer($this);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Rating $rating
+     *
+     * @return $this
+     */
+    public function removeRating(Rating $rating)
+    {
+        if ($this->ratings->contains($rating))
+        {
+            $this->ratings->remove($rating);
+        }
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

@@ -8,6 +8,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -34,6 +35,7 @@ class Provider extends AbstractBase
     /**
      * @var string
      * @ORM\Column(type="string")
+     * @Assert\Email()
      */
     private $email;
 
@@ -44,21 +46,24 @@ class Provider extends AbstractBase
     private $phone;
 
     /**
-     * @var array
-     * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="provider", cascade={"persist"})
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="provider", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $products;
 
     /**
-     * @var array
-     * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="provider", cascade={"persist"})
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Order", mappedBy="provider", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $orders;
 
+    /**
+     * provider constructor.
+     */
     public function __construct()
     {
-        $this->products = array();
-        $this->orders = array();
+        $this->products = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
 
     /**
@@ -73,7 +78,7 @@ class Provider extends AbstractBase
      * @param string $name
      * @return Provider
      */
-    public function setName(string $name)
+    public function setName($name)
     {
         $this->name = $name;
         return $this;
@@ -91,7 +96,7 @@ class Provider extends AbstractBase
      * @param string $address
      * @return Provider
      */
-    public function setAddress(string $address)
+    public function setAddress($address)
     {
         $this->address = $address;
         return $this;
@@ -109,7 +114,7 @@ class Provider extends AbstractBase
      * @param string $email
      * @return Provider
      */
-    public function setEmail(string $email)
+    public function setEmail($email)
     {
         $this->email = $email;
         return $this;
@@ -118,7 +123,7 @@ class Provider extends AbstractBase
     /**
      * @return string
      */
-    public function getPhone(): string
+    public function getPhone()
     {
         return $this->phone;
     }
@@ -127,73 +132,94 @@ class Provider extends AbstractBase
      * @param string $phone
      * @return Provider
      */
-    public function setPhone(string $phone): Provider
+    public function setPhone($phone)
     {
         $this->phone = $phone;
         return $this;
     }
 
-
     /**
-     * @param Product $product
-     * @return $this
+     * @return ArrayCollection
      */
-    public function addProduct(Product $product)
-    {
-        $this->products[] = $product;
-        $product->setProvider($this);
-
-        return $this;
-    }
-
-    /**
-     * @param Product $product
-     */
-    public function removeProduct(Product $product)
-    {
-        foreach ($this->products as $itemSong)
-        {
-            if($itemSong->getName()){
-                $this->products = array_diff($product);
-            }
-        }
-    }
-
-    /**
-     * @return array
-     */
-    public function getProducts(): array
+    public function getProducts()
     {
         return $this->products;
     }
 
     /**
-     * @param array $products
+     * @param ArrayCollection $products
      * @return Provider
      */
-    public function setProducts(array $products): Provider
+    public function setProducts($products)
     {
         $this->products = $products;
         return $this;
     }
 
     /**
-     * @return array
+     * @param Product $product
+     *
+     * @return $this
      */
-    public function getOrders(): array
+    public function addProduct(Product $product)
+    {
+        if (!$this->products->contains($product))
+        {
+            $this->products->add($product);
+            $product->setProvider($this);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Product $product
+     *
+     * @return $this
+     */
+    public function removeProduct(Product $product)
+    {
+        if ($this->products->contains($product))
+        {
+            $this->products->remove($product);
+        }
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getOrders()
     {
         return $this->orders;
     }
 
     /**
-     * @param array $orders
+     * @param ArrayCollection $orders
      * @return Provider
      */
-    public function setOrders(array $orders): Provider
+    public function setOrders($orders)
     {
         $this->orders = $orders;
         return $this;
     }
 
+    /**
+     * @param Order $order
+     *
+     * @return $this
+     */
+    public function addOrder(Order $order)
+    {
+        if (!$this->orders->contains($order))
+        {
+            $this->orders->add($order);
+            $order->setProvider($this);
+        }
+        return $this;
+    }
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }
