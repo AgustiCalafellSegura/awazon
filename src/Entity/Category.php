@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Category
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\Category")
+ * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  * @ORM\Table(name="Categories")
  */
 class Category extends AbstractBase

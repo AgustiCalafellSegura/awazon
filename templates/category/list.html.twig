@@ -20,8 +20,8 @@
                         <td>{{ category.name }}</td>
                         <td>{{ category.products }}</td>
                         <td>
-                            <a href="{{ path('app_category_update', {id: category.id}) }}">Actualitzar</a>
-                            <a href="{{ path('app_category_delete', {id: category.id}) }}">Esborrar</a>
+                         {#   <a href="{{ path('app_category_update', {id: category.id}) }}">Actualitzar</a>
+                            <a href="{{ path('app_category_delete', {id: category.id}) }}">Esborrar</a>#}
                         </td>
                     </tr>
                 {% endfor %}
@@ -29,7 +29,7 @@
             </table>
             <hr>
             <p>
-                <a href="{{ path('app_category_create') }}">+ Crear una categoria nova</a>
+                {#<a href="{{ path('app_category_create') }}">+ Crear una categoria nova</a>#}
             </p>
 
         </div>

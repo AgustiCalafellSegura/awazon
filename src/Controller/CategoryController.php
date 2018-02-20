@@ -23,7 +23,7 @@ class CategoryController extends Controller
     public function listing(){
         $categories = $this->getDoctrine()->getRepository('App:Category')->findAll();
 
-        return $this->render(':category:list.html.twig', array(
+        return $this->render('category/list.html.twig', array(
             "categories" => $categories,
         ));
     }
