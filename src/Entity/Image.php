@@ -28,8 +28,8 @@ class Image extends AbstractBase
 
     /**
      * @var File
-     * @Vich\UploadableField(mapping="products", fileNameProperty="image")
-     * @Assert\Image()
+     * Vich\UploadableField(mapping="products", fileNameProperty="image")
+     * Assert\Image()
      */
     private $imageFile;
 
