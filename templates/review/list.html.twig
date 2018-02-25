@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Llistat de Comentaris
+{% endblock %}
+
+{% block body%}
+    <div class="row">
+        <div class="col-xs-10">
+            <h1>Comentaris</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Comentari</th>
+                    <th>Client</th>
+                    <th>Producte</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for review in reviews %}
+                    <tr>
+                        <td>{{ review.id }}</td>
+                        <td>{{ review.review }}</td>
+                        <td>{{ review.customer.name }}</td>
+                        <td>{{ review.product.name }}</td>
+
+                        {#<td>#}
+                        {#<a href="{{ path('app_albums_update', {slug: album.slug}) }}">Actualitzar</a>#}
+                        {#<a href="{{ path('app_albums_delete', {slug: album.slug}) }}">Esborrar</a>#}
+                        {#</td>#}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {#<hr>#}
+            {#<p>#}
+            {#<a class="btn btn-primary" href="{{ path('app_albums_create') }}">+ Crear un àlbum nou</a>#}
+            {#</p>#}
+        </div>
+    </div>
+
+{% endblock %}

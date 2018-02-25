@@ -1,15 +1,19 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block body %}
+{% block title %}
+    Llistat de Categories
+{% endblock %}
+
+{% block body%}
     <div class="row">
         <div class="col-xs-10">
-            <h1>Category</h1>
+            <h1>Categories</h1>
             <table class="table">
                 <thead>
                 <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>actions</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -18,8 +22,8 @@
                         <td>{{ category.id }}</td>
                         <td>{{ category.name }}</td>
                         <td>
-                         {#   <a href="{{ path('app_category_update', {id: category.id}) }}">Actualitzar</a>
-                            <a href="{{ path('app_category_delete', {id: category.id}) }}">Esborrar</a>#}
+                            <a href="{{ path('app_category_update', {slug: category.slug}) }}">Update</a>
+                            <a href="{{ path('app_category_delete', {slug: category.slug}) }}">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -27,9 +31,9 @@
             </table>
             <hr>
             <p>
-                {#<a href="{{ path('app_category_create') }}">+ Crear una categoria nova</a>#}
+                <a class="btn btn-primary" href="{{ path('app_category_create') }}">+ New category</a>
             </p>
-
         </div>
     </div>
+
 {% endblock %}
