@@ -1,0 +1,12 @@
+% extends 'base.html.twig' %}
+
+{% block title %}
+    Customer delete
+{% endblock %}
+
+{% block body%}
+    <p>Carefully! Would you delete {{ customer.name }}?</p>
+    <p><a href="{{ path('app_customer_listing') }}">Cancel</a></p>
+    <p><a href="{{ path('app_customer_deleteconfirm', {slug: customer.slug}) }}">Confirm</a></p>
+{% endblock %}
+

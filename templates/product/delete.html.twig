@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Product delete
+{% endblock %}
+
+{% block body%}
+    <p>Carefully! Would you delete {{ product.name }}?</p>
+    <p><a href="{{ path('app_product_listing') }}">Cancel</a></p>
+    <p><a href="{{ path('app_product_deleteconfirm', {slug: product.slug}) }}">Confirm</a></p>
+{% endblock %}

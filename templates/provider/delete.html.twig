@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Provider delete
+{% endblock %}
+
+{% block body%}
+    <p>Carefully! Would you delete {{ provider.name }}?</p>
+    <p><a href="{{ path('app_provider_listing') }}">Cancel</a></p>
+    <p><a href="{{ path('app_provider_deleteconfirm', {slug: provider.slug}) }}">Confirm</a></p>
+{% endblock %}

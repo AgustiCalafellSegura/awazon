@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Order list
+{% endblock %}
+
+{% block body%}
+    <div class="row">
+        <div class="col-xs-10">
+            <h1>Orders</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Provider</th>
+                    <th>Customer</th>
+                    <th>Num. Items</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.date|date("m/d/y") }}</td>
+                        <td>{{ order.provider.name }}</td>
+                        <td>{{ order.customer.name }}</td>
+                        <td>{{ order.orderItems.count }}</td>
+                        <td>
+                            <a href="{{ path('app_order_update', {id: order.id}) }}">Update</a>
+                            <a href="{{ path('app_order_delete', {id: order.id}) }}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <hr>
+            <p>
+                <a class="btn btn-primary" href="{{ path('app_order_create') }}">+ New order</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

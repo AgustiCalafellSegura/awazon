@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Order delete
+{% endblock %}
+
+{% block body%}
+    <p>Carefully! Would you delete {{ image.id }}?</p>
+    <p><a href="{{ path('app_image_listing') }}">Cancel</a></p>
+    <p><a href="{{ path('app_image_deleteconfirm', {id: order.id}) }}">Confirm</a></p>
+{% endblock %}

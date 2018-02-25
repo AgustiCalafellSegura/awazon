@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Llistat de Valoracions
+{% endblock %}
+
+{% block body%}
+    <div class="row">
+        <div class="col-xs-10">
+            <h1>Valoracions</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Valoració</th>
+                    <th>Client</th>
+                    <th>Producte</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for rating in ratings %}
+                    <tr>
+                        <td>{{ rating.id }}</td>
+                        <td>{{ rating.rate }}</td>
+                        <td>{{ rating.customer.name }}</td>
+                        <td>{{ rating.product.name }}</td>
+
+                        {#<td>#}
+                        {#<a href="{{ path('app_albums_update', {slug: album.slug}) }}">Actualitzar</a>#}
+                        {#<a href="{{ path('app_albums_delete', {slug: album.slug}) }}">Esborrar</a>#}
+                        {#</td>#}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {#<hr>#}
+            {#<p>#}
+            {#<a class="btn btn-primary" href="{{ path('app_albums_create') }}">+ Crear un àlbum nou</a>#}
+            {#</p>#}
+        </div>
+    </div>
+
+{% endblock %}

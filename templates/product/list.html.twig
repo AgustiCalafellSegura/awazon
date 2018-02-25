@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Products list
+{% endblock %}
+
+{% block body%}
+    <div class="row">
+        <div class="col-xs-10">
+            <h1>Products</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Provider</th>
+                    <th>Category</th>
+                    <th>Num. Images</th>
+
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.description }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.provider.name }}</td>
+                        <td>{{ product.category.name }}</td>
+                        <td>{{ product.images.count }}</td>
+
+                        <td>
+                            <a href="{{ path('app_product_update', {slug: product.slug}) }}">Update</a>
+                            <a href="{{ path('app_product_delete', {slug: product.slug}) }}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <hr>
+            <p>
+                <a class="btn btn-primary" href="{{ path('app_product_create') }}">+ New product</a>
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Customers list
+{% endblock %}
+
+{% block body%}
+    <div class="row">
+        <div class="col-xs-10">
+            <h1>Customers</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for customer in customers %}
+                    <tr>
+                        <td>{{ customer.id }}</td>
+                        <td>{{ customer.name }}</td>
+                        <td>{{ customer.address }}</td>
+                        <td>{{ customer.email }}</td>
+                        <td>{{ customer.phone }}</td>
+                        <td>
+                            <a href="{{ path('app_customer_update', {slug: customer.slug}) }}">Update</a>
+                            <a href="{{ path('app_customer_delete', {slug: customer.slug}) }}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <hr>
+            <p>
+                <a class="btn btn-primary" href="{{ path('app_customer_create') }}">+ New customer</a>
+            </p>
+        </div>
+    </div>
+
+{% endblock %}
