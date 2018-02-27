@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints\File;
 /**
  * Class Image
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\Image")
+ * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
  * @ORM\Table(name="Images")
  */
 class Image extends AbstractBase

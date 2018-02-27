@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Review
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\Review")
+ * @ORM\Entity(repositoryClass="App\Repository\ReviewRepository")
  * @ORM\Table(name="Reviews")
  */
 class Review extends AbstractBase

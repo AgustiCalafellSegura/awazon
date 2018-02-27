@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Product
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\Product")
+ * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
  * @ORM\Table(name="Products")
  */
 class Product extends AbstractBase

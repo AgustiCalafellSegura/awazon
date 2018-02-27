@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class OrderItem
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\OrderItem")
+ * @ORM\Entity(repositoryClass="App\Repository\OrderItemRepository")
  * @ORM\Table(name="OrderItems")
  */
 class OrderItem extends AbstractBase

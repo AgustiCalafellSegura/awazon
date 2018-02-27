@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Class Rating
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\Rating")
+ * @ORM\Entity(repositoryClass="App\Repository\RatingRepository")
  * @ORM\Table(name="Ratings")
  */
 class Rating extends AbstractBase

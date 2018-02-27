@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Class Provider
  * @package App\Entity
- * @ORM\Entity(repositoryClass="App\Repository\Provider")
+ * @ORM\Entity(repositoryClass="App\Repository\ProviderRepository")
  * @ORM\Table(name="Providers")
  */
 class Provider extends AbstractBase
