@@ -22,8 +22,8 @@
                         <td>{{ category.id }}</td>
                         <td>{{ category.name }}</td>
                         <td>
-                            <a href="{{ path('app_category_update', {slug: category.slug}) }}">Update</a>
-                            <a href="{{ path('app_category_delete', {slug: category.slug}) }}">Delete</a>
+                            <a href="{{ path('app_category_update', {id: category.id}) }}">Update</a>
+                            <a href="{{ path('app_category_delete', {id: category.id}) }}">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}

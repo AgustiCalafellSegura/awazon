@@ -58,14 +58,14 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("/category/{slug}/update")
+     * @Route("/category/{id}/update")
      * @param Request $request
-     * @param $slug
+     * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request, $id)
     {
-        $category =$this->getDoctrine()->getRepository('App:Category')->findOneBy(array('slug'=>$slug));
+        $category =$this->getDoctrine()->getRepository('App:Category')->find($id);
         $form = $this->createForm(CategoryFormType::class, $category);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
@@ -78,25 +78,21 @@ class CategoryController extends Controller
         ));
     }
     /**
-     * @Route("/category/{slug}/delete")
-     * @param $slug
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/category/{id}/delete")
      */
-    public function delete($slug)
+    public function delete($id)
     {
-        $category = $this->getDoctrine()->getRepository('App:Category')->findOneBy(array('slug'=>$slug));
+        $category = $this->getDoctrine()->getRepository('App:Category')->find($id);
         return $this->render('category/delete.html.twig', array(
             'category' => $category,
         ));
     }
     /**
-     * @Route("/category/{slug}/delete-confirm")
-     * @param $slug
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/category/{id}/delete-confirm")
      */
-    public function deleteConfirm($slug)
+    public function deleteConfirm($id)
     {
-        $category = $this->getDoctrine()->getRepository('App:Category')->findOneBy(array('slug'=>$slug));
+        $category = $this->getDoctrine()->getRepository('App:Category')->find($id);
         $this->getDoctrine()->getManager()->remove($category);
         $this->getDoctrine()->getManager()->flush();
         $this->addFlash('success', 'Category deleted successfully!');
