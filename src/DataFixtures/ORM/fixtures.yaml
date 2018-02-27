@@ -15,3 +15,16 @@ App\Entity\Product:
         description: <sentence()>
         price: <randomFloat(1,5)>
         category: '@category<numberBetween(1,10)>'
+
+App\Entity\Customer:
+    customer{1..10}:
+        name: <word()>
+        address: <address()>
+        email: <email()>
+        phone: <phoneNumber()>
+
+App\Entity\Order:
+    order{1..10}:
+        date: <dateTime()>
+        provider: '@provider<numberBetween(1,1000)>'
+        customer: '@customer<numberBetween(1,10)>'
