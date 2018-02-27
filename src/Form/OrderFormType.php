@@ -24,7 +24,14 @@ class OrderFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date', DateType::class)
+            ->add('date', DateType::class,
+                array(
+                    'widget' => 'single_text',
+                    // this is actually the default format for single_text
+                    'format' => 'yyyy-MM-dd'
+                )
+            )
+
             ->add('orderItems', CollectionType::class, array('allow_add' => true, 'allow_delete' => true, 'entry_type' => OrderItemFormType::class))
             ->add('provider', EntityType::class, array('class'=> Provider::class))
             ->add('customer', EntityType::class, array('class'=> Customer::class))
