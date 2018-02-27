@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Form\ProductFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,7 +21,7 @@ class ProductController extends Controller
      */
     public function listing()
     {
-        $products = $this->getDoctrine()->getRepository('App:Product')->findAllSortedByName();
+        $products = $this->getDoctrine()->getRepository('App:Product')->findAll();
         return $this->render('product/list.html.twig', array(
             'products' => $products,
         ));
@@ -46,14 +47,14 @@ class ProductController extends Controller
         ));
     }
     /**
-     * @Route("/product/{slug}/update")
+     * @Route("/product/{id}/update")
      * @param Request $request
-     * @param $slug
+     * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request, $id)
     {
-        $product =$this->getDoctrine()->getRepository('App:Product')->findOneBy(array('slug'=>$slug));
+        $product =$this->getDoctrine()->getRepository('App:Product')->find($id);
         $form = $this->createForm(ProductFormType::class, $product);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
@@ -66,25 +67,25 @@ class ProductController extends Controller
         ));
     }
     /**
-     * @Route("/product/{slug}/delete")
-     * @param $slug
+     * @Route("/product/{id}/delete")
+     * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function delete($slug)
+    public function delete($id)
     {
-        $product = $this->getDoctrine()->getRepository('App:Product')->findOneBy(array('slug'=>$slug));
+        $product = $this->getDoctrine()->getRepository('App:Product')->find($id);
         return $this->render('product/delete.html.twig', array(
             'product' => $product,
         ));
     }
     /**
-     * @Route("/product/{slug}/delete-confirm")
-     * @param $slug
+     * @Route("/product/{id}/delete-confirm")
+     * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteConfirm($slug)
+    public function deleteConfirm($id)
     {
-        $product = $this->getDoctrine()->getRepository('App:Product')->findOneBy(array('slug'=>$slug));
+        $product = $this->getDoctrine()->getRepository('App:Product')->find($id);
         $this->getDoctrine()->getManager()->remove($product);
         $this->getDoctrine()->getManager()->flush();
         $this->addFlash('success', 'Product deleted successfully!');

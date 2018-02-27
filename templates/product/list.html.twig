@@ -34,8 +34,8 @@
                         <td>{{ product.images.count }}</td>
 
                         <td>
-                            <a href="{{ path('app_product_update', {slug: product.slug}) }}">Update</a>
-                            <a href="{{ path('app_product_delete', {slug: product.slug}) }}">Delete</a>
+                            <a href="{{ path('app_product_update', {id: product.id}) }}">Update</a>
+                            <a href="{{ path('app_product_delete', {id: product.id}) }}">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}

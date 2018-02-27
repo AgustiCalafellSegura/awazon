@@ -47,14 +47,14 @@ class CustomerController extends Controller
         ));
     }
     /**
-     * @Route("/customer/{slug}/update")
+     * @Route("/customer/{id}/update")
      * @param Request $request
-     * @param $slug
+     * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request, $id)
     {
-        $customer =$this->getDoctrine()->getRepository('App:Customer')->findOneBy(array('slug'=>$slug));
+        $customer =$this->getDoctrine()->getRepository('App:Customer')->find($id);
         $form = $this->createForm(CustomerFormType::class, $customer);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
@@ -67,25 +67,25 @@ class CustomerController extends Controller
         ));
     }
     /**
-     * @Route("/customer/{slug}/delete")
-     * @param $slug
+     * @Route("/customer/{id}/delete")
+     * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function delete($slug)
+    public function delete($id)
     {
-        $customer = $this->getDoctrine()->getRepository('App:Customer')->findOneBy(array('slug'=>$slug));
+        $customer = $this->getDoctrine()->getRepository('App:Customer')->find($id);
         return $this->render('customer/delete.html.twig', array(
             'customer' => $customer,
         ));
     }
     /**
-     * @Route("/customer/{slug}/delete-confirm")
-     * @param $slug
+     * @Route("/customer/{id}/delete-confirm")
+     * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteConfirm($slug)
+    public function deleteConfirm($id)
     {
-        $customer = $this->getDoctrine()->getRepository('App:Customer')->findOneBy(array('slug'=>$slug));
+        $customer = $this->getDoctrine()->getRepository('App:Customer')->find($id);
         $this->getDoctrine()->getManager()->remove($customer);
         $this->getDoctrine()->getManager()->flush();
         $this->addFlash('success', 'Customer deleted successfully!');

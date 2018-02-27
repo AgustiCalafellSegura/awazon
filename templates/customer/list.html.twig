@@ -28,8 +28,8 @@
                         <td>{{ customer.email }}</td>
                         <td>{{ customer.phone }}</td>
                         <td>
-                            <a href="{{ path('app_customer_update', {slug: customer.slug}) }}">Update</a>
-                            <a href="{{ path('app_customer_delete', {slug: customer.slug}) }}">Delete</a>
+                            <a href="{{ path('app_customer_update', {id: customer.id}) }}">Update</a>
+                            <a href="{{ path('app_customer_delete', {id: customer.id}) }}">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}

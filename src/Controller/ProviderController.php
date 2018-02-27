@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use App\Entity\Provider;
+use App\Form\ProviderFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,8 +21,7 @@ class ProviderController extends Controller
      */
     public function listing()
     {
-        $providers = $this->getDoctrine()->getRepository('App:Provider')->findAllSortedByName();
-//        $providers = $this->getDoctrine()->getRepository('App:Provider')->findAll();
+        $providers = $this->getDoctrine()->getRepository('App:Provider')->findAll();
         return $this->render('provider/list.html.twig', array(
             'providers' => $providers,
         ));
@@ -47,14 +47,14 @@ class ProviderController extends Controller
         ));
     }
     /**
-     * @Route("/provider/{slug}/update")
+     * @Route("/provider/{id}/update")
      * @param Request $request
-     * @param $slug
+     * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request, $id)
     {
-        $provider =$this->getDoctrine()->getRepository('App:Provider')->findOneBy(array('slug'=>$slug));
+        $provider =$this->getDoctrine()->getRepository('App:Provider')->find($id);
         $form = $this->createForm(ProviderFormType::class, $provider);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
@@ -67,25 +67,25 @@ class ProviderController extends Controller
         ));
     }
     /**
-     * @Route("/provider/{slug}/delete")
-     * @param $slug
+     * @Route("/provider/{id}/delete")
+     * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function delete($slug)
+    public function delete($id)
     {
-        $provider = $this->getDoctrine()->getRepository('App:Provider')->findOneBy(array('slug'=>$slug));
+        $provider = $this->getDoctrine()->getRepository('App:Provider')->find($id);
         return $this->render('provider/delete.html.twig', array(
             'provider' => $provider,
         ));
     }
     /**
-     * @Route("/provider/{slug}/delete-confirm")
-     * @param $slug
+     * @Route("/provider/{id}/delete-confirm")
+     * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteConfirm($slug)
+    public function deleteConfirm($id)
     {
-        $provider = $this->getDoctrine()->getRepository('App:Provider')->findOneBy(array('slug'=>$slug));
+        $provider = $this->getDoctrine()->getRepository('App:Provider')->find($id);
         $this->getDoctrine()->getManager()->remove($provider);
         $this->getDoctrine()->getManager()->flush();
         $this->addFlash('success', 'Provider deleted successfully!');

@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use App\Entity\Order;
+use App\Form\OrderFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,7 +21,7 @@ class OrderController extends Controller
      */
     public function listing()
     {
-        $orders = $this->getDoctrine()->getRepository('App:Order')->findAllSortedByName();
+        $orders = $this->getDoctrine()->getRepository('App:Order')->findAll();
         return $this->render('order/list.html.twig', array(
             'orders' => $orders,
         ));

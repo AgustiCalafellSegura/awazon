@@ -29,8 +29,8 @@
                         <td>{{ provider.phone }}</td>
 
                         <td>
-                            <a href="{{ path('app_provider_update', {slug: provider.slug}) }}">Update</a>
-                            <a href="{{ path('app_provider_delete', {slug: provider.slug}) }}">Delete</a>
+                            <a href="{{ path('app_provider_update', {id: provider.id}) }}">Update</a>
+                            <a href="{{ path('app_provider_delete', {id: provider.id}) }}">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}
