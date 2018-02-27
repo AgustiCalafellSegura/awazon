@@ -6,6 +6,6 @@
 
 {% block body%}
     <p>Carefully! Would you delete {{ image.id }}?</p>
-    <p><a href="{{ path('app_image_listing') }}">Cancel</a></p>
-    <p><a href="{{ path('app_image_deleteconfirm', {id: order.id}) }}">Confirm</a></p>
+    <p><a href="{{ path('app_order_listing') }}">Cancel</a></p>
+    <p><a href="{{ path('app_order_deleteconfirm', {id: order.id}) }}">Confirm</a></p>
 {% endblock %}

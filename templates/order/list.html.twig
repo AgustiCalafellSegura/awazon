@@ -7,24 +7,28 @@
 {% block body%}
     <div class="row">
         <div class="col-xs-10">
-            <h1>Imatges</h1>
+            <h1>Order</h1>
             <table class="table">
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Image</th>
-                    <th>Actions</th>
+                    <th>Date</th>
+                    <th>OrderItems</th>
+                    <th>Provider</th>
+                    <th>Customer</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for image in images %}
+                {% for order in orders %}
                     <tr>
-                        <td>{{ image.id }}</td>
-                        <td>{{ image.image }}</td>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.date }}</td>
+                        <td>{{ order.provider }}</td>
+                        <td>{{ order.customer }}</td>
 
                         <td>
-                            <a href="{{ path('app_image_update', {id: image.id}) }}">Actualitzar</a>
-                            <a href="{{ path('app_image_delete', {id: image.id}) }}">Esborrar</a>
+                            <a href="{{ path('app_order_update', {id: order.id}) }}">Actualitzar</a>
+                            <a href="{{ path('app_order_delete', {id: order.id}) }}">Esborrar</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -32,7 +36,7 @@
             </table>
             <hr>
             <p>
-                <a class="btn btn-primary" href="{{ path('app_image_create') }}">+ New image</a>
+                <a class="btn btn-primary" href="{{ path('app_order_create') }}">+ New order</a>
             </p>
         </div>
     </div>
