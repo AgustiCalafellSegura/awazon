@@ -21,7 +21,8 @@ class ProductController extends Controller
      */
     public function listing()
     {
-        $products = $this->getDoctrine()->getRepository('App:Product')->findAll();
+        $products = $this->getDoctrine()->getRepository('App:Product')->findAllSortedByName();
+
         return $this->render('product/list.html.twig', array(
             'products' => $products,
         ));

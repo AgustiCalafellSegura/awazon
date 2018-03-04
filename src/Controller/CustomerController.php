@@ -22,6 +22,7 @@ class CustomerController extends Controller
     public function listing()
     {
         $customers = $this->getDoctrine()->getRepository('App:Customer')->findAllSortedByName();
+
         return $this->render('customer/list.html.twig', array(
             'customers' => $customers,
         ));

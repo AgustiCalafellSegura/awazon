@@ -21,7 +21,8 @@ class OrderController extends Controller
      */
     public function listing()
     {
-        $orders = $this->getDoctrine()->getRepository('App:Order')->findAll();
+        $orders = $this->getDoctrine()->getRepository('App:Order')->findAllSortedByName();
+
         return $this->render('order/list.html.twig', array(
             'orders' => $orders,
         ));

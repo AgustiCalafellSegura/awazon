@@ -24,7 +24,7 @@ class CategoryController extends Controller
      */
     public function listing()
     {
-        $categories = $this->getDoctrine()->getRepository('App:Category')->findAll();
+        $categories = $this->getDoctrine()->getRepository('App:Category')->findAllSortedByName();
 
         return $this->render('category/list.html.twig', array(
             "categories" => $categories,

@@ -15,6 +15,8 @@ App\Entity\Product:
         description: <sentence()>
         price: <randomFloat(1,5)>
         category: '@category<numberBetween(1,10)>'
+        provider: '@provider<numberBetween(1, 100)>'
+
 
 App\Entity\Customer:
     customer{1..10}:
