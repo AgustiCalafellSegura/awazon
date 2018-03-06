@@ -30,3 +30,9 @@ App\Entity\Order:
         date: <dateTime()>
         provider: '@provider<numberBetween(1,1000)>'
         customer: '@customer<numberBetween(1,10)>'
+
+App\Entity\Rating:
+    rating{1..10}:
+        rate: <numberBetween(1,5)>
+        customer: '@customer<numberBetween(1,10)>'
+        product: '@product<numberBetween(1,10)>'
