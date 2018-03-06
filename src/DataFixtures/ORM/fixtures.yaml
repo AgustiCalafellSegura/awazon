@@ -10,7 +10,7 @@ App\Entity\Category:
         name: <word()>
 
 App\Entity\Product:
-    product{1..100}:
+    product{1..1000}:
         name: <word()>
         description: <sentence()>
         price: <randomFloat(1,5)>
@@ -19,20 +19,20 @@ App\Entity\Product:
 
 
 App\Entity\Customer:
-    customer{1..10}:
+    customer{1..100}:
         name: <word()>
         address: <address()>
         email: <email()>
         phone: <phoneNumber()>
 
 App\Entity\Order:
-    order{1..10}:
+    order{1..100}:
         date: <dateTime()>
         provider: '@provider<numberBetween(1,1000)>'
         customer: '@customer<numberBetween(1,10)>'
 
 App\Entity\Rating:
-    rating{1..10}:
+    rating{1..1000}:
         rate: <numberBetween(1,5)>
-        customer: '@customer<numberBetween(1,10)>'
-        product: '@product<numberBetween(1,10)>'
+        customer: '@customer<numberBetween(1,100)>'
+        product: '@product<numberBetween(1,1000)>'

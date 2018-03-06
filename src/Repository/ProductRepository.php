@@ -40,31 +40,38 @@ class ProductRepository extends EntityRepository
     }
 
     /**
+     * @param int $rate
      * @return \Doctrine\ORM\QueryBuilder
      */
-    public function findTopTenMostRatedProductsQB()
+    public function findTopTenMostRatedProductsQB($rate = 5)
     {
         $qb = $this->createQueryBuilder('p')
             ->join('p.ratings', 'r')
-            ->where('r.rate = 5')
+            ->where('r.rate = :rate')
+            ->setParameter('rate',$rate)
+            ->setMaxResults(10)
+            ->orderBy('p.name', 'ASC')
+            ->addOrderBy('p.createdAt', 'DESC')
         ;
 
         return $qb;
     }
 
     /**
+     * @param int $rate
      * @return \Doctrine\ORM\Query
      */
-    public function findTopTenMostRatedProductsQ()
+    public function findTopTenMostRatedProductsQ($rate = 5)
     {
-        return $this->findTopTenMostRatedProductsQB()->getQuery();
+        return $this->findTopTenMostRatedProductsQB($rate)->getQuery();
     }
 
     /**
+     * @param int $rate
      * @return array
      */
-    public function findTopTenMostRatedProducts()
+    public function findTopTenMostRatedProducts($rate = 5)
     {
-        return $this->findTopTenMostRatedProductsQ()->getResult();
+        return $this->findTopTenMostRatedProductsQ($rate)->getResult();
     }
 }
