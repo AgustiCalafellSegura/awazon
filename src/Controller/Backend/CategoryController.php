@@ -6,7 +6,7 @@
  * Time: 15:58
  */
 
-namespace App\Controller;
+namespace App\Controller\Backend;
 
 use App\Entity\Category;
 use App\Form\CategoryFormType;
@@ -15,10 +15,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class CategoryController
+ * @Route("/admin")
+ */
 class CategoryController extends Controller
 {
     /**
-     * @Route("/category/list")
+     * @Route("/category/list", name="app_category_listing")
      *
      * @return Response
      */
