@@ -11,10 +11,14 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class OrderItemController
+ * @Route("/admin")
+ */
 class OrderItemController extends Controller
 {
     /**
-     * @Route("/orderitem/list")
+     * @Route("/orderitem/list", name="app_orderitem_listing")
      */
     public function listing()
     {

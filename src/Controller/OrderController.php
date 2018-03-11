@@ -14,10 +14,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class OrderController
+ * @Route("/admin")
+ */
 class OrderController extends Controller
 {
     /**
-     * @Route("/order")
+     * @Route("/order/list", name="app_order_listing")
      */
     public function listing()
     {
@@ -28,7 +32,7 @@ class OrderController extends Controller
         ));
     }
     /**
-     * @Route("/order/create")
+     * @Route("/order/create", name="app_order_create")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
@@ -48,7 +52,7 @@ class OrderController extends Controller
         ));
     }
     /**
-     * @Route("/order/{id}/update")
+     * @Route("/order/{id}/update", name="app_order_update")
      * @param Request $request
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -68,7 +72,7 @@ class OrderController extends Controller
         ));
     }
     /**
-     * @Route("/order/{id}/delete")
+     * @Route("/order/{id}/delete", name="app_order_delete")
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -80,7 +84,7 @@ class OrderController extends Controller
         ));
     }
     /**
-     * @Route("/order/{id}/delete-confirm")
+     * @Route("/order/{id}/delete-confirm", name="app_order_deleteconfirm")
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */

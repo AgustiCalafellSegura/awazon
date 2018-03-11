@@ -14,10 +14,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * Class CustomerController
+ * @Route("/admin")
+ */
 class CustomerController extends Controller
 {
     /**
-     * @Route("/customer")
+     * @Route("/customer/list", name="app_customer_listing")
      */
     public function listing()
     {
@@ -28,7 +32,7 @@ class CustomerController extends Controller
         ));
     }
     /**
-     * @Route("/customer/create")
+     * @Route("/customer/create", name="app_customer_create")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
@@ -48,7 +52,7 @@ class CustomerController extends Controller
         ));
     }
     /**
-     * @Route("/customer/{id}/update")
+     * @Route("/customer/{id}/update", name="app_customer_update")
      * @param Request $request
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -68,7 +72,7 @@ class CustomerController extends Controller
         ));
     }
     /**
-     * @Route("/customer/{id}/delete")
+     * @Route("/customer/{id}/delete", name="app_customer_delete")
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -80,7 +84,7 @@ class CustomerController extends Controller
         ));
     }
     /**
-     * @Route("/customer/{id}/delete-confirm")
+     * @Route("/customer/{id}/delete-confirm", name="app_customer_deleteconfirm")
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */

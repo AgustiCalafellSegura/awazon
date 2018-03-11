@@ -36,7 +36,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("/category/create")
+     * @Route("/category/create", name="app_category_create")
      *
      * @param Request $request
      * @return Response
@@ -62,7 +62,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * @Route("/category/{id}/update")
+     * @Route("/category/{id}/update" , name="app_category_update")
      * @param Request $request
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -82,7 +82,7 @@ class CategoryController extends Controller
         ));
     }
     /**
-     * @Route("/category/{id}/delete")
+     * @Route("/category/{id}/delete", name="app_category_delete")
      */
     public function delete($id)
     {
@@ -92,7 +92,7 @@ class CategoryController extends Controller
         ));
     }
     /**
-     * @Route("/category/{id}/delete-confirm")
+     * @Route("/category/{id}/delete-confirm", name="app_category_deleteconfirm")
      */
     public function deleteConfirm($id)
     {

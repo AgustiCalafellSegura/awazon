@@ -14,10 +14,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * Class ProductController
+ * @Route("/admin")
+ */
 class ProductController extends Controller
 {
     /**
-     * @Route("/product")
+     * @Route("/product/list", name="app_product_listing")
      */
     public function listing()
     {
@@ -28,7 +32,7 @@ class ProductController extends Controller
         ));
     }
     /**
-     * @Route("/product/create")
+     * @Route("/product/create", name="app_product_create")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
@@ -48,7 +52,7 @@ class ProductController extends Controller
         ));
     }
     /**
-     * @Route("/product/{id}/update")
+     * @Route("/product/{id}/update", name="app_product_update")
      * @param Request $request
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -68,7 +72,7 @@ class ProductController extends Controller
         ));
     }
     /**
-     * @Route("/product/{id}/delete")
+     * @Route("/product/{id}/delete", name="app_product_delete")
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -80,7 +84,7 @@ class ProductController extends Controller
         ));
     }
     /**
-     * @Route("/product/{id}/delete-confirm")
+     * @Route("/product/{id}/delete-confirm", name="app_product_deleteconfirm")
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */

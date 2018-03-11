@@ -45,12 +45,12 @@ class CustomerRepository extends EntityRepository
     public function findBestCustomersQB()
     {
         $qb = $this->createQueryBuilder('c')
-            ->select('COUNT(c.id) as amount')
+            ->select('c, COUNT(c.id) as amount')
             ->join('c.orders', 'o')
             ->groupBy('o.customer')
             ->setMaxResults(10)
-            ->orderBy('c.name', 'ASC')
-            ->addOrderBy('c.createdAt', 'DESC')
+            ->orderBy('amount', 'DESC')
+            ->addOrderBy('c.name', 'ASC')
         ;
 
         return $qb;

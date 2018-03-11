@@ -25,5 +25,23 @@
                 </tbody>
             </table>
         </div>
+        <div class="col-xs-3">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Rating</th>
+                    <th>Customers</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for customer in customers %}
+                    <tr>
+                        <th>{{ loop.index }}</th>
+                        <th>{{ customer[0].name }}</th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 {% endblock %}

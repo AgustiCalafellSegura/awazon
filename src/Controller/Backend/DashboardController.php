@@ -25,9 +25,13 @@ class DashboardController extends Controller
     public function dashboard()
     {
         $products = $this->getDoctrine()->getRepository('App:Product')->findTopTenMostRatedProducts();
+        $customers = $this->getDoctrine()->getRepository('App:Customer')->findBestCustomers();
 
-        return $this->render('dashboard.html.twig', array(
-            "products" => $products,
-        ));
+        return $this->render('dashboard.html.twig',
+            array(
+                "products" => $products,
+                "customers" => $customers,
+            )
+        );
     }
 }

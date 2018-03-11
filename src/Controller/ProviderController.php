@@ -14,10 +14,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * Class ProviderController
+ * @Route("/admin")
+ */
 class ProviderController extends Controller
 {
     /**
-     * @Route("/provider")
+     * @Route("/provider/list", name="app_provider_listing")
      */
     public function listing()
     {
@@ -27,7 +31,7 @@ class ProviderController extends Controller
         ));
     }
     /**
-     * @Route("/provider/create")
+     * @Route("/provider/create", name="app_provider_create")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
@@ -47,7 +51,7 @@ class ProviderController extends Controller
         ));
     }
     /**
-     * @Route("/provider/{id}/update")
+     * @Route("/provider/{id}/update", name="app_provider_update")
      * @param Request $request
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -67,7 +71,7 @@ class ProviderController extends Controller
         ));
     }
     /**
-     * @Route("/provider/{id}/delete")
+     * @Route("/provider/{id}/delete", name="app_provider_delete")
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -79,7 +83,7 @@ class ProviderController extends Controller
         ));
     }
     /**
-     * @Route("/provider/{id}/delete-confirm")
+     * @Route("/provider/{id}/delete-confirm", name="app_provider_deleteconfirm")
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */

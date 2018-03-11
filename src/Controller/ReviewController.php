@@ -11,10 +11,14 @@ namespace App\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * Class ReviewController
+ * @Route("/admin")
+ */
 class ReviewController extends Controller
 {
     /**
-    * @Route("/review/list")
+    * @Route("/review/list", name="app_review_listing")
     */
     public function listing()
     {

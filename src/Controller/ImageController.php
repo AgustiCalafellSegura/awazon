@@ -14,10 +14,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\Image;
 
+/**
+ * Class ImageController
+ * @Route("/admin")
+ */
 class ImageController extends Controller
 {
     /**
-     * @Route("/image/list")
+     * @Route("/image/list", name="app_image_listing")
      */
     public function listing()
     {
@@ -27,7 +31,7 @@ class ImageController extends Controller
         ));
     }
     /**
-     * @Route("/image/create")
+     * @Route("/image/create", name="app_image_create")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
@@ -47,7 +51,7 @@ class ImageController extends Controller
         ));
     }
     /**
-     * @Route("/image/{id}/update")
+     * @Route("/image/{id}/update", name="app_image_update")
      * @param Request $request
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -67,7 +71,7 @@ class ImageController extends Controller
         ));
     }
     /**
-     * @Route("/image/{id}/delete")
+     * @Route("/image/{id}/delete", name="app_image_delete")
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -79,7 +83,7 @@ class ImageController extends Controller
         ));
     }
     /**
-     * @Route("/image/{id}/delete-confirm")
+     * @Route("/image/{id}/delete-confirm", name="app_image_deleteconfirm")
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */

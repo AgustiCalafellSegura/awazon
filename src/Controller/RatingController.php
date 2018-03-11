@@ -13,10 +13,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * Class RatingController
+ * @Route("/admin")
+ */
 class RatingController extends Controller
 {
     /**
-     * @Route("/rating/list")
+     * @Route("/rating/list", name="app_rating_listing")
      */
     public function listing()
     {
