@@ -23,7 +23,7 @@ class OrderItemController extends Controller
     public function listing()
     {
         $orderitems = $this->getDoctrine()->getRepository('App:OrderItem')->findAll();
-        return $this->render('orderItem/list.html.twig', array(
+        return $this->render('backend/orderItem/list.html.twig', array(
             'orderitems' => $orderitems,
         ));
     }

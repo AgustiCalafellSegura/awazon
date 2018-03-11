@@ -27,7 +27,7 @@ class ProductController extends Controller
     {
         $products = $this->getDoctrine()->getRepository('App:Product')->findAllSortedByName();
 
-        return $this->render('product/list.html.twig', array(
+        return $this->render('backend/product/list.html.twig', array(
             'products' => $products,
         ));
     }
@@ -47,7 +47,7 @@ class ProductController extends Controller
             $this->addFlash('success', 'Product added successfully!');
             return $this->redirectToRoute('app_product_listing');
         }
-        return $this->render('product/create.html.twig', array(
+        return $this->render('backend/product/create.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -67,7 +67,7 @@ class ProductController extends Controller
             $this->addFlash('success', 'Product updated successfully!');
             return $this->redirectToRoute('app_product_listing');
         }
-        return $this->render('product/create.html.twig', array(
+        return $this->render('backend/product/create.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -79,7 +79,7 @@ class ProductController extends Controller
     public function delete($id)
     {
         $product = $this->getDoctrine()->getRepository('App:Product')->find($id);
-        return $this->render('product/delete.html.twig', array(
+        return $this->render('backend/product/delete.html.twig', array(
             'product' => $product,
         ));
     }

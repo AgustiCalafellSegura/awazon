@@ -23,7 +23,7 @@ class ReviewController extends Controller
     public function listing()
     {
         $reviews = $this->getDoctrine()->getRepository('App:Review')->findAll();
-        return $this->render('review/list.html.twig', array(
+        return $this->render('backend/review/list.html.twig', array(
             'reviews' => $reviews,
         ));
     }

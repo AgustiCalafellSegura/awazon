@@ -25,7 +25,7 @@ class RatingController extends Controller
     public function listing()
     {
         $ratings = $this->getDoctrine()->getRepository('App:Rating')->findAll();
-        return $this->render('rating/list.html.twig', array(
+        return $this->render('backend/rating/list.html.twig', array(
             'ratings' => $ratings,
         ));
     }

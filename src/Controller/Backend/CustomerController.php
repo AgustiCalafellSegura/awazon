@@ -27,7 +27,7 @@ class CustomerController extends Controller
     {
         $customers = $this->getDoctrine()->getRepository('App:Customer')->findAllSortedByName();
 
-        return $this->render('customer/list.html.twig', array(
+        return $this->render('backend/customer/list.html.twig', array(
             'customers' => $customers,
         ));
     }
@@ -47,7 +47,7 @@ class CustomerController extends Controller
             $this->addFlash('success', 'Customer added successfully!');
             return $this->redirectToRoute('app_customer_listing');
         }
-        return $this->render('customer/create.html.twig', array(
+        return $this->render('backend/customer/create.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -67,7 +67,7 @@ class CustomerController extends Controller
             $this->addFlash('success', 'Customer updated successfully!');
             return $this->redirectToRoute('app_customer_listing');
         }
-        return $this->render('customer/create.html.twig', array(
+        return $this->render('backend/customer/create.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -79,7 +79,7 @@ class CustomerController extends Controller
     public function delete($id)
     {
         $customer = $this->getDoctrine()->getRepository('App:Customer')->find($id);
-        return $this->render('customer/delete.html.twig', array(
+        return $this->render('backend/customer/delete.html.twig', array(
             'customer' => $customer,
         ));
     }

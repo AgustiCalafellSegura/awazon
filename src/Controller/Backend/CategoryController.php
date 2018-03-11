@@ -30,7 +30,7 @@ class CategoryController extends Controller
     {
         $categories = $this->getDoctrine()->getRepository('App:Category')->findAllSortedByName();
 
-        return $this->render('category/list.html.twig', array(
+        return $this->render('backend/category/list.html.twig', array(
             "categories" => $categories,
         ));
     }
@@ -56,7 +56,7 @@ class CategoryController extends Controller
             return $this->redirectToRoute('app_category_listing');
         }
 
-        return $this->render('category/create.html.twig', array(
+        return $this->render('/backend/category/create.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -77,7 +77,7 @@ class CategoryController extends Controller
             $this->addFlash('success', 'Category updated successfully!');
             return $this->redirectToRoute('app_category_listing');
         }
-        return $this->render('category/create.html.twig', array(
+        return $this->render('backend/category/create.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -87,7 +87,7 @@ class CategoryController extends Controller
     public function delete($id)
     {
         $category = $this->getDoctrine()->getRepository('App:Category')->find($id);
-        return $this->render('category/delete.html.twig', array(
+        return $this->render('backend/category/delete.html.twig', array(
             'category' => $category,
         ));
     }

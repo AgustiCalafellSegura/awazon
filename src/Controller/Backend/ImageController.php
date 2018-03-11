@@ -26,7 +26,7 @@ class ImageController extends Controller
     public function listing()
     {
         $images = $this->getDoctrine()->getRepository('App:Image')->findAll();
-        return $this->render('image/list.html.twig', array(
+        return $this->render('backend/image/list.html.twig', array(
             'images' => $images,
         ));
     }
@@ -46,7 +46,7 @@ class ImageController extends Controller
             $this->addFlash('success', 'Image added successfully!');
             return $this->redirectToRoute('app_image_listing');
         }
-        return $this->render('image/create.html.twig', array(
+        return $this->render('backend/image/create.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -66,7 +66,7 @@ class ImageController extends Controller
             $this->addFlash('success', 'Image updated successfully!');
             return $this->redirectToRoute('app_image_listing');
         }
-        return $this->render('image/create.html.twig', array(
+        return $this->render('backend/image/create.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -78,7 +78,7 @@ class ImageController extends Controller
     public function delete($id)
     {
         $image = $this->getDoctrine()->getRepository('App:Image')->findOneBy(array('id'=>$id));
-        return $this->render('image/delete.html.twig', array(
+        return $this->render('backend/image/delete.html.twig', array(
             'image' => $image,
         ));
     }

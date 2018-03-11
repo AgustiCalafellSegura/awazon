@@ -26,7 +26,7 @@ class ProviderController extends Controller
     public function listing()
     {
         $providers = $this->getDoctrine()->getRepository('App:Provider')->findAll();
-        return $this->render('provider/list.html.twig', array(
+        return $this->render('backend/provider/list.html.twig', array(
             'providers' => $providers,
         ));
     }
@@ -46,7 +46,7 @@ class ProviderController extends Controller
             $this->addFlash('success', 'Provider added successfully!');
             return $this->redirectToRoute('app_provider_listing');
         }
-        return $this->render('provider/create.html.twig', array(
+        return $this->render('backend/provider/create.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -66,7 +66,7 @@ class ProviderController extends Controller
             $this->addFlash('success', 'Provider updated successfully!');
             return $this->redirectToRoute('app_provider_listing');
         }
-        return $this->render('provider/create.html.twig', array(
+        return $this->render('backend/provider/create.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -78,7 +78,7 @@ class ProviderController extends Controller
     public function delete($id)
     {
         $provider = $this->getDoctrine()->getRepository('App:Provider')->find($id);
-        return $this->render('provider/delete.html.twig', array(
+        return $this->render('backend/provider/delete.html.twig', array(
             'provider' => $provider,
         ));
     }

@@ -27,7 +27,7 @@ class OrderController extends Controller
     {
         $orders = $this->getDoctrine()->getRepository('App:Order')->findAllSortedByName();
 
-        return $this->render('order/list.html.twig', array(
+        return $this->render('backend/order/list.html.twig', array(
             'orders' => $orders,
         ));
     }
@@ -47,7 +47,7 @@ class OrderController extends Controller
             $this->addFlash('success', 'Order added successfully!');
             return $this->redirectToRoute('app_order_listing');
         }
-        return $this->render('order/create.html.twig', array(
+        return $this->render('backend/order/create.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -67,7 +67,7 @@ class OrderController extends Controller
             $this->addFlash('success', 'Order updated successfully!');
             return $this->redirectToRoute('app_order_listing');
         }
-        return $this->render('order/create.html.twig', array(
+        return $this->render('backend/order/create.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -79,7 +79,7 @@ class OrderController extends Controller
     public function delete($id)
     {
         $order = $this->getDoctrine()->getRepository('App:Order')->findOneBy(array('id'=>$id));
-        return $this->render('order/delete.html.twig', array(
+        return $this->render('backend/order/delete.html.twig', array(
             'order' => $order,
         ));
     }

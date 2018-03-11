@@ -27,7 +27,7 @@ class DashboardController extends Controller
         $products = $this->getDoctrine()->getRepository('App:Product')->findTopTenMostRatedProducts();
         $customers = $this->getDoctrine()->getRepository('App:Customer')->findBestCustomers();
 
-        return $this->render('dashboard.html.twig',
+        return $this->render('backend/dashboard.html.twig',
             array(
                 "products" => $products,
                 "customers" => $customers,
