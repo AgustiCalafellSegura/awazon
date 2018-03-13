@@ -29,7 +29,7 @@ class Customer extends AbstractBase
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $address;
 
@@ -42,7 +42,7 @@ class Customer extends AbstractBase
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $phone;
 
@@ -280,8 +280,14 @@ class Customer extends AbstractBase
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
-        return $this->getName();
+        if($this->getName()){
+            return $this->getName();
+        }
+        return '---';
     }
 }

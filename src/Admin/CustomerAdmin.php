@@ -20,8 +20,28 @@ class CustomerAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name', TextType::class)
-            ->add('email', EmailType::class)
+            ->add(
+                'name',
+                TextType::class
+            )
+            ->add(
+                'email',
+                EmailType::class
+            )
+            ->add(
+                'address',
+                TextType::class,
+                array(
+                    'required' => false,
+                )
+            )
+            ->add(
+                'phone',
+                TextType::class,
+                array(
+                    'required' => false,
+                )
+            )
         ;
     }
 
@@ -30,14 +50,45 @@ class CustomerAdmin extends AbstractAdmin
         $datagridMapper
             ->add('name')
             ->add('email')
+            ->add('address')
+            ->add('phone')
         ;
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name')
-            ->add('email')
+            ->add(
+                'name',
+                null,
+                array(
+                    'editable' => true,
+                )
+            )
+            ->add(
+                'email',
+                null,
+                array(
+                    'editable' => true,
+                )
+            )
+            ->add(
+                'phone',
+                null,
+                array(
+                    'editable' => true,
+                )
+            )
+            ->add(
+                '_actions',
+                'actions',
+                array(
+                    'actions' => array(
+                        'edit' => [],
+                        'delete' => [],
+                    ),
+                )
+            )
         ;
     }
 }
