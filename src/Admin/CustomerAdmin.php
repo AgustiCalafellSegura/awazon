@@ -63,6 +63,7 @@ class CustomerAdmin extends AbstractAdmin
                 null,
                 array(
                     'editable' => true,
+                    'collapse' => true,
                 )
             )
             ->add(
