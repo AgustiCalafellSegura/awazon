@@ -6,7 +6,7 @@
  * Time: 15:58
  */
 
-namespace App\Controller;
+namespace App\Controller\Backend;
 
 use App\Form\ImageFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

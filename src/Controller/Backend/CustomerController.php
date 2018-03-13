@@ -6,7 +6,7 @@
  * Time: 15:58
  */
 
-namespace App\Controller;
+namespace App\Controller\Backend;
 
 use App\Entity\Customer;
 use App\Form\CustomerFormType;
