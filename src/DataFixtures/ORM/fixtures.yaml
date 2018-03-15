@@ -17,7 +17,6 @@ App\Entity\Product:
         category: '@category<numberBetween(1,10)>'
         provider: '@provider<numberBetween(1, 100)>'
 
-
 App\Entity\Customer:
     customer{1..100}:
         name: <word()>
@@ -36,3 +35,8 @@ App\Entity\Rating:
         rate: <numberBetween(1,5)>
         customer: '@customer<numberBetween(1,100)>'
         product: '@product<numberBetween(1,1000)>'
+
+App\Entity\Image:
+    image{1..100}:
+        image: <text(50)>
+        product: '@product<numberBetween(1, 100)>'

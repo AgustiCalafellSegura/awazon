@@ -14,6 +14,8 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\ModelType;
+use Sonata\CoreBundle\Form\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -50,9 +52,9 @@ class ProductAdmin extends AbstractAdmin
             )
             ->add(
                 'provider',
-                EntityType::class,
+                ModelType::class,
                 array(
-                    'class' => Provider::class
+//                    'class' => Provider::class
                     //todo improve QB sort by name
                 )
             )
@@ -64,6 +66,18 @@ class ProductAdmin extends AbstractAdmin
                     //todo improve QB sort by name
 
                 )
+            )
+            ->add(
+                'images',
+                CollectionType::class,
+                array(
+                    'required' => false,
+                    'error_bubbling' => true,
+                ),
+                array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    )
             )
         ;
     }

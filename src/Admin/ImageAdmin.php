@@ -8,43 +8,36 @@
 
 namespace App\Admin;
 
-use Faker\Provider\Text;
+use App\Entity\Product;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class ImageAdmin extends AbstractAdmin
 {
-    /**
-     * Default values to the datagrid.
-     *
-     * @var array
-     */
-    protected $datagridValues = [
-        '_page' => 1,
-        '_per_page' => 32,
-        '_sort_order' => 'ASC',
-        '_sort_by' => 'name'
-    ];
 
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->add(
-                'image',
-                TextType::class
-            )
-
-            ->add(
                 'imageFile',
-                TextType::class
+                VichFileType::class,
+                array(
+                    'required' => false
+                )
             )
             ->add(
                 'product',
-                EntityType::class
+                EntityType::class,
+                array(
+                    'class' => Product::class,
+                    'attr' => array(
+                        'hidden' => true,
+                    )
+                )
             )
         ;
     }
@@ -60,9 +53,34 @@ class ImageAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('image')
+            ->add(
+                'image',
+                null,
+                array(
+                    'editable' => true
+                )
+            )
             ->add('imageFile')
-            ->add('product')
+
+            ->add(
+                'product',
+                null,
+                array(
+                    'editable' => false
+                )
+            )
+
+            ->add(
+                '_actions',
+                'actions',
+                array(
+                    'actions' => array(
+                        'edit' => [],
+                        'delete' => [],
+                    ),
+                )
+            )
+
         ;
     }
 }
