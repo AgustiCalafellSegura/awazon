@@ -48,10 +48,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: Provider, group: Providers }
         public: true
-    admin.product:
-        class: App\Admin\ProductAdmin
-        arguments: [~, App\Entity\Product, ~]
+    admin.image:
+        class: App\Admin\ImageAdmin
+        arguments: [~, App\Entity\Image, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Product, group: Providers }
+            - { name: sonata.admin, manager_type: orm, label: Image, show_in_dashboard: true, group: Providers }
         public: true
 
