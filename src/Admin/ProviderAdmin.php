@@ -12,6 +12,7 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -28,6 +29,40 @@ class ProviderAdmin extends AbstractAdmin
         '_sort_order' => 'ASC',
         '_sort_by' => 'name'
     ];
+
+    public function configureShowFields(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->with('Personal data', [
+                'class'       => 'col-md-4',
+                'box_class'   => 'box box-solid box-danger',
+                'description' => 'Lorem ipsum',
+            ])
+            ->add('name')
+            ->add('address')
+            ->add('email')
+            ->add('phone')
+            ->end()
+            ->with('Products', [
+                'class'       => 'col-md-4',
+                'box_class'   => 'box box-solid box-danger',
+                'description' => 'Lorem ipsum',
+            ])
+
+            ->add('products')
+            ->end()
+
+            ->with('Orders', [
+                'class'       => 'col-md-4',
+                'box_class'   => 'box box-solid box-danger',
+                'description' => 'Lorem ipsum',
+            ])
+
+            ->add('orders')
+            // ...
+            ->end()
+        ;
+    }
 
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -97,6 +132,7 @@ class ProviderAdmin extends AbstractAdmin
                 array(
                     'actions' => array(
                         'edit' => [],
+                        'show' => [],
                         'delete' => [],
                     ),
                 )

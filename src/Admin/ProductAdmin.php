@@ -9,15 +9,14 @@
 namespace App\Admin;
 
 use App\Entity\Category;
-use App\Entity\Provider;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelType;
+use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\CoreBundle\Form\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -34,6 +33,28 @@ class ProductAdmin extends AbstractAdmin
         '_sort_order' => 'ASC',
         '_sort_by' => 'name'
     ];
+
+    public function configureShowFields(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->with('Product', [
+                'class'       => 'col-md-8',
+                'box_class'   => 'box box-solid box-danger',
+                'description' => 'Lorem ipsum',
+            ])
+            ->add('name')
+            ->add('description')
+            ->add('price')
+            ->add('images')
+            ->add('orderItems')
+            ->add('reviews')
+            ->add('ratings')
+            ->add('provider')
+            ->add('category')
+            // ...
+            ->end()
+        ;
+    }
 
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -135,6 +156,7 @@ class ProductAdmin extends AbstractAdmin
                 array(
                     'actions' => array(
                         'edit' => [],
+                        'show' => [],
                         'delete' => [],
                     ),
                 )
