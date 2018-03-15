@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: agusti
  * Date: 6/02/18
- * Time: 17:13
+ * Time: 17:13.
  */
 
 namespace App\Entity;
@@ -12,14 +12,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Product
- * @package App\Entity
+ * Class Product.
+ *
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
  * @ORM\Table(name="Products")
  */
 class Product extends AbstractBase
 {
-
     /**
      * @var string
      * @ORM\Column(type="string")
@@ -95,11 +94,13 @@ class Product extends AbstractBase
 
     /**
      * @param string $name
+     *
      * @return Product
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -113,11 +114,13 @@ class Product extends AbstractBase
 
     /**
      * @param string $description
+     *
      * @return Product
      */
     public function setDescription($description)
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -131,11 +134,13 @@ class Product extends AbstractBase
 
     /**
      * @param float $price
+     *
      * @return Product
      */
     public function setPrice($price)
     {
         $this->price = $price;
+
         return $this;
     }
 
@@ -149,11 +154,13 @@ class Product extends AbstractBase
 
     /**
      * @param ArrayCollection $images
+     *
      * @return Product
      */
     public function setImages($images)
     {
         $this->images = $images;
+
         return $this;
     }
 
@@ -164,11 +171,11 @@ class Product extends AbstractBase
      */
     public function addImage(Image $image)
     {
-        if (!$this->images->contains($image))
-        {
+        if (!$this->images->contains($image)) {
             $this->images->add($image);
             $image->setProduct($this);
         }
+
         return $this;
     }
 
@@ -179,10 +186,10 @@ class Product extends AbstractBase
      */
     public function removeImage(Image $image)
     {
-        if ($this->images->contains($image))
-        {
+        if ($this->images->contains($image)) {
             $this->images->remove($image);
         }
+
         return $this;
     }
 
@@ -196,11 +203,13 @@ class Product extends AbstractBase
 
     /**
      * @param ArrayCollection $orderItems
+     *
      * @return Product
      */
     public function setOrderItems($orderItems)
     {
         $this->orderItems = $orderItems;
+
         return $this;
     }
 
@@ -211,11 +220,11 @@ class Product extends AbstractBase
      */
     public function addOrderItem(OrderItem $orderItem)
     {
-        if (!$this->orderItems->contains($orderItem))
-        {
+        if (!$this->orderItems->contains($orderItem)) {
             $this->orderItems->add($orderItem);
             $orderItem->setProduct($this);
         }
+
         return $this;
     }
 
@@ -226,10 +235,10 @@ class Product extends AbstractBase
      */
     public function removeOrderItem(OrderItem $orderItem)
     {
-        if ($this->orderItems->contains($orderItem))
-        {
+        if ($this->orderItems->contains($orderItem)) {
             $this->orderItems->remove($orderItem);
         }
+
         return $this;
     }
 
@@ -243,11 +252,13 @@ class Product extends AbstractBase
 
     /**
      * @param ArrayCollection $reviews
+     *
      * @return Product
      */
     public function setReviews($reviews)
     {
         $this->reviews = $reviews;
+
         return $this;
     }
 
@@ -258,11 +269,11 @@ class Product extends AbstractBase
      */
     public function addReview(Review $review)
     {
-        if (!$this->reviews->contains($review))
-        {
+        if (!$this->reviews->contains($review)) {
             $this->reviews->add($review);
             $review->setProduct($this);
         }
+
         return $this;
     }
 
@@ -273,10 +284,10 @@ class Product extends AbstractBase
      */
     public function removeReview(Review $review)
     {
-        if ($this->reviews->contains($review))
-        {
+        if ($this->reviews->contains($review)) {
             $this->reviews->remove($review);
         }
+
         return $this;
     }
 
@@ -290,11 +301,13 @@ class Product extends AbstractBase
 
     /**
      * @param ArrayCollection $ratings
+     *
      * @return Product
      */
     public function setRatings($ratings)
     {
         $this->ratings = $ratings;
+
         return $this;
     }
 
@@ -305,11 +318,11 @@ class Product extends AbstractBase
      */
     public function addRating(Rating $rating)
     {
-        if (!$this->ratings->contains($rating))
-        {
+        if (!$this->ratings->contains($rating)) {
             $this->ratings->add($rating);
             $rating->setProduct($this);
         }
+
         return $this;
     }
 
@@ -320,10 +333,10 @@ class Product extends AbstractBase
      */
     public function removeRating(Rating $rating)
     {
-        if ($this->ratings->contains($rating))
-        {
+        if ($this->ratings->contains($rating)) {
             $this->ratings->remove($rating);
         }
+
         return $this;
     }
 
@@ -337,11 +350,13 @@ class Product extends AbstractBase
 
     /**
      * @param Provider $provider
+     *
      * @return Product
      */
     public function setProvider($provider)
     {
         $this->provider = $provider;
+
         return $this;
     }
 
@@ -355,11 +370,13 @@ class Product extends AbstractBase
 
     /**
      * @param Category $category
+     *
      * @return Product
      */
     public function setCategory($category)
     {
         $this->category = $category;
+
         return $this;
     }
 
