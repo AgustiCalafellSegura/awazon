@@ -8,7 +8,6 @@
 
 namespace App\Admin;
 
-use App\Entity\Category;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -16,7 +15,6 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\CoreBundle\Form\Type\CollectionType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -75,17 +73,14 @@ class ProductAdmin extends AbstractAdmin
                 'provider',
                 ModelType::class,
                 array(
-//                    'class' => Provider::class
                     //todo improve QB sort by name
                 )
             )
             ->add(
                 'category',
-                EntityType::class,
+                ModelType::class,
                 array(
-                    'class' => Category::class
                     //todo improve QB sort by name
-
                 )
             )
             ->add(

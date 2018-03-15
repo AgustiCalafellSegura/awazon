@@ -8,12 +8,11 @@
 
 namespace App\Admin;
 
-use App\Entity\Product;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Sonata\AdminBundle\Form\Type\ModelType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class ImageAdmin extends AbstractAdmin
@@ -31,9 +30,8 @@ class ImageAdmin extends AbstractAdmin
             )
             ->add(
                 'product',
-                EntityType::class,
+                ModelType::class,
                 array(
-                    'class' => Product::class,
                     'attr' => array(
                         'hidden' => true,
                     )
