@@ -8,36 +8,44 @@
 
 namespace App\Admin;
 
+use App\Form\CustomerFormType;
+use App\Form\OrderItemFormType;
+use App\Form\ProviderFormType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class CustomerAdmin extends AbstractAdmin
+class OrderAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->add(
-                'name',
-                TextType::class
-            )
-            ->add(
-                'email',
-                EmailType::class
-            )
-            ->add(
-                'address',
+                'date',
                 TextType::class,
                 array(
                     'required' => false,
                 )
             )
             ->add(
-                'phone',
-                TextType::class,
+                'orderItems',
+                OrderItemFormType::class,
+                array(
+                    'required' => false,
+                )
+            )
+            ->add(
+                'provider',
+                ProviderFormType::class,
+                array(
+                    'required' => false,
+                )
+            )
+            ->add(
+                'customer',
+                CustomerFormType::class,
                 array(
                     'required' => false,
                 )
@@ -48,10 +56,10 @@ class CustomerAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
-            ->add('email')
-            ->add('address')
-            ->add('phone')
+            ->add('date')
+            ->add('orderItems')
+            ->add('provider')
+            ->add('customer')
         ;
     }
 
@@ -59,7 +67,7 @@ class CustomerAdmin extends AbstractAdmin
     {
         $listMapper
             ->add(
-                'name',
+                'date',
                 null,
                 array(
                     'editable' => true,
@@ -67,14 +75,21 @@ class CustomerAdmin extends AbstractAdmin
                 )
             )
             ->add(
-                'email',
+                'orderItems',
                 null,
                 array(
                     'editable' => true,
                 )
             )
             ->add(
-                'phone',
+                'provider',
+                null,
+                array(
+                    'editable' => true,
+                )
+            )
+            ->add(
+                'customer',
                 null,
                 array(
                     'editable' => true,
