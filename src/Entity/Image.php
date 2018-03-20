@@ -9,13 +9,16 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\File;
+use Vich\UploaderBundle\Entity\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Image
  * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
  * @ORM\Table(name="Images")
+ * @Vich\Uploadable
  */
 class Image extends AbstractBase
 {
@@ -28,8 +31,8 @@ class Image extends AbstractBase
 
     /**
      * @var File
-     * Vich\UploadableField(mapping="products", fileNameProperty="image")
-     * Assert\Image()
+     * @Vich\UploadableField(mapping="products", fileNameProperty="image")
+     * @Assert\Image()
      */
     private $imageFile;
 
