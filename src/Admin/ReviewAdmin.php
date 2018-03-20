@@ -8,36 +8,30 @@
 
 namespace App\Admin;
 
+use App\Form\CustomerFormType;
+use App\Form\ProductFormType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class CustomerAdmin extends AbstractAdmin
+class ReviewAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
             ->add(
-                'name',
+                'review',
                 TextType::class
             )
             ->add(
-                'email',
-                EmailType::class
+                'customer',
+                CustomerFormType::class
             )
             ->add(
-                'address',
-                TextType::class,
-                array(
-                    'required' => false,
-                )
-            )
-            ->add(
-                'phone',
-                TextType::class,
+                'product',
+                ProductFormType::class,
                 array(
                     'required' => false,
                 )
@@ -48,10 +42,9 @@ class CustomerAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
-            ->add('email')
-            ->add('address')
-            ->add('phone')
+            ->add('review')
+            ->add('customer')
+            ->add('product')
         ;
     }
 
@@ -59,7 +52,7 @@ class CustomerAdmin extends AbstractAdmin
     {
         $listMapper
             ->add(
-                'name',
+                'review',
                 null,
                 array(
                     'editable' => true,
@@ -67,14 +60,14 @@ class CustomerAdmin extends AbstractAdmin
                 )
             )
             ->add(
-                'email',
+                'customer',
                 null,
                 array(
                     'editable' => true,
                 )
             )
             ->add(
-                'phone',
+                'product',
                 null,
                 array(
                     'editable' => true,
