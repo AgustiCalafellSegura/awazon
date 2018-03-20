@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: agusti
  * Date: 13/03/18
- * Time: 16:57
+ * Time: 16:57.
  */
 
 namespace App\Admin;
@@ -27,15 +27,15 @@ class ProviderAdmin extends AbstractAdmin
         '_page' => 1,
         '_per_page' => 32,
         '_sort_order' => 'ASC',
-        '_sort_by' => 'name'
+        '_sort_by' => 'name',
     ];
 
     public function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
             ->with('Personal data', [
-                'class'       => 'col-md-4',
-                'box_class'   => 'box box-solid box-danger',
+                'class' => 'col-md-4',
+                'box_class' => 'box box-solid box-danger',
                 'description' => 'Lorem ipsum',
             ])
             ->add('name')
@@ -44,8 +44,8 @@ class ProviderAdmin extends AbstractAdmin
             ->add('phone')
             ->end()
             ->with('Products', [
-                'class'       => 'col-md-4',
-                'box_class'   => 'box box-solid box-danger',
+                'class' => 'col-md-4',
+                'box_class' => 'box box-solid box-danger',
                 'description' => 'Lorem ipsum',
             ])
 
@@ -53,8 +53,8 @@ class ProviderAdmin extends AbstractAdmin
             ->end()
 
             ->with('Orders', [
-                'class'       => 'col-md-4',
-                'box_class'   => 'box box-solid box-danger',
+                'class' => 'col-md-4',
+                'box_class' => 'box box-solid box-danger',
                 'description' => 'Lorem ipsum',
             ])
 
