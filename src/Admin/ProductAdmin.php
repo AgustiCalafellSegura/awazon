@@ -94,30 +94,6 @@ class ProductAdmin extends AbstractAdmin
                 )
             )
             ->add(
-                'reviews',
-                CollectionType::class,
-                array(
-                    'required' => false,
-                    'error_bubbling' => true,
-                ),
-                array(
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                )
-            )
-            ->add(
-                'ratings',
-                CollectionType::class,
-                array(
-                    'required' => false,
-                    'error_bubbling' => true,
-                ),
-                array(
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                )
-            )
-            ->add(
                 'images',
                 CollectionType::class,
                 array(
