@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: agusti
  * Date: 13/03/18
- * Time: 16:57
+ * Time: 16:57.
  */
 
 namespace App\Admin;
@@ -33,15 +33,15 @@ class ProductAdmin extends AbstractAdmin
         '_page' => 1,
         '_per_page' => 32,
         '_sort_order' => 'ASC',
-        '_sort_by' => 'name'
+        '_sort_by' => 'name',
     ];
 
     public function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
             ->with('Product', [
-                'class'       => 'col-md-8',
-                'box_class'   => 'box box-solid box-danger',
+                'class' => 'col-md-8',
+                'box_class' => 'box box-solid box-danger',
                 'description' => 'Lorem ipsum',
             ])
             ->add('name')
@@ -94,6 +94,30 @@ class ProductAdmin extends AbstractAdmin
                 )
             )
             ->add(
+                'reviews',
+                CollectionType::class,
+                array(
+                    'required' => false,
+                    'error_bubbling' => true,
+                ),
+                array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                )
+            )
+            ->add(
+                'ratings',
+                CollectionType::class,
+                array(
+                    'required' => false,
+                    'error_bubbling' => true,
+                ),
+                array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                )
+            )
+            ->add(
                 'images',
                 CollectionType::class,
                 array(
@@ -103,7 +127,7 @@ class ProductAdmin extends AbstractAdmin
                 array(
                     'edit' => 'inline',
                     'inline' => 'table',
-                    )
+                )
             )
         ;
     }
