@@ -12,14 +12,30 @@ use Liip\FunctionalTestBundle\Test\WebTestCase;
 
 class BackendTest extends WebTestCase
 {
-    public function testContact()
+    /**
+     * @param $url
+     * @dataProvider buildURLS
+     */
+    public function testContact($url)
     {
         $client = $this->makeClient();
 
-        $client->request('GET', '/admin');
-        $this->assertStatusCode(301, $client);
-
-        $client->request('GET', '/admin/dashboard');
+        $client->request('GET', $url);
         $this->assertStatusCode(200, $client);
+    }
+
+    /**
+     * @return array
+     */
+    public function buildURLS()
+    {
+        return array(
+            array('/admin/dashboard'),
+            array('/admin/app/customer/list'),
+            array('/admin/app/customer/create'),
+            array('/admin/app/customer/233/delete'),
+            array('/admin/app/customer/233/show'),
+            array('/admin/app/customer/233/edit'),
+        );
     }
 }
