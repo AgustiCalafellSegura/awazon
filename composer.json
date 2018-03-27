@@ -26,6 +26,7 @@
         "symfony/web-link": "^4.0",
         "symfony/webpack-encore-pack": "*",
         "symfony/yaml": "^4.0",
+        "liip/functional-test-bundle": "2.x-dev",
         "vich/uploader-bundle": "^1.8"
     },
     "require-dev": {
