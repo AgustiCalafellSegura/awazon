@@ -49,7 +49,7 @@ class OrderAdmin extends AbstractAdmin
                 )
             )
             ->add(
-                'customer',
+                'customergit ',
                 ModelType::class,
                 array(
                     'attr' => array(
