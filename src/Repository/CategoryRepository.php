@@ -15,8 +15,8 @@ class CategoryRepository extends EntityRepository
 {
     public function findAllSortedByNameQB()
     {
-        return $this->createQueryBuilder('p')
-            ->orderBy('p.name', 'ASC') // per ordenar descendentment DESC
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.name', 'ASC') // per ordenar descendentment DESC
             ;
     }
     public function findAllSortedByNameQ()

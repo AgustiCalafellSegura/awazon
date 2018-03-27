@@ -72,6 +72,7 @@ class Image extends AbstractBase
     public function setImageFile($imageFile)
     {
         $this->imageFile = $imageFile;
+        $this->updatedAt = new \DateTime();
     }
 
     /**

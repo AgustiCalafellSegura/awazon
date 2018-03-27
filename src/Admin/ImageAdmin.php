@@ -25,7 +25,9 @@ class ImageAdmin extends AbstractAdmin
                 'imageFile',
                 VichFileType::class,
                 array(
-                    'required' => false
+                    'required' => false,
+                    //TODO show image tumbnail
+//                    'help' => 'help text'
                 )
             )
             ->add(
@@ -59,6 +61,7 @@ class ImageAdmin extends AbstractAdmin
                 )
             )
             ->add('imageFile')
+            //TODO show image tumbnail
 
             ->add(
                 'product',

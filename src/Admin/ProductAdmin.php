@@ -8,13 +8,17 @@
 
 namespace App\Admin;
 
+use App\Entity\Category;
+use App\Entity\Product;
+use App\Repository\CategoryRepository;
+use App\Repository\ProductRepository;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\CoreBundle\Form\Type\CollectionType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -71,16 +75,22 @@ class ProductAdmin extends AbstractAdmin
             )
             ->add(
                 'provider',
-                ModelType::class,
+                EntityType::class,
                 array(
-                    //todo improve QB sort by name
+                    'class' => Product::class,
+                    'query_builder' => function (ProductRepository $pr) {
+                        return $pr->findAllSortedByNameQB();
+                    },
                 )
             )
             ->add(
                 'category',
-                ModelType::class,
+                EntityType::class,
                 array(
-                    //todo improve QB sort by name
+                    'class' => Category::class,
+                    'query_builder' => function (CategoryRepository $cr) {
+                        return $cr->findAllSortedByNameQB();
+                    },
                 )
             )
             ->add(
