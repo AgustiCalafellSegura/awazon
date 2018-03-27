@@ -30,9 +30,21 @@ App\Entity\Order:
         provider: '@provider<numberBetween(1,1000)>'
         customer: '@customer<numberBetween(1,10)>'
 
+App\Entity\OrderItem:
+    orderitem{1..100}:
+        units: <numberBetween(1,10)>
+        order: '@order<numberBetween(1,100)>'
+        product: '@product<numberBetween(1,1000)>'
+
 App\Entity\Rating:
     rating{1..1000}:
         rate: <numberBetween(1,5)>
+        customer: '@customer<numberBetween(1,100)>'
+        product: '@product<numberBetween(1,1000)>'
+
+App\Entity\Review:
+    rating{1..1000}:
+        review: <sentence()>
         customer: '@customer<numberBetween(1,100)>'
         product: '@product<numberBetween(1,1000)>'
 
