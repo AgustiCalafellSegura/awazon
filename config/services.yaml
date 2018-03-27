@@ -46,28 +46,28 @@ services:
         class: App\Admin\OrderAdmin
         arguments: [~, App\Entity\Order, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Order, group: Orders }
+            - { name: sonata.admin, manager_type: orm, label: Order, group: Customers }
         public: true
 
     admin.orderitem:
         class: App\Admin\OrderItemAdmin
         arguments: [~, App\Entity\OrderItem, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: OrderItem, group: OrderItems }
+            - { name: sonata.admin, manager_type: orm, label: OrderItem, group: Customers }
         public: true
 
     admin.rating:
         class: App\Admin\RatingAdmin
         arguments: [~, App\Entity\Rating, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Rating, group: Ratings }
+            - { name: sonata.admin, manager_type: orm, label: Rating, group: Customers }
         public: true
 
     admin.review:
         class: App\Admin\ReviewAdmin
         arguments: [~, App\Entity\Review, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Review, group: Reviews }
+            - { name: sonata.admin, manager_type: orm, label: Review, group: Customers }
         public: true
 
     admin.provider:

@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: agusti
  * Date: 13/03/18
- * Time: 16:57
+ * Time: 16:57.
  */
 
 namespace App\Admin;
@@ -17,7 +17,6 @@ use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class ImageAdmin extends AbstractAdmin
 {
-
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -36,7 +35,7 @@ class ImageAdmin extends AbstractAdmin
                 array(
                     'attr' => array(
                         'hidden' => true,
-                    )
+                    ),
                 )
             )
         ;
@@ -57,17 +56,16 @@ class ImageAdmin extends AbstractAdmin
                 'image',
                 null,
                 array(
-                    'editable' => true
+                    'editable' => false,
+                    //TODO show preview image thumbnail
+                    'template' => 'backend/image/image_cell.html.twig',
                 )
             )
-            ->add('imageFile')
-            //TODO show image tumbnail
-
             ->add(
                 'product',
                 null,
                 array(
-                    'editable' => false
+                    'editable' => false,
                 )
             )
 
@@ -81,7 +79,6 @@ class ImageAdmin extends AbstractAdmin
                     ),
                 )
             )
-
         ;
     }
 }
