@@ -3,18 +3,16 @@
  * Created by PhpStorm.
  * User: agusti
  * Date: 13/03/18
- * Time: 16:57
+ * Time: 16:57.
  */
 
 namespace App\Admin;
 
-use App\Form\CustomerFormType;
-use App\Form\OrderItemFormType;
-use App\Form\ProviderFormType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\ModelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class OrderAdmin extends AbstractAdmin
@@ -31,23 +29,29 @@ class OrderAdmin extends AbstractAdmin
             )
             ->add(
                 'orderItems',
-                OrderItemFormType::class,
+                ModelType::class,
                 array(
-                    'required' => false,
+                    'attr' => array(
+                        'hidden' => true,
+                    ),
                 )
             )
             ->add(
                 'provider',
-                ProviderFormType::class,
+                ModelType::class,
                 array(
-                    'required' => false,
+                    'attr' => array(
+                        'hidden' => true,
+                    ),
                 )
             )
             ->add(
-                'customer',
-                CustomerFormType::class,
+                'customergit ',
+                ModelType::class,
                 array(
-                    'required' => false,
+                    'attr' => array(
+                        'hidden' => true,
+                    ),
                 )
             )
         ;

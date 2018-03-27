@@ -3,18 +3,16 @@
  * Created by PhpStorm.
  * User: agusti
  * Date: 13/03/18
- * Time: 16:57
+ * Time: 16:57.
  */
 
 namespace App\Admin;
 
-use App\Form\CustomerFormType;
-use App\Form\ProductFormType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Sonata\AdminBundle\Form\Type\ModelType;
 
 class ReviewAdmin extends AbstractAdmin
 {
@@ -23,17 +21,29 @@ class ReviewAdmin extends AbstractAdmin
         $formMapper
             ->add(
                 'review',
-                TextType::class
+                ModelType::class,
+                array(
+                    'attr' => array(
+                        'hidden' => true,
+                    ),
+                )
             )
             ->add(
                 'customer',
-                CustomerFormType::class
+                ModelType::class,
+                array(
+                    'attr' => array(
+                        'hidden' => true,
+                    ),
+                )
             )
             ->add(
                 'product',
-                ProductFormType::class,
+                ModelType::class,
                 array(
-                    'required' => false,
+                    'attr' => array(
+                        'hidden' => true,
+                    ),
                 )
             )
         ;

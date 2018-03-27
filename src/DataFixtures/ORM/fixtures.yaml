@@ -43,7 +43,7 @@ App\Entity\Rating:
         product: '@product<numberBetween(1,1000)>'
 
 App\Entity\Review:
-    rating{1..1000}:
+    review{1..1000}:
         review: <sentence()>
         customer: '@customer<numberBetween(1,100)>'
         product: '@product<numberBetween(1,1000)>'

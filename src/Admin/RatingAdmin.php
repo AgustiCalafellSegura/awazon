@@ -3,17 +3,17 @@
  * Created by PhpStorm.
  * User: agusti
  * Date: 13/03/18
- * Time: 16:57
+ * Time: 16:57.
  */
 
 namespace App\Admin;
 
-use App\Form\CustomerFormType;
-use App\Form\ProductFormType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\ModelType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class RatingAdmin extends AbstractAdmin
@@ -27,13 +27,15 @@ class RatingAdmin extends AbstractAdmin
             )
             ->add(
                 'customer',
-                CustomerFormType::class
+                EntityType::class
             )
             ->add(
                 'product',
-                ProductFormType::class,
+                ModelType::class,
                 array(
-                    'required' => false,
+                    'attr' => array(
+                        'hidden' => true,
+                    ),
                 )
             )
         ;
@@ -70,7 +72,7 @@ class RatingAdmin extends AbstractAdmin
                 'product',
                 null,
                 array(
-                    'editable' => true,
+                    'editable' => false,
                 )
             )
             ->add(
