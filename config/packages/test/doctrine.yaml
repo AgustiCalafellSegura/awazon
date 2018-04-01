@@ -1,4 +1,4 @@
 doctrine:
     dbal:
-        driver: 'pdo_sqlite'
-        url: 'sqlite:///%kernel.project_dir%/var/test_database.db'
+        driver: "pdo_sqlite"
+        url: "sqlite:///%kernel.project_dir%/var/test_database.db"
