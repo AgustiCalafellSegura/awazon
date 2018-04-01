@@ -11,10 +11,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class HomepageController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="app_frontend_homepage")
      */
     public function viewHomepage()
     {
-        return $this->render('frontend/homepageView.html.twig');
+        return $this->render('frontend/homepage.html.twig');
     }
 }
