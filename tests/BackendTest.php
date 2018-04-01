@@ -1,15 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 27/03/18
- * Time: 16:50.
- */
 
 namespace App\Test;
 
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 
+/**
+ * Class BackendTest
+ */
 class BackendTest extends WebTestCase
 {
     /**
@@ -29,13 +26,13 @@ class BackendTest extends WebTestCase
      */
     public function buildURLS()
     {
-        return array(
+        return [
             array('/admin/dashboard'),
             array('/admin/app/customer/list'),
             array('/admin/app/customer/create'),
             array('/admin/app/customer/1/delete'),
             array('/admin/app/customer/1/show'),
             array('/admin/app/customer/1/edit'),
-        );
+        ];
     }
 }
