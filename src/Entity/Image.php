@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 6/02/18
- * Time: 17:13
- */
 
 namespace App\Entity;
 
@@ -14,23 +8,24 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Image
- * @package App\Entity
+ * Class Image.
+ *
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
  * @ORM\Table(name="Images")
  * @Vich\Uploadable
  */
 class Image extends AbstractBase
 {
-
     /**
      * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $image;
 
     /**
      * @var File
+     *
      * @Vich\UploadableField(mapping="products", fileNameProperty="image")
      * @Assert\Image()
      */
@@ -38,9 +33,14 @@ class Image extends AbstractBase
 
     /**
      * @var Product
+     *
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="images")
      */
     private $product;
+
+    /**
+     * Methods.
+     */
 
     /**
      * @return string
@@ -101,14 +101,19 @@ class Image extends AbstractBase
 
     /**
      * @param int $id
+     *
      * @return Image
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getProduct()->getName().' · '.$this->getImage();
