@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Test;
-
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 
 /**

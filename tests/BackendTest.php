@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Test;
-
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 
 /**
@@ -27,12 +25,12 @@ class BackendTest extends WebTestCase
     public function buildURLS()
     {
         return [
-            array('/admin/dashboard'),
-            array('/admin/app/customer/list'),
-            array('/admin/app/customer/create'),
-            array('/admin/app/customer/1/delete'),
-            array('/admin/app/customer/1/show'),
-            array('/admin/app/customer/1/edit'),
+            ['/admin/dashboard'],
+            ['/admin/app/customer/list'],
+            ['/admin/app/customer/create'],
+            ['/admin/app/customer/1/delete'],
+            ['/admin/app/customer/1/show'],
+            ['/admin/app/customer/1/edit'],
         ];
     }
 }
