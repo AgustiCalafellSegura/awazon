@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: agusti
  * Date: 13/03/18
- * Time: 16:57
+ * Time: 16:57.
  */
 
 namespace App\Admin;

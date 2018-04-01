@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: agusti
  * Date: 20/02/18
- * Time: 16:51
+ * Time: 16:51.
  */
 
 namespace App\Form;
@@ -35,6 +35,7 @@ class ProductFormType extends AbstractType
             ->add('save', SubmitType::class)
         ;
     }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(

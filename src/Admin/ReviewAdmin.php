@@ -3,19 +3,16 @@
  * Created by PhpStorm.
  * User: agusti
  * Date: 13/03/18
- * Time: 16:57
+ * Time: 16:57.
  */
 
 namespace App\Admin;
 
-use App\Form\CustomerFormType;
-use App\Form\ProductFormType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ReviewAdmin extends AbstractAdmin
 {
@@ -28,7 +25,7 @@ class ReviewAdmin extends AbstractAdmin
                 array(
                     'attr' => array(
                         'hidden' => true,
-                    )
+                    ),
                 )
             )
             ->add(
@@ -37,7 +34,7 @@ class ReviewAdmin extends AbstractAdmin
                 array(
                     'attr' => array(
                         'hidden' => true,
-                    )
+                    ),
                 )
             )
             ->add(
@@ -46,7 +43,7 @@ class ReviewAdmin extends AbstractAdmin
                 array(
                     'attr' => array(
                         'hidden' => true,
-                    )
+                    ),
                 )
             )
         ;

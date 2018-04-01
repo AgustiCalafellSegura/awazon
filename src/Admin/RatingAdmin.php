@@ -3,13 +3,11 @@
  * Created by PhpStorm.
  * User: agusti
  * Date: 13/03/18
- * Time: 16:57
+ * Time: 16:57.
  */
 
 namespace App\Admin;
 
-use App\Form\CustomerFormType;
-use App\Form\ProductFormType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -37,7 +35,7 @@ class RatingAdmin extends AbstractAdmin
                 array(
                     'attr' => array(
                         'hidden' => true,
-                    )
+                    ),
                 )
             )
         ;
@@ -74,7 +72,7 @@ class RatingAdmin extends AbstractAdmin
                 'product',
                 null,
                 array(
-                    'editable' => false
+                    'editable' => false,
                 )
             )
             ->add(

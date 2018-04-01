@@ -3,13 +3,11 @@
  * Created by PhpStorm.
  * User: agusti
  * Date: 13/03/18
- * Time: 16:57
+ * Time: 16:57.
  */
 
 namespace App\Admin;
 
-use App\Form\OrderFormType;
-use App\Form\ProductFormType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -32,7 +30,7 @@ class OrderItemAdmin extends AbstractAdmin
                 array(
                     'attr' => array(
                         'hidden' => true,
-                    )
+                    ),
                 )
             )
             ->add(
@@ -41,7 +39,7 @@ class OrderItemAdmin extends AbstractAdmin
                 array(
                     'attr' => array(
                         'hidden' => true,
-                    )
+                    ),
                 )
             )
         ;

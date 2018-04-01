@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: agusti
  * Date: 6/02/18
- * Time: 17:13
+ * Time: 17:13.
  */
 
 namespace App\Entity;
@@ -13,14 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Provider
- * @package App\Entity
+ * Class Provider.
+ *
  * @ORM\Entity(repositoryClass="App\Repository\ProviderRepository")
  * @ORM\Table(name="Providers")
  */
 class Provider extends AbstractBase
 {
-
     /**
      * @var string
      * @ORM\Column(type="string")
@@ -77,11 +76,13 @@ class Provider extends AbstractBase
 
     /**
      * @param string $name
+     *
      * @return Provider
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -95,11 +96,13 @@ class Provider extends AbstractBase
 
     /**
      * @param string $address
+     *
      * @return Provider
      */
     public function setAddress($address)
     {
         $this->address = $address;
+
         return $this;
     }
 
@@ -113,11 +116,13 @@ class Provider extends AbstractBase
 
     /**
      * @param string $email
+     *
      * @return Provider
      */
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -131,11 +136,13 @@ class Provider extends AbstractBase
 
     /**
      * @param string $phone
+     *
      * @return Provider
      */
     public function setPhone($phone)
     {
         $this->phone = $phone;
+
         return $this;
     }
 
@@ -149,11 +156,13 @@ class Provider extends AbstractBase
 
     /**
      * @param ArrayCollection $products
+     *
      * @return Provider
      */
     public function setProducts($products)
     {
         $this->products = $products;
+
         return $this;
     }
 
@@ -164,11 +173,11 @@ class Provider extends AbstractBase
      */
     public function addProduct(Product $product)
     {
-        if (!$this->products->contains($product))
-        {
+        if (!$this->products->contains($product)) {
             $this->products->add($product);
             $product->setProvider($this);
         }
+
         return $this;
     }
 
@@ -179,10 +188,10 @@ class Provider extends AbstractBase
      */
     public function removeProduct(Product $product)
     {
-        if ($this->products->contains($product))
-        {
+        if ($this->products->contains($product)) {
             $this->products->remove($product);
         }
+
         return $this;
     }
 
@@ -196,11 +205,13 @@ class Provider extends AbstractBase
 
     /**
      * @param ArrayCollection $orders
+     *
      * @return Provider
      */
     public function setOrders($orders)
     {
         $this->orders = $orders;
+
         return $this;
     }
 
@@ -211,11 +222,11 @@ class Provider extends AbstractBase
      */
     public function addOrder(Order $order)
     {
-        if (!$this->orders->contains($order))
-        {
+        if (!$this->orders->contains($order)) {
             $this->orders->add($order);
             $order->setProvider($this);
         }
+
         return $this;
     }
 

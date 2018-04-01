@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: agusti
  * Date: 20/02/18
- * Time: 16:51
+ * Time: 16:51.
  */
 
 namespace App\Form;
@@ -22,10 +22,11 @@ class RatingFormType extends AbstractType
     {
         $builder
             ->add('rate')
-            ->add('customer', EntityType::class, array('class'=> Customer::class))
-            ->add('product', EntityType::class, array('class'=> Product::class))
+            ->add('customer', EntityType::class, array('class' => Customer::class))
+            ->add('product', EntityType::class, array('class' => Product::class))
         ;
     }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(

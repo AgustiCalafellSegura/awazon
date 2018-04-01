@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: agusti
  * Date: 20/02/18
- * Time: 16:51
+ * Time: 16:51.
  */
 
 namespace App\Form;
@@ -30,7 +30,7 @@ class OrderFormType extends AbstractType
                 array(
                     'widget' => 'single_text',
                     // this is actually the default format for single_text
-                    'format' => 'yyyy-MM-dd'
+                    'format' => 'yyyy-MM-dd',
                 )
             )
 
@@ -40,21 +40,21 @@ class OrderFormType extends AbstractType
                 array(
                     'allow_add' => true,
                     'allow_delete' => true,
-                    'entry_type' => OrderItemFormType::class
+                    'entry_type' => OrderItemFormType::class,
                 )
             )
             ->add(
                 'provider',
                 EntityType::class,
                 array(
-                    'class'=> Provider::class
+                    'class' => Provider::class,
                 )
             )
             ->add(
                 'customer',
                 EntityType::class,
                 array(
-                    'class'=> Customer::class
+                    'class' => Customer::class,
                 )
             )
             ->add(
@@ -64,6 +64,7 @@ class OrderFormType extends AbstractType
             )
         ;
     }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(

@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: agusti
  * Date: 6/02/18
- * Time: 17:13
+ * Time: 17:13.
  */
 
 namespace App\Entity;
@@ -13,14 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Customer
- * @package App\Entity
+ * Class Customer.
+ *
  * @ORM\Entity(repositoryClass="App\Repository\CustomerRepository")
  * @ORM\Table(name="Customers")
  */
 class Customer extends AbstractBase
 {
-
     /**
      * @var string
      * @ORM\Column(type="string")
@@ -84,11 +83,13 @@ class Customer extends AbstractBase
 
     /**
      * @param string $name
+     *
      * @return Customer
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -102,11 +103,13 @@ class Customer extends AbstractBase
 
     /**
      * @param string $address
+     *
      * @return Customer
      */
     public function setAddress($address)
     {
         $this->address = $address;
+
         return $this;
     }
 
@@ -120,11 +123,13 @@ class Customer extends AbstractBase
 
     /**
      * @param string $email
+     *
      * @return Customer
      */
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -138,11 +143,13 @@ class Customer extends AbstractBase
 
     /**
      * @param string $phone
+     *
      * @return Customer
      */
     public function setPhone($phone)
     {
         $this->phone = $phone;
+
         return $this;
     }
 
@@ -156,34 +163,37 @@ class Customer extends AbstractBase
 
     /**
      * @param ArrayCollection $orders
+     *
      * @return Customer
      */
     public function setOrders($orders)
     {
         $this->orders = $orders;
+
         return $this;
     }
 
     /**
      * @param Order $order
+     *
      * @return $this
      */
     public function addOrder(Order $order)
     {
-        if (!$this->orders->contains($order))
-        {
+        if (!$this->orders->contains($order)) {
             $this->orders->add($order);
             $order->setCustomer($this);
         }
+
         return $this;
     }
 
-    public function removeOrder (Order $order)
+    public function removeOrder(Order $order)
     {
-        if ($this->orders->contains($order))
-        {
+        if ($this->orders->contains($order)) {
             $this->orders->remove($order);
         }
+
         return $this;
     }
 
@@ -197,11 +207,13 @@ class Customer extends AbstractBase
 
     /**
      * @param ArrayCollection $reviews
+     *
      * @return Customer
      */
     public function setReviews($reviews)
     {
         $this->reviews = $reviews;
+
         return $this;
     }
 
@@ -212,10 +224,11 @@ class Customer extends AbstractBase
      */
     public function addReview(Review $review)
     {
-        if (!$this->reviews->contains($review)){
+        if (!$this->reviews->contains($review)) {
             $this->reviews->add($review);
             $review->setCustomer($this);
         }
+
         return $this;
     }
 
@@ -226,10 +239,10 @@ class Customer extends AbstractBase
      */
     public function removeReview(Review $review)
     {
-        if ($this->reviews->contains($review))
-        {
+        if ($this->reviews->contains($review)) {
             $this->reviews->remove($review);
         }
+
         return $this;
     }
 
@@ -243,11 +256,13 @@ class Customer extends AbstractBase
 
     /**
      * @param ArrayCollection $ratings
+     *
      * @return Customer
      */
     public function setRatings($ratings)
     {
         $this->ratings = $ratings;
+
         return $this;
     }
 
@@ -258,11 +273,11 @@ class Customer extends AbstractBase
      */
     public function addRating(Rating  $rating)
     {
-        if (!$this->ratings->contains($rating))
-        {
+        if (!$this->ratings->contains($rating)) {
             $this->ratings->add($rating);
             $rating->setCustomer($this);
         }
+
         return $this;
     }
 
@@ -273,10 +288,10 @@ class Customer extends AbstractBase
      */
     public function removeRating(Rating $rating)
     {
-        if ($this->ratings->contains($rating))
-        {
+        if ($this->ratings->contains($rating)) {
             $this->ratings->remove($rating);
         }
+
         return $this;
     }
 
@@ -285,9 +300,10 @@ class Customer extends AbstractBase
      */
     public function __toString()
     {
-        if($this->getName()){
+        if ($this->getName()) {
             return $this->getName();
         }
+
         return '---';
     }
 }

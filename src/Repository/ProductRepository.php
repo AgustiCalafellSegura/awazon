@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: agusti
  * Date: 20/02/18
- * Time: 16:35
+ * Time: 16:35.
  */
 
 namespace App\Repository;
-
 
 use Doctrine\ORM\EntityRepository;
 
@@ -41,6 +40,7 @@ class ProductRepository extends EntityRepository
 
     /**
      * @param int $rate
+     *
      * @return \Doctrine\ORM\QueryBuilder
      */
     public function findTopTenMostRatedProductsQB($rate = 5)
@@ -48,7 +48,7 @@ class ProductRepository extends EntityRepository
         $qb = $this->createQueryBuilder('p')
             ->join('p.ratings', 'r')
             ->where('r.rate = :rate')
-            ->setParameter('rate',$rate)
+            ->setParameter('rate', $rate)
             ->setMaxResults(10)
             ->orderBy('p.name', 'ASC')
             ->addOrderBy('p.createdAt', 'DESC')
@@ -59,6 +59,7 @@ class ProductRepository extends EntityRepository
 
     /**
      * @param int $rate
+     *
      * @return \Doctrine\ORM\Query
      */
     public function findTopTenMostRatedProductsQ($rate = 5)
@@ -68,6 +69,7 @@ class ProductRepository extends EntityRepository
 
     /**
      * @param int $rate
+     *
      * @return array
      */
     public function findTopTenMostRatedProducts($rate = 5)
