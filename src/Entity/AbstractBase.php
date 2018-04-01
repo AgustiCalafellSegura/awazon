@@ -1,20 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 6/02/18
- * Time: 17:28.
- */
 
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
+/**
+ * Class AbstractBase.
+ */
 abstract class AbstractBase
 {
     /**
      * @var int
+     *
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue()
@@ -36,6 +34,10 @@ abstract class AbstractBase
      * @ORM\Column(type="datetime")
      */
     protected $updatedAt;
+
+    /**
+     * Methods.
+     */
 
     /**
      * @return int

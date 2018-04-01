@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 6/02/18
- * Time: 17:13.
- */
 
 namespace App\Entity;
 
@@ -24,12 +18,14 @@ class Image extends AbstractBase
 {
     /**
      * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $image;
 
     /**
      * @var File
+     *
      * @Vich\UploadableField(mapping="products", fileNameProperty="image")
      * @Assert\Image()
      */
@@ -37,9 +33,14 @@ class Image extends AbstractBase
 
     /**
      * @var Product
+     *
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="images")
      */
     private $product;
+
+    /**
+     * Methods.
+     */
 
     /**
      * @return string
@@ -110,6 +111,9 @@ class Image extends AbstractBase
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getProduct()->getName().' · '.$this->getImage();

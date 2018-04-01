@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 6/02/18
- * Time: 17:13.
- */
 
 namespace App\Entity;
 
@@ -21,57 +15,70 @@ class Product extends AbstractBase
 {
     /**
      * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $name;
 
     /**
      * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $description;
 
     /**
      * @var float
+     *
      * @ORM\Column(type="float")
      */
     private $price;
 
     /**
      * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Image", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $images;
 
     /**
      * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="OrderItem", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $orderItems;
 
     /**
      * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Review", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $reviews;
 
     /**
      * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Rating", mappedBy="product", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $ratings;
 
     /**
      * @var Provider
+     *
      * @ORM\ManyToOne(targetEntity="Provider", inversedBy="products")
      */
     private $provider;
 
     /**
      * @var Category
+     *
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
      */
     private $category;
+
+    /**
+     * Methods.
+     */
 
     /**
      * Product constructor.
@@ -380,6 +387,9 @@ class Product extends AbstractBase
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getName();

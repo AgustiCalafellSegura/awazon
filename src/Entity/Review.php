@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 6/02/18
- * Time: 17:13.
- */
 
 namespace App\Entity;
 
@@ -20,21 +14,28 @@ class Review extends AbstractBase
 {
     /**
      * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $review;
 
     /**
      * @var Customer
+     *
      * @ORM\ManyToOne(targetEntity="Customer", inversedBy="reviews")
      */
     private $customer;
 
     /**
      * @var Product
+     *
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="reviews")
      */
     private $product;
+
+    /**
+     * Methods.
+     */
 
     /**
      * @return string
@@ -96,6 +97,9 @@ class Review extends AbstractBase
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getReview();

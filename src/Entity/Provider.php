@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 6/02/18
- * Time: 17:13.
- */
 
 namespace App\Entity;
 
@@ -22,18 +16,21 @@ class Provider extends AbstractBase
 {
     /**
      * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $name;
 
     /**
      * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $address;
 
     /**
      * @var string
+     *
      * @ORM\Column(type="string")
      * @Assert\Email()
      */
@@ -41,21 +38,28 @@ class Provider extends AbstractBase
 
     /**
      * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $phone;
 
     /**
      * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Product", mappedBy="provider", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $products;
 
     /**
      * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Order", mappedBy="provider", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $orders;
+
+    /**
+     * Methods.
+     */
 
     /**
      * provider constructor.
@@ -230,6 +234,9 @@ class Provider extends AbstractBase
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getName();

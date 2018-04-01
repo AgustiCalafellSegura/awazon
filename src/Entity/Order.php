@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 6/02/18
- * Time: 17:13.
- */
 
 namespace App\Entity;
 
@@ -21,27 +15,35 @@ class Order extends AbstractBase
 {
     /**
      * @var \DateTime
+     *
      * @ORM\Column(type="datetime")
      */
     private $date;
 
     /**
      * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="OrderItem", mappedBy="order", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $orderItems;
 
     /**
      * @var Provider
+     *
      * @ORM\ManyToOne(targetEntity="Provider", inversedBy="orders")
      */
     private $provider;
 
     /**
      * @var Customer
+     *
      * @ORM\ManyToOne(targetEntity="Customer", inversedBy="orders")
      */
     private $customer;
+
+    /**
+     * Methods.
+     */
 
     /**
      * Order constructor.
@@ -156,6 +158,9 @@ class Order extends AbstractBase
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getDate()->format('d/m/Y').' · '.$this->getProvider()->getName().' · '.$this->getCustomer()->getName();

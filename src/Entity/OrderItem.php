@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 6/02/18
- * Time: 17:13.
- */
 
 namespace App\Entity;
 
@@ -20,21 +14,28 @@ class OrderItem extends AbstractBase
 {
     /**
      * @var int
+     *
      * @ORM\Column(type="integer")
      */
     private $units;
 
     /**
      * @var Order
+     *
      * @ORM\ManyToOne(targetEntity="Order", inversedBy="orderItems")
      */
     private $order;
 
     /**
      * @var Product
+     *
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="orderItems")
      */
     private $product;
+
+    /**
+     * Methods.
+     */
 
     /**
      * @return int
@@ -96,6 +97,9 @@ class OrderItem extends AbstractBase
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getOrder()->getProvider()->getName().' · '.$this->getProduct()->getName();

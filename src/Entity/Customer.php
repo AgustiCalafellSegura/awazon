@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 6/02/18
- * Time: 17:13.
- */
 
 namespace App\Entity;
 
@@ -22,18 +16,21 @@ class Customer extends AbstractBase
 {
     /**
      * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $name;
 
     /**
      * @var string
+     *
      * @ORM\Column(type="string", nullable=true)
      */
     private $address;
 
     /**
      * @var string
+     *
      * @ORM\Column(type="string")
      * @Assert\Email()
      */
@@ -41,27 +38,35 @@ class Customer extends AbstractBase
 
     /**
      * @var string
+     *
      * @ORM\Column(type="string", nullable=true)
      */
     private $phone;
 
     /**
      * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Order", mappedBy="customer", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $orders;
 
     /**
      * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Review", mappedBy="customer", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $reviews;
 
     /**
      * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Rating", mappedBy="customer", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $ratings;
+
+    /**
+     * Methods.
+     */
 
     /**
      * Customer constructor.
@@ -188,6 +193,11 @@ class Customer extends AbstractBase
         return $this;
     }
 
+    /**
+     * @param Order $order
+     *
+     * @return $this
+     */
     public function removeOrder(Order $order)
     {
         if ($this->orders->contains($order)) {

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 6/02/18
- * Time: 17:13.
- */
 
 namespace App\Entity;
 
@@ -21,6 +15,7 @@ class Rating extends AbstractBase
 {
     /**
      * @var int
+     *
      * @ORM\Column(type="integer")
      * @Assert\Range(min="1", max="5")
      */
@@ -28,15 +23,21 @@ class Rating extends AbstractBase
 
     /**
      * @var Customer
+     *
      * @ORM\ManyToOne(targetEntity="Customer", inversedBy="ratings")
      */
     private $customer;
 
     /**
      * @var Product
+     *
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="ratings")
      */
     private $product;
+
+    /**
+     * Methods.
+     */
 
     /**
      * @return int
@@ -98,6 +99,9 @@ class Rating extends AbstractBase
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getCustomer()->getName().' · '.$this->getProduct()->getName().' · '.$this->getRate();
