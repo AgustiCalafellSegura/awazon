@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: agusti
  * Date: 27/03/18
- * Time: 16:50
+ * Time: 16:50.
  */
 
 namespace App\Test;
@@ -33,9 +33,9 @@ class BackendTest extends WebTestCase
             array('/admin/dashboard'),
             array('/admin/app/customer/list'),
             array('/admin/app/customer/create'),
-            array('/admin/app/customer/233/delete'),
-            array('/admin/app/customer/233/show'),
-            array('/admin/app/customer/233/edit'),
+            array('/admin/app/customer/1/delete'),
+            array('/admin/app/customer/1/show'),
+            array('/admin/app/customer/1/edit'),
         );
     }
 }
