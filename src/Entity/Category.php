@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 6/02/18
- * Time: 17:13
- */
 
 namespace App\Entity;
 
@@ -12,25 +6,30 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Category
- * @package App\Entity
+ * Class Category.
+ *
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  * @ORM\Table(name="Categories")
  */
 class Category extends AbstractBase
 {
-
     /**
      * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $name;
 
     /**
      * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Product", mappedBy="category", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $products;
+
+    /**
+     * Methods.
+     */
 
     /**
      * Category constructor.
@@ -40,9 +39,6 @@ class Category extends AbstractBase
         $this->products = new ArrayCollection();
     }
 
-    /**
-     * Methods
-     */
     /**
      * @return string
      */
@@ -59,6 +55,7 @@ class Category extends AbstractBase
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -78,6 +75,7 @@ class Category extends AbstractBase
     public function setProducts($products)
     {
         $this->products = $products;
+
         return $this;
     }
 
@@ -88,11 +86,11 @@ class Category extends AbstractBase
      */
     public function addProduct(Product $product)
     {
-        if (!$this->products->contains($product))
-        {
+        if (!$this->products->contains($product)) {
             $this->products->add($product);
             $product->setCategory($this);
         }
+
         return $this;
     }
 
@@ -103,13 +101,16 @@ class Category extends AbstractBase
      */
     public function removeProduct(Product $product)
     {
-        if ($this->products->contains($product))
-        {
+        if ($this->products->contains($product)) {
             $this->products->remove($product);
         }
+
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getName();

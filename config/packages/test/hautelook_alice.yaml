@@ -1,5 +1,5 @@
 hautelook_alice:
-    fixtures_path: "src/DataFixtures/ORM/dev"
+    fixtures_path: "src/DataFixtures/ORM/test"
     root_dirs:
         - "%kernel.root_dir%"
         - "%kernel.project_dir%"

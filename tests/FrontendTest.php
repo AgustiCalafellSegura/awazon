@@ -1,18 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 27/03/18
- * Time: 16:50.
- */
-
-namespace App\Test;
 
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 
+/**
+ * Class FrontendTest
+ */
 class FrontendTest extends WebTestCase
 {
-    public function testContact()
+    /**
+     * Main tests
+     */
+    public function testMain()
     {
         $client = $this->makeClient();
         $client->request('GET', '/');

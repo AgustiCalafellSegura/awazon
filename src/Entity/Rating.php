@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 6/02/18
- * Time: 17:13
- */
 
 namespace App\Entity;
 
@@ -12,16 +6,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Rating
- * @package App\Entity
+ * Class Rating.
+ *
  * @ORM\Entity(repositoryClass="App\Repository\RatingRepository")
  * @ORM\Table(name="Ratings")
  */
 class Rating extends AbstractBase
 {
-
     /**
      * @var int
+     *
      * @ORM\Column(type="integer")
      * @Assert\Range(min="1", max="5")
      */
@@ -29,15 +23,21 @@ class Rating extends AbstractBase
 
     /**
      * @var Customer
+     *
      * @ORM\ManyToOne(targetEntity="Customer", inversedBy="ratings")
      */
     private $customer;
 
     /**
      * @var Product
+     *
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="ratings")
      */
     private $product;
+
+    /**
+     * Methods.
+     */
 
     /**
      * @return int
@@ -49,11 +49,13 @@ class Rating extends AbstractBase
 
     /**
      * @param int $rate
+     *
      * @return Rating
      */
     public function setRate($rate)
     {
         $this->rate = $rate;
+
         return $this;
     }
 
@@ -67,11 +69,13 @@ class Rating extends AbstractBase
 
     /**
      * @param Customer $customer
+     *
      * @return Rating
      */
     public function setCustomer($customer)
     {
         $this->customer = $customer;
+
         return $this;
     }
 
@@ -85,14 +89,19 @@ class Rating extends AbstractBase
 
     /**
      * @param Product $product
+     *
      * @return Rating
      */
     public function setProduct($product)
     {
         $this->product = $product;
+
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getCustomer()->getName().' · '.$this->getProduct()->getName().' · '.$this->getRate();

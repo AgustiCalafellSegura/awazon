@@ -1,11 +1,13 @@
+# Admin
 sonata_admin:
-    title: 'AWAZON'
-    title_logo: 'awazon.png'
+    title: "AWAZON"
+    title_logo: "awazon.png"
     dashboard:
         blocks:
             - { type: sonata.admin.block.admin_list, position: left }
 
+# Block
 sonata_block:
     blocks:
         sonata.admin.block.admin_list:
-            contexts: [admin]
+            contexts: [ admin ]

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 13/03/18
- * Time: 16:57.
- */
 
 namespace App\Admin;
 
@@ -14,8 +8,14 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelType;
 
+/**
+ * Class ReviewAdmin.
+ */
 class ReviewAdmin extends AbstractAdmin
 {
+    /**
+     * @param FormMapper $formMapper
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -49,6 +49,9 @@ class ReviewAdmin extends AbstractAdmin
         ;
     }
 
+    /**
+     * @param DatagridMapper $datagridMapper
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
@@ -58,6 +61,9 @@ class ReviewAdmin extends AbstractAdmin
         ;
     }
 
+    /**
+     * @param ListMapper $listMapper
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
