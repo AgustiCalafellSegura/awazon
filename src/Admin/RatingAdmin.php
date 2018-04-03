@@ -2,11 +2,12 @@
 
 namespace App\Admin;
 
+use App\Entity\Customer;
+use App\Entity\Product;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\ModelType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -27,15 +28,16 @@ class RatingAdmin extends AbstractAdmin
             )
             ->add(
                 'customer',
-                EntityType::class
+                EntityType::class,
+                array(
+                    'class' => Customer::class,
+                )
             )
             ->add(
                 'product',
-                ModelType::class,
+                EntityType::class,
                 array(
-                    'attr' => array(
-                        'hidden' => true,
-                    ),
+                    'class' => Product::class,
                 )
             )
         ;

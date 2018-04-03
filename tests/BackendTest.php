@@ -36,17 +36,16 @@ class BackendTest extends WebTestCase
             ['/admin/app/order/1/delete'],
             ['/admin/app/order/1/show'],
             ['/admin/app/order/1/edit'],
-            ['/admin/app/orederitem/list'],
-            ['/admin/app/orederitem/create'],
-            ['/admin/app/orederitem/1/delete'],
-            ['/admin/app/orederitem/1/show'],
-            ['/admin/app/orederitem/1/edit'],
+            ['/admin/app/orderitem/list'],
+            ['/admin/app/orderitem/create'],
+            ['/admin/app/orderitem/1/delete'],
+            ['/admin/app/orderitem/1/show'],
+            ['/admin/app/orderitem/1/edit'],
             ['/admin/app/rating/list'],
             ['/admin/app/rating/create'],
             ['/admin/app/rating/1/delete'],
             ['/admin/app/rating/1/show'],
             ['/admin/app/rating/1/edit'],
-
         ];
     }
 }

@@ -163,6 +163,10 @@ class Order extends AbstractBase
      */
     public function __toString()
     {
-        return $this->getDate()->format('d/m/Y').' · '.$this->getProvider()->getName().' · '.$this->getCustomer()->getName();
+        if ($this->getId()) {
+            return $this->getDate()->format('d/m/Y').' · '.$this->getProvider()->getName().' · '.$this->getCustomer()->getName();
+        }
+
+        return '---';
     }
 }
