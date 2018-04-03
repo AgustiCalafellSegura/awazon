@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 13/03/18
- * Time: 16:57.
- */
 
 namespace App\Admin;
 
@@ -22,11 +16,12 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
+/**
+ * Class ProductAdmin.
+ */
 class ProductAdmin extends AbstractAdmin
 {
     /**
-     * Default values to the datagrid.
-     *
      * @var array
      */
     protected $datagridValues = [
@@ -36,6 +31,13 @@ class ProductAdmin extends AbstractAdmin
         '_sort_by' => 'name',
     ];
 
+    /**
+     * Methods.
+     */
+
+    /**
+     * @param ShowMapper $showMapper
+     */
     public function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
@@ -58,6 +60,9 @@ class ProductAdmin extends AbstractAdmin
         ;
     }
 
+    /**
+     * @param FormMapper $formMapper
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -108,6 +113,9 @@ class ProductAdmin extends AbstractAdmin
         ;
     }
 
+    /**
+     * @param DatagridMapper $datagridMapper
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
@@ -117,6 +125,9 @@ class ProductAdmin extends AbstractAdmin
         ;
     }
 
+    /**
+     * @param ListMapper $listMapper
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper

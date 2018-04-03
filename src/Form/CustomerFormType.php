@@ -1,15 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 20/02/18
- * Time: 16:51
- */
 
 namespace App\Form;
 
 use App\Entity\Customer;
-use App\Entity\Review;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -17,16 +10,31 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
+/**
+ * Class CustomerFormType.
+ */
 class CustomerFormType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array                $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name')
             ->add('address')
-            ->add('email', EmailType::class)
-            ->add('phone', TelType::class)
-            ->add('reviews',
+            ->add(
+                'email',
+                EmailType::class
+            )
+            ->add(
+                'phone',
+                TelType::class
+            )
+            ->add(
+                'reviews',
                 CollectionType::class,
                 array(
                     'allow_add' => true,
@@ -35,7 +43,8 @@ class CustomerFormType extends AbstractType
                     'entry_options' => array('label' => false),
                 )
             )
-            ->add('ratings',
+            ->add(
+                'ratings',
                 CollectionType::class,
                 array('allow_add' => true,
                     'allow_delete' => true,
@@ -43,9 +52,16 @@ class CustomerFormType extends AbstractType
                     'entry_options' => array('label' => false),
                 )
             )
-            ->add('save', SubmitType::class)
+            ->add(
+                'save',
+                SubmitType::class
+            )
         ;
     }
+
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 20/02/18
- * Time: 16:51
- */
 
 namespace App\Form;
 
@@ -15,15 +9,23 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class ProductFormType.
+ */
 class ProductFormType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array                $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name')
             ->add('description')
             ->add('price')
-            ->add('images',
+            ->add(
+                'images',
                 CollectionType::class,
                 array(
                     'entry_type' => ImageFormType::class,
@@ -32,9 +34,16 @@ class ProductFormType extends AbstractType
                     'by_reference' => false,
                 )
             )
-            ->add('save', SubmitType::class)
+            ->add(
+                'save',
+                SubmitType::class
+            )
         ;
     }
+
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(

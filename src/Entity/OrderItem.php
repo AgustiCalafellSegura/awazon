@@ -1,41 +1,41 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 6/02/18
- * Time: 17:13
- */
 
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class OrderItem
- * @package App\Entity
+ * Class OrderItem.
+ *
  * @ORM\Entity(repositoryClass="App\Repository\OrderItemRepository")
  * @ORM\Table(name="OrderItems")
  */
 class OrderItem extends AbstractBase
 {
-
     /**
      * @var int
+     *
      * @ORM\Column(type="integer")
      */
     private $units;
 
     /**
      * @var Order
+     *
      * @ORM\ManyToOne(targetEntity="Order", inversedBy="orderItems")
      */
     private $order;
 
     /**
      * @var Product
+     *
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="orderItems")
      */
     private $product;
+
+    /**
+     * Methods.
+     */
 
     /**
      * @return int
@@ -47,11 +47,13 @@ class OrderItem extends AbstractBase
 
     /**
      * @param int $units
+     *
      * @return OrderItem
      */
     public function setUnits($units)
     {
         $this->units = $units;
+
         return $this;
     }
 
@@ -65,11 +67,13 @@ class OrderItem extends AbstractBase
 
     /**
      * @param Order $order
+     *
      * @return OrderItem
      */
     public function setOrder($order)
     {
         $this->order = $order;
+
         return $this;
     }
 
@@ -83,14 +87,19 @@ class OrderItem extends AbstractBase
 
     /**
      * @param Product $product
+     *
      * @return OrderItem
      */
     public function setProduct($product)
     {
         $this->product = $product;
+
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getOrder()->getProvider()->getName().' · '.$this->getProduct()->getName();

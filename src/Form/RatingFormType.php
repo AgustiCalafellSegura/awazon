@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 20/02/18
- * Time: 16:51
- */
 
 namespace App\Form;
 
@@ -16,16 +10,39 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class RatingFormType.
+ */
 class RatingFormType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array                $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('rate')
-            ->add('customer', EntityType::class, array('class'=> Customer::class))
-            ->add('product', EntityType::class, array('class'=> Product::class))
+            ->add(
+                'customer',
+                EntityType::class,
+                array(
+                    'class' => Customer::class,
+                )
+            )
+            ->add(
+                'product',
+                EntityType::class,
+                array(
+                    'class' => Product::class,
+                )
+            )
         ;
     }
+
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(

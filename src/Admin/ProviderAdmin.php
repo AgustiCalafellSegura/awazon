@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 13/03/18
- * Time: 16:57.
- */
 
 namespace App\Admin;
 
@@ -16,11 +10,12 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
+/**
+ * Class ProviderAdmin.
+ */
 class ProviderAdmin extends AbstractAdmin
 {
     /**
-     * Default values to the datagrid.
-     *
      * @var array
      */
     protected $datagridValues = [
@@ -30,6 +25,13 @@ class ProviderAdmin extends AbstractAdmin
         '_sort_by' => 'name',
     ];
 
+    /**
+     * Methods.
+     */
+
+    /**
+     * @param ShowMapper $showMapper
+     */
     public function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
@@ -48,22 +50,21 @@ class ProviderAdmin extends AbstractAdmin
                 'box_class' => 'box box-solid box-danger',
                 'description' => 'Lorem ipsum',
             ])
-
             ->add('products')
             ->end()
-
             ->with('Orders', [
                 'class' => 'col-md-4',
                 'box_class' => 'box box-solid box-danger',
                 'description' => 'Lorem ipsum',
             ])
-
             ->add('orders')
-            // ...
             ->end()
         ;
     }
 
+    /**
+     * @param FormMapper $formMapper
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -92,6 +93,9 @@ class ProviderAdmin extends AbstractAdmin
         ;
     }
 
+    /**
+     * @param DatagridMapper $datagridMapper
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
@@ -102,6 +106,9 @@ class ProviderAdmin extends AbstractAdmin
         ;
     }
 
+    /**
+     * @param ListMapper $listMapper
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper

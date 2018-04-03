@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 6/02/18
- * Time: 17:13
- */
 
 namespace App\Entity;
 
@@ -12,37 +6,44 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Order
- * @package App\Entity
+ * Class Order.
+ *
  * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
  * @ORM\Table(name="Orders")
  */
 class Order extends AbstractBase
 {
-
     /**
      * @var \DateTime
+     *
      * @ORM\Column(type="datetime")
      */
     private $date;
 
     /**
      * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="OrderItem", mappedBy="order", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $orderItems;
 
     /**
      * @var Provider
+     *
      * @ORM\ManyToOne(targetEntity="Provider", inversedBy="orders")
      */
     private $provider;
 
     /**
      * @var Customer
+     *
      * @ORM\ManyToOne(targetEntity="Customer", inversedBy="orders")
      */
     private $customer;
+
+    /**
+     * Methods.
+     */
 
     /**
      * Order constructor.
@@ -62,11 +63,13 @@ class Order extends AbstractBase
 
     /**
      * @param \DateTime $date
+     *
      * @return Order
      */
     public function setDate($date)
     {
         $this->date = $date;
+
         return $this;
     }
 
@@ -86,6 +89,7 @@ class Order extends AbstractBase
     public function setOrderItems($orderItems)
     {
         $this->orderItems = $orderItems;
+
         return $this;
     }
 
@@ -94,13 +98,13 @@ class Order extends AbstractBase
      *
      * @return $this
      */
-    public function addOrderItem (OrderItem $orderItem)
+    public function addOrderItem(OrderItem $orderItem)
     {
-        if (!$this->orderItems->contains($orderItem))
-        {
+        if (!$this->orderItems->contains($orderItem)) {
             $this->orderItems->add($orderItem);
             $orderItem->setOrder($this);
         }
+
         return $this;
     }
 
@@ -109,12 +113,12 @@ class Order extends AbstractBase
      *
      * @return $this
      */
-    public function removeOrderItem (OrderItem $orderItem)
+    public function removeOrderItem(OrderItem $orderItem)
     {
-        if ($this->orderItems->contains($orderItem))
-        {
+        if ($this->orderItems->contains($orderItem)) {
             $this->orderItems->remove($orderItem);
         }
+
         return $this;
     }
 
@@ -144,14 +148,19 @@ class Order extends AbstractBase
 
     /**
      * @param Customer $customer
+     *
      * @return Order
      */
     public function setCustomer($customer)
     {
         $this->customer = $customer;
+
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->getDate()->format('d/m/Y').' · '.$this->getProvider()->getName().' · '.$this->getCustomer()->getName();

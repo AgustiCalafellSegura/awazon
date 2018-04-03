@@ -1,20 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agusti
- * Date: 6/02/18
- * Time: 17:28
- */
 
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
+/**
+ * Class AbstractBase.
+ */
 abstract class AbstractBase
 {
     /**
      * @var int
+     *
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue()
@@ -22,7 +20,7 @@ abstract class AbstractBase
     protected $id;
 
     /**
-     * @var \DateTime $createdAt
+     * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
@@ -30,12 +28,16 @@ abstract class AbstractBase
     protected $createdAt;
 
     /**
-     * @var \DateTime $updatedAt
+     * @var \DateTime
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
      */
     protected $updatedAt;
+
+    /**
+     * Methods.
+     */
 
     /**
      * @return int
@@ -55,11 +57,13 @@ abstract class AbstractBase
 
     /**
      * @param \DateTime $createdAt
+     *
      * @return AbstractBase
      */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -73,11 +77,13 @@ abstract class AbstractBase
 
     /**
      * @param \DateTime $updatedAt
+     *
      * @return AbstractBase
      */
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 }
