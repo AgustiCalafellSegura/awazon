@@ -11,7 +11,7 @@
     {# top navbar section #}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="{{ path('app_frontend_homepage') }}">
-            <img src="{{ asset('awazon.png') }}" width="60" alt="Awazon logo">
+            <img src="{{ asset('awazon.png') }}" width="60" alt="awazon logo">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -31,11 +31,9 @@
     <div class="container">
         {# flashes section #}
         {% if app.session.flashBag.has('success') %}
-            <div class="alert alert-success alert-dismissible" role="alert">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {% for msg in app.session.flashBag.get('success') %}{{ msg }}{% endfor %}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                {% for msg in app.session.flashBag.get('success') %}
-                    {{ msg }}
-                {% endfor %}
             </div>
         {% endif %}
         {# main body section #}
