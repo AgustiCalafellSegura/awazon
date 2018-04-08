@@ -4,36 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
     {% block stylesheets %}{% endblock %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
 <body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <a class="navbar-brand" href="{{ path('app_frontend_homepage') }}">AWAZON</a>
-            <button type="button" class="btn btn-default navbar-btn"><a href="{{ path('sonata_admin_dashboard') }}">login</a></button>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ path('app_frontend_homepage') }}">AWAZON</a>
+                <button type="button" class="btn btn-default navbar-btn"><a href="{{ path('sonata_admin_dashboard') }}">login</a></button>
+            </div>
+            {#{{ knp_menu_render('main', {currentClass:'active'}) }}#}
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        {#{{ knp_menu_render('main', {currentClass:'active'}) }}#}
+    </nav>
+    <div class="container">
+        {# top navbar section #}
+        {% if app.session.flashBag.has('success') %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {% for msg in app.session.flashBag.get('success') %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {# main body section #}
+        {% block body %}{% endblock %}
     </div>
-</nav>
-<div class="container">
-    {% if app.session.flashBag.has('success') %}
-        <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            {% for msg in app.session.flashBag.get('success') %}
-                {{ msg }}
-            {% endfor %}
-
-        </div>
-    {% endif %}
-    {% block body %}
-
-    {% endblock %}
-</div>
-{% block javascripts %}{% endblock %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="{{ asset('build/app.js') }}"></script>
+    {% block javascripts %}{% endblock %}
 </body>
 </html>

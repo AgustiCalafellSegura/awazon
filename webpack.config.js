@@ -9,7 +9,7 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     .cleanupOutputBeforeBuild()
     .enableBuildNotifications()
-    .enableVersioning()
+    // .enableVersioning()
 ;
 
 module.exports = Encore.getWebpackConfig();
