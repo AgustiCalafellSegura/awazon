@@ -116,6 +116,6 @@ class Image extends AbstractBase
      */
     public function __toString()
     {
-        return $this->getProduct()->getName().' · '.$this->getImage();
+        return '';
     }
 }
