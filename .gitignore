@@ -1,4 +1,3 @@
-
 ###> symfony/framework-bundle ###
 .env
 /public/bundles/
@@ -21,4 +20,8 @@
 ###> symfony/web-server-bundle ###
 .web-server-pid
 ###< symfony/web-server-bundle ###
+
+###> custom ignores ###
 .php_cs.cache
+yarn-error.log
+###< custom ignores ###
