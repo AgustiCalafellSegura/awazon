@@ -104,6 +104,10 @@ class Rating extends AbstractBase
      */
     public function __toString()
     {
-        return $this->getCustomer()->getName().' · '.$this->getProduct()->getName().' · '.$this->getRate();
+        if ($this->getId()) {
+            return $this->getCustomer()->getName().' · '.$this->getProduct()->getName().' · '.$this->getRate();
+        }
+
+        return '---';
     }
 }

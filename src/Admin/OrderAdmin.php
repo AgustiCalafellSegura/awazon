@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelType;
+use Sonata\CoreBundle\Form\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
@@ -29,11 +30,8 @@ class OrderAdmin extends AbstractAdmin
             )
             ->add(
                 'orderItems',
-                ModelType::class,
+                CollectionType::class,
                 array(
-                    'attr' => array(
-                        'hidden' => true,
-                    ),
                 )
             )
             ->add(
@@ -46,7 +44,7 @@ class OrderAdmin extends AbstractAdmin
                 )
             )
             ->add(
-                'customergit ',
+                'customer ',
                 ModelType::class,
                 array(
                     'attr' => array(
