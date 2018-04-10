@@ -15,6 +15,10 @@ class HomepageController extends Controller
      */
     public function viewHomepage()
     {
-        return $this->render('frontend/homepage.html.twig');
+        $products = $this->getDoctrine()->getRepository('App:Product')->findLastProductsAdded();
+
+        return $this->render('frontend/homepage.html.twig', array(
+            'products' => $products,
+        ));
     }
 }
