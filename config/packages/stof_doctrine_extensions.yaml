@@ -2,5 +2,6 @@ stof_doctrine_extensions:
     default_locale: "%locale%"
     orm:
         default:
-            tree: true
+            tree: false
             timestampable: true
+            sluggable: true
