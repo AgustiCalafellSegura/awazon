@@ -6,20 +6,17 @@
     <h1 class="display-1">awazon</h1>
     <div class="p-3 mb-2 text-white bg-danger">the neverending store</div>
     <div class="row">
-        <div class="col-xs-4">
-            <table class="table">
-                <thead></thead>
-                <tbody>
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="..." alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">New products</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
+        {% for product in products %}
+            <div class="col-sm">
+                <div class="card" >
+                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{  product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <a href="#" class="btn btn-primary">BUY!</a>
                     </div>
-                </tbody>
-            </table>
-        </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
