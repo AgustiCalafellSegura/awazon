@@ -102,6 +102,10 @@ class OrderItem extends AbstractBase
      */
     public function __toString()
     {
-        return $this->getOrder()->getProvider()->getName().' · '.$this->getProduct()->getName();
+        if ($this->getId()) {
+            return $this->getOrder()->getProvider()->getName().' · '.$this->getProduct()->getName();
+        }
+
+        return '---';
     }
 }
