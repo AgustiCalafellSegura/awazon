@@ -25,5 +25,5 @@ return [
     Sonata\AdminBundle\SonataAdminBundle::class => ['all' => true],
     Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle::class => ['all' => true],
     Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
-    Liip\FunctionalTestBundle\LiipFunctionalTestBundle::class => ['all' => true],
+    Liip\FunctionalTestBundle\LiipFunctionalTestBundle::class => ['dev' => true, 'test' => true],
 ];
