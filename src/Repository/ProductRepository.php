@@ -43,6 +43,7 @@ class ProductRepository extends EntityRepository
         return $this->createQueryBuilder('p')
             ->orderBy('p.createdAt', 'DESC')
             ->addOrderBy('p.name', 'ASC')
+            ->addOrderBy('p.price', 'DESC')
             ->setMaxResults(4)
             ;
     }
