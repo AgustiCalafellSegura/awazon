@@ -12,32 +12,6 @@ class ProductRepository extends EntityRepository
     /**
      * @return \Doctrine\ORM\QueryBuilder
      */
-    public function findAllSortedByNameQB()
-    {
-        return $this->createQueryBuilder('p')
-            ->orderBy('p.name', 'ASC')
-            ;
-    }
-
-    /**
-     * @return \Doctrine\ORM\Query
-     */
-    public function findAllSortedByNameQ()
-    {
-        return $this->findAllSortedByNameQB()->getQuery();
-    }
-
-    /**
-     * @return array
-     */
-    public function findAllSortedByName()
-    {
-        return $this->findAllSortedByNameQ()->getResult();
-    }
-
-    /**
-     * @return \Doctrine\ORM\QueryBuilder
-     */
     public function findLastProductsAddedQB()
     {
         return $this->createQueryBuilder('p')
@@ -65,6 +39,37 @@ class ProductRepository extends EntityRepository
     }
 
     /**
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function findBestSellersProductsQB()
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.orderItems', 'r')
+            ->groupBy('r.product')
+            ->orderBy('p.createdAt', 'DESC')
+            ->addOrderBy('p.name', 'ASC')
+            ->addOrderBy('p.price', 'DESC')
+            ->setMaxResults(4)
+            ;
+    }
+
+    /**
+     * @return \Doctrine\ORM\Query
+     */
+    public function findBestSellersProductsQ()
+    {
+        return $this->findBestSellersProductsQB()->getQuery();
+    }
+
+    /**
+     * @return array
+     */
+    public function findBestSellersProducts()
+    {
+        return $this->findBestSellersProductsQ()->getResult();
+    }
+
+    /**
      * @param int $rate
      *
      * @return \Doctrine\ORM\QueryBuilder
@@ -75,7 +80,7 @@ class ProductRepository extends EntityRepository
             ->join('p.ratings', 'r')
             ->where('r.rate = :rate')
             ->setParameter('rate', $rate)
-            ->setMaxResults(10)
+            ->setMaxResults(4)
             ->orderBy('p.name', 'ASC')
             ->addOrderBy('p.createdAt', 'DESC')
         ;
