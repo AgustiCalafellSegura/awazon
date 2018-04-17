@@ -13,7 +13,7 @@
         {% for product in products %}
             <div class="col-sm">
                 <div class="card" >
-                    <img class="card-img-top" src="{{ vich_uploader_asset(product.firstImage, 'imageFile') }}" alt="{{ product.name }}" >
+                    <img class="card-img-top" src="{{ vich_uploader_asset(product.firstImage, 'imageFile') | imagine_filter('550xY') }}" alt="{{ product.name }}" >
                     <div class="card-body">
                         <h5 class="card-title">{{  product.name }} - {{ product.price }}</h5>
                         <p class="card-text">{{ product.description }}</p>
@@ -28,7 +28,7 @@
         {% for bestseller in bestsellers %}
             <div class="col-sm">
                 <div class="card" >
-                    <img class="card-img-top" src="{{ vich_uploader_asset(bestseller[0].firstImage, 'imageFile') }}" alt="{{ bestseller[0].name }}" >
+                    <img class="card-img-top" src="{{ vich_uploader_asset(bestseller[0].firstImage, 'imageFile') | imagine_filter('550xY') }}" alt="{{ bestseller[0].name }}" >
                     <div class="card-body">
                         <h5 class="card-title">{{  bestseller[0].name }} - {{ bestseller[0].price }}</h5>
                         <p class="card-text">{{ bestseller[0].description }}</p>
@@ -43,7 +43,7 @@
         {% for mostrated in mostrateds %}
             <div class="col-sm">
                 <div class="card" >
-                    <img class="card-img-top" src="{{ vich_uploader_asset(mostrated.firstImage, 'imageFile') }}" alt="{{ mostrated.name }}" >
+                    <img class="card-img-top" src="{{ vich_uploader_asset(mostrated.firstImage, 'imageFile') | imagine_filter('550xY')}}" alt="{{ mostrated.name }}" >
                     <div class="card-body">
                         <h5 class="card-title">{{  mostrated.name }} - {{ mostrated.price }}</h5>
                         <p class="card-text">{{ mostrated.description }}</p>
