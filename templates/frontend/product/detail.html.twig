@@ -5,7 +5,7 @@
 {% block body %}
     <div class="row mt-5">
         <div class="col-3">
-            <img src="{{ vich_uploader_asset(product, 'imageFile') }}" class="img-fluid" alt="product.name">
+            <img src="{{ vich_uploader_asset(product.firstImage, 'imageFile') }}" class="img-fluid" alt="product.name">
         </div>
         <div class="col-9">
             <h1>{{ product.name }}</h1>
