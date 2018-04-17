@@ -3,12 +3,53 @@
 {% block title %}{{ parent() }} · the neverending store{% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div class="col-xs-3">
-            <h1>{{ product.name }}</h1>
-            <p class="lead">
-                {{ product.description }}
-            </p>
+    <span class="border border-primary">
+        <div class="row">
+            <div class="col-3">
+                ​<picture>
+                    <div class="col-3">
+
+                    <source srcset="..." type="image/svg+xml">
+                    <img src="..." class="img-fluid img-thumbnail" alt="...">
+                    <img src="..." class="rounded float-left" alt="...">
+                    <img src="..." class="rounded float-right" alt="...">
+                </div>
+                </picture>
+            </div>
+            <div class="col-6">
+                <h1>{{ product.name }}</h1>
+                <p class="lead">
+                    {{ product.description }}
+                </p>
+                <button class="btn btn-primary" type="submit">Cart</button>
+            </div>
         </div>
-    </div>
+    </span>
+    <span class="border border-success">
+        <div class="row">
+            <h1>{{ review.name }}</h1>
+            <div class="col-2">
+                <img src="..." class="rounded float-left" alt="...">
+            </div>
+            <div class="col-6">
+                <p class="lead">
+                    {{ greview.description }}
+                    {{ review.data }}
+                </p>
+            </div>
+        </div>
+    </span>
+    <span class="border border-dark">
+        <div class="row">
+            <h1>{{ rating.name }}</h1>
+            <div class="col-2">
+                <img src="..." class="rounded float-left" alt="...">
+            </div>
+            <div class="col-6">
+                <p class="lead">
+                    {{ rating.description }}
+                </p>
+            </div>
+        </div>
+    </span>
 {% endblock %}
