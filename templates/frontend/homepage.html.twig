@@ -3,9 +3,12 @@
 {% block title %}{{ parent() }} · the neverending store{% endblock %}
 
 {% block body %}
-    <h1 class="display-1">awazon</h1>
-    <div class="p-3 mb-2 text-white bg-danger">the neverending store</div>
-    <h3 class="mt-5">New products</h3>
+    <div class="row">
+        <div class="col-sm mb-5">
+            <h1 class="display-1">awazon</h1>
+            <div class="p-3 text-white bg-danger">the neverending store</div>
+        </div>
+    </div>
     <div class="row">
         {% for product in products %}
             <div class="col-sm">
