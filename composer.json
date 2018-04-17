@@ -26,7 +26,8 @@
         "symfony/web-link": "^4.0",
         "symfony/webpack-encore-pack": "^1.0",
         "symfony/yaml": "^4.0",
-        "vich/uploader-bundle": "^1.8"
+        "vich/uploader-bundle": "^1.8",
+        "liip/imagine-bundle": "2.0.x-dev"
     },
     "require-dev": {
         "doctrine/data-fixtures": "^1.3",
