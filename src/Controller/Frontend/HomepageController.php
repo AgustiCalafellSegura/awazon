@@ -15,10 +15,16 @@ class HomepageController extends Controller
      */
     public function viewHomepage()
     {
-        $products = $this->getDoctrine()->getRepository('App:Product')->findLastProductsAdded();
+        $qb = $this->getDoctrine()->getRepository('App:Product');
+
+        $newproducts = $qb->findLastProductsAdded();
+        $bestsellers = $qb->findBestSellersProducts();
+        $mostrateds = $qb->findTopTenMostRatedProducts();
 
         return $this->render('frontend/homepage.html.twig', array(
-            'products' => $products,
+            'products' => $newproducts,
+            'bestsellers' => $bestsellers,
+            'mostrateds' => $mostrateds,
         ));
     }
 }

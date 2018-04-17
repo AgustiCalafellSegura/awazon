@@ -1,7 +1,16 @@
 ###> symfony/framework-bundle ###
 .env
 /public/bundles/
-/public/uploads/
+/public/uploads/*
+!/public/uploads/image1.jpg
+!/public/uploads/image2.jpg
+!/public/uploads/image3.jpg
+!/public/uploads/image4.jpg
+!/public/uploads/image5.jpg
+!/public/uploads/image6.jpg
+!/public/uploads/image7.jpg
+!/public/uploads/image8.jpg
+!/public/uploads/image9.jpg
 /var/
 /vendor/
 .idea

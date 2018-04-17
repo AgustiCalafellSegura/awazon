@@ -3,8 +3,12 @@
 {% block title %}{{ parent() }} · the neverending store{% endblock %}
 
 {% block body %}
-    <h1 class="display-1">awazon</h1>
-    <div class="p-3 mb-2 text-white bg-danger">the neverending store</div>
+    <div class="row">
+        <div class="col-sm mb-5">
+            <h1 class="display-1">awazon</h1>
+            <div class="p-3 text-white bg-danger">the neverending store</div>
+        </div>
+    </div>
     <div class="row">
         {% for product in products %}
             <div class="col-sm">
@@ -14,6 +18,36 @@
                         <h5 class="card-title">{{  product.name }} - {{ product.price }}</h5>
                         <p class="card-text">{{ product.description }}</p>
                         <a href="{{ path('app_frontend_product_detail', {slug: product.slug}) }}" class="btn btn-primary">BUY!</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <h3>Best sellers</h3>
+    <div class="row">
+        {% for bestseller in bestsellers %}
+            <div class="col-sm">
+                <div class="card" >
+                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{  bestseller.name }} - {{ bestseller.price }}</h5>
+                        <p class="card-text">{{ bestseller.description }}</p>
+                        <a href="{{ path('app_frontend_product_detail', {slug: bestseller.slug}) }}" class="btn btn-primary">BUY!</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <h3>Most rated</h3>
+    <div class="row">
+        {% for mostrated in mostrateds %}
+            <div class="col-sm">
+                <div class="card" >
+                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{  mostrated.name }} - {{ mostrated.price }}</h5>
+                        <p class="card-text">{{ mostrated.description }}</p>
+                        <a href="{{ path('app_frontend_product_detail', {slug: mostrated.slug}) }}" class="btn btn-primary">BUY!</a>
                     </div>
                 </div>
             </div>
