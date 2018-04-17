@@ -13,7 +13,7 @@
         {% for product in products %}
             <div class="col-sm">
                 <div class="card" >
-                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <img class="card-img-top" src="{{ vich_uploader_asset(product.firstImage, 'imageFile') }}" alt="{{ product.name }}" >
                     <div class="card-body">
                         <h5 class="card-title">{{  product.name }} - {{ product.price }}</h5>
                         <p class="card-text">{{ product.description }}</p>
@@ -23,12 +23,12 @@
             </div>
         {% endfor %}
     </div>
-    <h3>Best sellers</h3>
+    <h3 class="mt-5">Best sellers</h3>
     <div class="row">
         {% for bestseller in bestsellers %}
             <div class="col-sm">
                 <div class="card" >
-                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <img class="card-img-top" src="{{ vich_uploader_asset(bestseller.firstImage, 'imageFile') }}" alt="{{ bestseller.name }}" >
                     <div class="card-body">
                         <h5 class="card-title">{{  bestseller.name }} - {{ bestseller.price }}</h5>
                         <p class="card-text">{{ bestseller.description }}</p>
@@ -38,12 +38,12 @@
             </div>
         {% endfor %}
     </div>
-    <h3>Most rated</h3>
+    <h3 class="mt-5">Most rated</h3>
     <div class="row">
         {% for mostrated in mostrateds %}
             <div class="col-sm">
                 <div class="card" >
-                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <img class="card-img-top" src="{{ vich_uploader_asset(mostrated.firstImage, 'imageFile') }}" alt="{{ mostrated.name }}" >
                     <div class="card-body">
                         <h5 class="card-title">{{  mostrated.name }} - {{ mostrated.price }}</h5>
                         <p class="card-text">{{ mostrated.description }}</p>

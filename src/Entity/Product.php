@@ -415,6 +415,18 @@ class Product extends AbstractBase
     }
 
     /**
+     * @return Image|null
+     */
+    public function getFirstImage()
+    {
+        if ($this->images->count() > 0) {
+            return $this->images[0];
+        }
+
+        return null;
+    }
+
+    /**
      * @return string
      */
     public function __toString()
