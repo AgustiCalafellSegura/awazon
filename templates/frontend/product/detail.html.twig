@@ -27,29 +27,35 @@
     </span>
     <span class="border border-success">
         <div class="row">
-            <h1>{{ review.name }}</h1>
+            {% for review in product.reviews %}
+            <h1>{{ review.review }}</h1>
             <div class="col-2">
                 <img src="..." class="rounded float-left" alt="...">
             </div>
             <div class="col-6">
                 <p class="lead">
-                    {{ greview.description }}
-                    {{ review.data }}
+                    {{ review.product }}
+                </p>
+                <p>
+                    {{ review.customer }}
                 </p>
             </div>
+            {% endfor %}
         </div>
     </span>
     <span class="border border-dark">
         <div class="row">
-            <h1>{{ rating.name }}</h1>
+            {% for rating in product.ratings %}
+            <h1>{{ rating.rate }}</h1>
             <div class="col-2">
                 <img src="..." class="rounded float-left" alt="...">
             </div>
             <div class="col-6">
                 <p class="lead">
-                    {{ rating.description }}
+                    {{ rating.customer }}
                 </p>
             </div>
+            {% endfor %}
         </div>
     </span>
 {% endblock %}
