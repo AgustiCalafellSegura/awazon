@@ -12,35 +12,6 @@ class ProductRepository extends EntityRepository
     /**
      * @return \Doctrine\ORM\QueryBuilder
      */
-    public function findLastProductsAddedQB()
-    {
-        return $this->createQueryBuilder('p')
-            ->orderBy('p.createdAt', 'DESC')
-            ->addOrderBy('p.name', 'ASC')
-            ->addOrderBy('p.price', 'DESC')
-            ->setMaxResults(4)
-            ;
-    }
-
-    /**
-     * @return \Doctrine\ORM\Query
-     */
-    public function findLastProductsAddedQ()
-    {
-        return $this->findLastProductsAddedQB()->getQuery();
-    }
-
-    /**
-     * @return array
-     */
-    public function findLastProductsAdded()
-    {
-        return $this->findLastProductsAddedQ()->getResult();
-    }
-
-    /**
-     * @return \Doctrine\ORM\QueryBuilder
-     */
     public function findBestSellersProductsQB()
     {
         return $this->createQueryBuilder('p')
