@@ -3,59 +3,51 @@
 {% block title %}{{ parent() }} · the neverending store{% endblock %}
 
 {% block body %}
-    <span class="border border-primary">
-        <div class="row">
-            <div class="col-3">
-                ​<picture>
-                    <div class="col-3">
-
-                    <source srcset="..." type="image/svg+xml">
-                    <img src="..." class="img-fluid img-thumbnail" alt="...">
-                    <img src="..." class="rounded float-left" alt="...">
-                    <img src="..." class="rounded float-right" alt="...">
-                </div>
-                </picture>
-            </div>
-            <div class="col-6">
-                <h1>{{ product.name }}</h1>
-                <p class="lead">
-                    {{ product.description }}
-                </p>
-                <button class="btn btn-primary" type="submit">Cart</button>
-            </div>
+    <div class="row mt-5">
+        <div class="col-3">
+            <img src="http://via.placeholder.com/200x200" class="img-fluid" alt="...">
         </div>
-    </span>
-    <span class="border border-success">
-        <div class="row">
-            {% for review in product.reviews %}
-            <h1>{{ review.review }}</h1>
-            <div class="col-2">
-                <img src="..." class="rounded float-left" alt="...">
-            </div>
-            <div class="col-6">
-                <p class="lead">
-                    {{ review.product }}
-                </p>
-                <p>
-                    {{ review.customer }}
-                </p>
-            </div>
-            {% endfor %}
+        <div class="col-9">
+            <h1>{{ product.name }}</h1>
+            <p class="lead">
+                {{ product.description }}
+            </p>
+            <button class="btn btn-primary" type="submit">Cart</button>
         </div>
-    </span>
-    <span class="border border-dark">
-        <div class="row">
-            {% for rating in product.ratings %}
-            <h1>{{ rating.rate }}</h1>
-            <div class="col-2">
-                <img src="..." class="rounded float-left" alt="...">
-            </div>
-            <div class="col-6">
-                <p class="lead">
-                    {{ rating.customer }}
-                </p>
-            </div>
-            {% endfor %}
-        </div>
-    </span>
+    </div>
+    {#<span class="border border-success">#}
+        {#<div class="row">#}
+            {#<h1 class="mb-2">Reviews</h1>#}
+            {#{% for review in product.reviews %}#}
+            {#<h3 class="mb-2">{{ review.review }}</h3>#}
+            {#<div class="col-2">#}
+                {#<img src="..." class="rounded float-left" alt="...">#}
+            {#</div>#}
+            {#<div class="col-6">#}
+                {#<p class="lead">#}
+                    {#{{ review.product }}#}
+                {#</p>#}
+                {#<p>#}
+                    {#{{ review.customer }}#}
+                {#</p>#}
+            {#</div>#}
+            {#{% endfor %}#}
+        {#</div>#}
+    {#</span>#}
+    {#<span class="border border-dark">#}
+        {#<div class="row">#}
+            {#<h1 class="mb-2">Ratings</h1>#}
+            {#{% for rating in product.ratings %}#}
+            {#<h1>{{ rating.rate }}</h1>#}
+            {#<div class="col-2">#}
+                {#<img src="..." class="rounded float-left" alt="...">#}
+            {#</div>#}
+            {#<div class="col-6">#}
+                {#<p class="lead">#}
+                    {#{{ rating.customer }}#}
+                {#</p>#}
+            {#</div>#}
+            {#{% endfor %}#}
+        {#</div>#}
+    {#</span>#}
 {% endblock %}
