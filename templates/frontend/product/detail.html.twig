@@ -15,39 +15,37 @@
             <button class="btn btn-primary" type="submit">Cart</button>
         </div>
     </div>
-    {#<span class="border border-success">#}
-        {#<div class="row">#}
-            {#<h1 class="mb-2">Reviews</h1>#}
-            {#{% for review in product.reviews %}#}
-            {#<h3 class="mb-2">{{ review.review }}</h3>#}
-            {#<div class="col-2">#}
-                {#<img src="..." class="rounded float-left" alt="...">#}
-            {#</div>#}
-            {#<div class="col-6">#}
-                {#<p class="lead">#}
-                    {#{{ review.product }}#}
-                {#</p>#}
-                {#<p>#}
-                    {#{{ review.customer }}#}
-                {#</p>#}
-            {#</div>#}
-            {#{% endfor %}#}
-        {#</div>#}
-    {#</span>#}
-    {#<span class="border border-dark">#}
-        {#<div class="row">#}
-            {#<h1 class="mb-2">Ratings</h1>#}
-            {#{% for rating in product.ratings %}#}
-            {#<h1>{{ rating.rate }}</h1>#}
-            {#<div class="col-2">#}
-                {#<img src="..." class="rounded float-left" alt="...">#}
-            {#</div>#}
-            {#<div class="col-6">#}
-                {#<p class="lead">#}
-                    {#{{ rating.customer }}#}
-                {#</p>#}
-            {#</div>#}
-            {#{% endfor %}#}
-        {#</div>#}
-    {#</span>#}
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="mb-3">Reviews</h3>
+                {% if product.reviews|length > 0 %}
+                    {% for review in product.reviews %}
+                        <blockquote class="blockquote">
+                            <p class="mb-0">{{ review.review }}</p>
+                            <footer class="blockquote-footer">{{ review.createdAt|date('d-m-Y') }} <cite title="Source Title">{{ review.customer.name }}</cite></footer>
+                        </blockquote>
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-warning" role="alert">
+                        There are no reviews
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <h1 class="mb-2">Ratings</h1>
+            {% for rating in product.ratings %}
+            <h1>{{ rating.rate }}</h1>
+            <div class="col-2">
+                <img src="..." class="rounded float-left" alt="...">
+            </div>
+            <div class="col-6">
+                <p class="lead">
+                    {{ rating.customer }}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
 {% endblock %}
