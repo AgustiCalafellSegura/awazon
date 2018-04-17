@@ -28,11 +28,11 @@
         {% for bestseller in bestsellers %}
             <div class="col-sm">
                 <div class="card" >
-                    <img class="card-img-top" src="{{ vich_uploader_asset(bestseller.firstImage, 'imageFile') }}" alt="{{ bestseller.name }}" >
+                    <img class="card-img-top" src="{{ vich_uploader_asset(bestseller[0].firstImage, 'imageFile') }}" alt="{{ bestseller[0].name }}" >
                     <div class="card-body">
-                        <h5 class="card-title">{{  bestseller.name }} - {{ bestseller.price }}</h5>
-                        <p class="card-text">{{ bestseller.description }}</p>
-                        <a href="{{ path('app_frontend_product_detail', {slug: bestseller.slug}) }}" class="btn btn-primary">BUY!</a>
+                        <h5 class="card-title">{{  bestseller[0].name }} - {{ bestseller[0].price }}</h5>
+                        <p class="card-text">{{ bestseller[0].description }}</p>
+                        <a href="{{ path('app_frontend_product_detail', {slug: bestseller[0].slug}) }}" class="btn btn-primary">BUY!</a>
                     </div>
                 </div>
             </div>

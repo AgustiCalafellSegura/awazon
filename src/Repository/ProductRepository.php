@@ -44,11 +44,10 @@ class ProductRepository extends EntityRepository
     public function findBestSellersProductsQB()
     {
         return $this->createQueryBuilder('p')
+            ->select('p, COUNT(p.id) as amount')
             ->join('p.orderItems', 'r')
             ->groupBy('r.product')
-            ->orderBy('p.createdAt', 'DESC')
-            ->addOrderBy('p.name', 'ASC')
-            ->addOrderBy('p.price', 'DESC')
+            ->orderBy('amount', 'DESC')
             ->setMaxResults(4)
             ;
     }
