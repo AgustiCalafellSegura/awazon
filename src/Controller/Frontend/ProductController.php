@@ -23,6 +23,7 @@ class ProductController extends Controller
         $counter3 = 0;
         $counter4 = 0;
         $counter5 = 0;
+        $totalRatings = count($product->getRatings());
 
         /** @var Rating $rate */
         foreach ($product->getRatings() as $rate) {
@@ -37,6 +38,14 @@ class ProductController extends Controller
             } elseif (5 == $rate->getRate()) {
                 ++$counter5;
             }
+        }
+
+        if ($totalRatings > 0) {
+            $counter1 = (($counter1 * 100) / $totalRatings);
+            $counter2 = (($counter2 * 100) / $totalRatings);
+            $counter3 = (($counter3 * 100) / $totalRatings);
+            $counter4 = (($counter4 * 100) / $totalRatings);
+            $counter5 = (($counter5 * 100) / $totalRatings);
         }
 
         return $this->render('frontend/product/detail.html.twig', array(
