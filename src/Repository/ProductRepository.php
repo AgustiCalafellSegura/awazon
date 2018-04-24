@@ -12,6 +12,32 @@ class ProductRepository extends EntityRepository
     /**
      * @return \Doctrine\ORM\QueryBuilder
      */
+    public function findAllSortedByNameQB()
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.name', 'DESC')
+            ;
+    }
+
+    /**
+     * @return \Doctrine\ORM\Query
+     */
+    public function findAllSortedByNameQ()
+    {
+        return $this->findAllSortedByNameQB()->getQuery();
+    }
+
+    /**
+     * @return array
+     */
+    public function findAllSortedByName()
+    {
+        return $this->findAllSortedByNameQ()->getResult();
+    }
+
+    /**
+     * @return \Doctrine\ORM\QueryBuilder
+     */
     public function findLastProductsAddedQB()
     {
         return $this->createQueryBuilder('p')
@@ -44,11 +70,10 @@ class ProductRepository extends EntityRepository
     public function findBestSellersProductsQB()
     {
         return $this->createQueryBuilder('p')
+            ->select('p, COUNT(p.id) as amount')
             ->join('p.orderItems', 'r')
             ->groupBy('r.product')
-            ->orderBy('p.createdAt', 'DESC')
-            ->addOrderBy('p.name', 'ASC')
-            ->addOrderBy('p.price', 'DESC')
+            ->orderBy('amount', 'DESC')
             ->setMaxResults(4)
             ;
     }
