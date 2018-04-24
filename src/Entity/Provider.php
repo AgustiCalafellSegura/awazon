@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class Provider.
@@ -56,6 +57,12 @@ class Provider extends AbstractBase
      * @ORM\OneToMany(targetEntity="Order", mappedBy="provider", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $orders;
+
+    /**
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(type="string")
+     */
+    private $slug;
 
     /**
      * Methods.
@@ -230,6 +237,26 @@ class Provider extends AbstractBase
             $this->orders->add($order);
             $order->setProvider($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     *
+     * @return $this
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
 
         return $this;
     }
