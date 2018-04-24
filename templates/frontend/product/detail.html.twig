@@ -4,10 +4,10 @@
 
 {% block body %}
     <div class="row mt-5">
-        <div class="col-3">
-            <img src="{{ vich_uploader_asset(product.firstImage, 'imageFile') }}" class="img-fluid" alt="product.name">
+        <div class="col-12 col-sm-4 col-md-3">
+            <img src="{{ vich_uploader_asset(product.firstImage, 'imageFile') | imagine_filter('550xY') }}" class="img-fluid" alt="product.name">
         </div>
-        <div class="col-9">
+        <div class="col-12 col-sm-8 col-md-9">
             <h1>{{ product.name }}</h1>
             <p class="lead">
                 {{ product.description }}
@@ -35,15 +35,40 @@
     </div>
 
     <div class="row mt-5">
-        <div class="col-12">
+        <div class="col-3">
             <h3 class="mb-3">Ratings</h3>
             {% if product.ratings|length > 0 %}
-                {% for rating in product.ratings %}
-                    <blockquote class="blockquote">
-                        <p class="mb-0">{{ rating.rate }}</p>
-                        <footer class="blockquote-footer">{{ rating.customer }}</footer>
-                    </blockquote>
-                {% endfor %}
+                <p>Total ratings: {{ product.ratings|length }}</p>
+                5 stars
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[4]|number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[4]|number_format(0,'','') }}%;">
+                        {{ ratecounter[4]|number_format(0,'','') }}%
+                    </div>
+                </div>
+                4 stars
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[3]|number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[3]|number_format(0,'','') }}%;">
+                        {{ ratecounter[3]|number_format(0,'','') }}%
+                    </div>
+                </div>
+                3 stars
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[2]|number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[2]|number_format(0,'','') }}%;">
+                        {{ ratecounter[2]|number_format(0,'','') }}%
+                    </div>
+                </div>
+                2 stars
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[1]|number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[1]|number_format(0,'','') }}%;">
+                        {{ ratecounter[1]|number_format(0,'','') }}%
+                    </div>
+                </div>
+                1 star
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[0]|number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[0]|number_format(0,'','') }}%;">
+                        {{ ratecounter[0]|number_format(0,'','') }}%
+                    </div>
+                </div>
             {% else %}
                 <div class="alert alert-warning" role="alert">
                     There are no ratings
