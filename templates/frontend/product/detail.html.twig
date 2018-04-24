@@ -4,10 +4,10 @@
 
 {% block body %}
     <div class="row mt-5">
-        <div class="col-3">
-            <img src="{{ vich_uploader_asset(product.firstImage, 'imageFile') }}" class="img-fluid" alt="product.name">
+        <div class="col-12 col-sm-4 col-md-3">
+            <img src="{{ vich_uploader_asset(product.firstImage, 'imageFile') | imagine_filter('550xY') }}" class="img-fluid" alt="product.name">
         </div>
-        <div class="col-9">
+        <div class="col-12 col-sm-8 col-md-9">
             <h1>{{ product.name }}</h1>
             <p class="lead">
                 {{ product.description }}
