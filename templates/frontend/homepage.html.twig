@@ -9,13 +9,14 @@
             <div class="p-3 text-white bg-danger">the neverending store</div>
         </div>
     </div>
+    <h3 class="mt-5">New products</h3>
     <div class="row">
         {% for product in products %}
             <div class="col-sm">
                 <div class="card" >
                     <img class="card-img-top" src="{{ vich_uploader_asset(product.firstImage, 'imageFile') | imagine_filter('550xY') }}" alt="{{ product.name }}" >
                     <div class="card-body">
-                        <h5 class="card-title">{{  product.name }} - {{ product.price }}</h5>
+                        <h5 class="card-title">{{  product.name }}  <span class="badge badge-warning">{{ product.price|number_format(2, ',', '.') }} €</span></h5>
                         <p class="card-text">{{ product.description }}</p>
                         <a href="{{ path('app_frontend_product_detail', {slug: product.slug}) }}" class="btn btn-primary">BUY!</a>
                     </div>
@@ -30,7 +31,7 @@
                 <div class="card" >
                     <img class="card-img-top" src="{{ vich_uploader_asset(bestseller[0].firstImage, 'imageFile') | imagine_filter('550xY') }}" alt="{{ bestseller[0].name }}" >
                     <div class="card-body">
-                        <h5 class="card-title">{{  bestseller[0].name }} - {{ bestseller[0].price }}</h5>
+                        <h5 class="card-title">{{  bestseller[0].name }}  <span class="badge badge-warning">{{ bestseller[0].price|number_format(2, ',', '.') }} €</span></h5>
                         <p class="card-text">{{ bestseller[0].description }}</p>
                         <a href="{{ path('app_frontend_product_detail', {slug: bestseller[0].slug}) }}" class="btn btn-primary">BUY!</a>
                     </div>
@@ -45,7 +46,7 @@
                 <div class="card" >
                     <img class="card-img-top" src="{{ vich_uploader_asset(mostrated.firstImage, 'imageFile') | imagine_filter('550xY')}}" alt="{{ mostrated.name }}" >
                     <div class="card-body">
-                        <h5 class="card-title">{{  mostrated.name }} - {{ mostrated.price }}</h5>
+                        <h5 class="card-title">{{  mostrated.name }}   <span class="badge badge-warning">{{ mostrated.price|number_format(2, ',', '.') }} €</span></h5>
                         <p class="card-text">{{ mostrated.description }}</p>
                         <a href="{{ path('app_frontend_product_detail', {slug: mostrated.slug}) }}" class="btn btn-primary">BUY!</a>
                     </div>
