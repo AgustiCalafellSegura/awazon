@@ -38,12 +38,12 @@
         <div class="col-12">
             <h3 class="mb-3">Ratings</h3>
             {% if product.ratings|length > 0 %}
-                {% for rating in product.ratings %}
-                    <blockquote class="blockquote">
-                        <p class="mb-0">{{ rating.rate }}</p>
-                        <footer class="blockquote-footer">{{ rating.customer }}</footer>
-                    </blockquote>
-                {% endfor %}
+                <p>Total ratings: {{ product.ratings|length }}</p>
+                <p>5 stars: {{ ratecounter[4] }}</p>
+                <p>4 stars: {{ ratecounter[3] }}</p>
+                <p>3 stars: {{ ratecounter[2] }}</p>
+                <p>2 stars: {{ ratecounter[1] }}</p>
+                <p>1 star: {{ ratecounter[0] }}</p>
             {% else %}
                 <div class="alert alert-warning" role="alert">
                     There are no ratings
