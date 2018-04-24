@@ -12,6 +12,32 @@ class ProductRepository extends EntityRepository
     /**
      * @return \Doctrine\ORM\QueryBuilder
      */
+    public function findAllSortedByNameQB()
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.name', 'DESC')
+            ;
+    }
+
+    /**
+     * @return \Doctrine\ORM\Query
+     */
+    public function findAllSortedByNameQ()
+    {
+        return $this->findAllSortedByNameQB()->getQuery();
+    }
+
+    /**
+     * @return array
+     */
+    public function findAllSortedByName()
+    {
+        return $this->findAllSortedByNameQ()->getResult();
+    }
+
+    /**
+     * @return \Doctrine\ORM\QueryBuilder
+     */
     public function findLastProductsAddedQB()
     {
         return $this->createQueryBuilder('p')
