@@ -8,16 +8,18 @@
             <img src="{{ vich_uploader_asset(product.firstImage, 'imageFile') | imagine_filter('550xY') }}" class="img-fluid" alt="product.name">
         </div>
         <div class="col-12 col-sm-8 col-md-9">
-            <h1>{{ product.name }}</h1>
+            <h1>{{ product.name }} <span class="badge badge-warning">{{ product.price|number_format(2, ',', '.') }} €</span></h1>
             <p class="lead">
                 {{ product.description }}
             </p>
-            <button class="btn btn-primary" type="submit">Cart</button>
+            <button class="btn btn-primary" type="submit">Add Cart</button>
         </div>
     </div>
-
     <div class="row mt-5">
-        <div class="col-12">
+
+    </div>
+    <div class="row mt-5">
+        <div class="col-6">
             <h3 class="mb-3">Reviews</h3>
             {% if product.reviews|length > 0 %}
                 {% for review in product.reviews %}
@@ -32,10 +34,8 @@
                 </div>
             {% endif %}
         </div>
-    </div>
 
-    <div class="row mt-5">
-        <div class="col-3">
+        <div class="col-6">
             <h3 class="mb-3">Ratings</h3>
             {% if product.ratings|length > 0 %}
                 <p>Total ratings: {{ product.ratings|length }}</p>
@@ -74,6 +74,15 @@
                     There are no ratings
                 </div>
             {% endif %}
+    </div>
+    <div class="col-12">
+        <div class="card-footer bg-dark text-muted text-center">
+            copyright ©  2018
+            <a href="http://symfony.es/" class="badge badge-dark">Credit</a>
+            <a href="https://www.enciclopedia.cat/content/politica-de-privacitat" class="badge badge-dark">política de privacitat</a>
+
+
+            condicions generals de compra
         </div>
     </div>
 {% endblock %}
