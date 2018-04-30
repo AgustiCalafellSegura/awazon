@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 
 /**
@@ -19,6 +20,7 @@ class ImageAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $vichUploaderService = $this->getConfigurationPool()->getContainer()->get('vich_uploader.templating.helper.uploader_helper');
         $formMapper
             ->add(
                 'imageFile',
@@ -27,6 +29,14 @@ class ImageAdmin extends AbstractAdmin
                     'required' => false,
                     //TODO show image tumbnail
 //                    'help' => 'help text'
+                )
+            )
+            ->add(
+                'img_thumbnail',
+                TextType::class,
+                array(
+                    'mapped' => false,
+                    'sonata_help' => '<img src="'.$vichUploaderService->asset($this->getSubject(), 'imageFile').'" alt="{{ object.name }}" >',
                 )
             )
             ->add(
