@@ -21,6 +21,7 @@ class ImageAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $vichUploaderService = $this->getConfigurationPool()->getContainer()->get('vich_uploader.templating.helper.uploader_helper');
+        $liipImagineService = $this->getConfigurationPool()->getContainer()->get('liip_imagine.cache.manager');
         $formMapper
             ->add(
                 'imageFile',
@@ -30,15 +31,19 @@ class ImageAdmin extends AbstractAdmin
                     //TODO show image tumbnail
 //                    'help' => 'help text'
                 )
-            )
-            ->add(
-                'img_thumbnail',
-                TextType::class,
-                array(
-                    'mapped' => false,
-                    'sonata_help' => '<img src="'.$vichUploaderService->asset($this->getSubject(), 'imageFile').'" alt="{{ object.name }}" >',
-                )
-            )
+            );
+        if ($this->getSubject()->getId()) {
+            $formMapper
+                ->add(
+                    'img_thumbnail',
+                    TextType::class,
+                    array(
+                        'mapped' => false,
+                        'sonata_help' => '<img src="'.$liipImagineService->generateUrl($vichUploaderService->asset($this->getSubject(), 'imageFile'), '300xY').'" alt="'.$this->getSubject()->getProduct()->getName().'" >',
+                    )
+                );
+        }
+        $formMapper
             ->add(
                 'product',
                 ModelType::class,
