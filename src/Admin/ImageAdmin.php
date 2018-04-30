@@ -20,8 +20,9 @@ class ImageAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $vichUploaderService = $this->getConfigurationPool()->getContainer()->get('vich_uploader.templating.helper.uploader_helper');
-        $liipImagineService = $this->getConfigurationPool()->getContainer()->get('liip_imagine.cache.manager');
+//        $vichUploaderService = $this->getConfigurationPool()->getContainer()->get('vich_uploader.templating.helper.uploader_helper');
+//        $liipImagineService = $this->getConfigurationPool()->getContainer()->get('liip_imagine.cache.manager');
+        $imageManager = $this->getConfigurationPool()->getContainer()->get('app.manager.image');
         $formMapper
             ->add(
                 'imageFile',
@@ -39,7 +40,7 @@ class ImageAdmin extends AbstractAdmin
                     TextType::class,
                     array(
                         'mapped' => false,
-                        'sonata_help' => '<img src="'.$liipImagineService->generateUrl($vichUploaderService->asset($this->getSubject(), 'imageFile'), '300xY').'" alt="'.$this->getSubject()->getProduct()->getName().'" >',
+                        'sonata_help' => $imageManager->getImageHtml($this->getSubject(), '300xY'),
                     )
                 );
         }

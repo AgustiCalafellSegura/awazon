@@ -8,6 +8,7 @@
 
 namespace App\Manager;
 
+use App\Entity\Image;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 
@@ -36,13 +37,24 @@ class ImageManager
     }
 
     /**
-     * @param mixed  $object
+     * @param Image  $object
      * @param string $size
      *
      * @return string
      */
-    public function getImageUrl($object, $size)
+    public function getImageSrc($object, $size)
     {
         return $this->liipImagineService->generateUrl($this->vichUploaderService->asset($object, 'imageFile'), $size);
+    }
+
+    /**
+     * @param Image  $object
+     * @param string $size
+     *
+     * @return string
+     */
+    public function getImageHtml($object, $size)
+    {
+        return '<img src="'.$this->getImageSrc($object, $size).'" alt="'.$object->getProduct()->getName().'">';
     }
 }
