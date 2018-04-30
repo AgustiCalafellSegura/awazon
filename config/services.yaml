@@ -80,3 +80,9 @@ services:
         class: App\Manager\ImageManager
         arguments: ['@vich_uploader.templating.helper.uploader_helper', '@liip_imagine.cache.manager']
         public: true
+#    app.twig.custom:
+#        class: App\Twig\AppCustomTwig
+#        arguments: ['@app.manager.image']
+#        tags:
+#            - { name: twig.extension }
+#        public: true
