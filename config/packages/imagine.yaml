@@ -27,7 +27,7 @@ liip_imagine:
                     size:          [550, null]
                     mode:          outbound
                     allow_upscale: true
-        50xY:
+        50x50:
 
             # set your image quality defaults
             jpeg_quality:          85
@@ -44,7 +44,7 @@ liip_imagine:
 
                 # scale and square the image to the given dimensions
                 thumbnail:
-                    size:          [50, null]
+                    size:          [50, 50]
                     mode:          outbound
                     allow_upscale: true
 
