@@ -6,11 +6,15 @@
     <div class="row mt-5">
         <div class="col-12 col-sm-4 col-md-3">
             <img src="{{ vich_uploader_asset(product.firstImage, 'imageFile') | imagine_filter('550xY') }}" class="img-fluid" alt="product.name">
-            {% for image in product.images %}
-                {% if not loop.first %}
-                    <img src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('550xY') }}" class="img-fluid" alt="product.name">
-                {% endif %}
-            {% endfor %}
+            <div class="row mt-2">
+                {% for image in product.images %}
+                    {% if not loop.first %}
+                        <div class="col-4 mb-1">
+                            <img src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('550xY') }}" class="img-fluid" alt="product.name">
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
         <div class="col-12 col-sm-8 col-md-9">
             <h1>{{ product.name }} <span class="badge badge-warning">{{ product.price|number_format(2, ',', '.') }} €</span></h1>
