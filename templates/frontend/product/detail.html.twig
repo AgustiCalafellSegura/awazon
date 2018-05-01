@@ -6,18 +6,29 @@
     <div class="row mt-5">
         <div class="col-12 col-sm-4 col-md-3">
             <img src="{{ vich_uploader_asset(product.firstImage, 'imageFile') | imagine_filter('550xY') }}" class="img-fluid" alt="product.name">
+            <div class="row mt-2">
+                {% for image in product.images %}
+                    {% if not loop.first %}
+                        <div class="col-4 mb-1">
+                            <img src="{{ image | get_image_src('150x150') }}" class="img-fluid" alt="product.name">
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
         <div class="col-12 col-sm-8 col-md-9">
-            <h1>{{ product.name }}</h1>
+            <h1>{{ product.name }} <span class="badge badge-warning">{{ product.price|number_format(2, ',', '.') }} €</span></h1>
             <p class="lead">
                 {{ product.description }}
             </p>
-            <button class="btn btn-primary" type="submit">Cart</button>
+            <button class="btn btn-primary" type="submit">Add Cart</button>
         </div>
     </div>
-
     <div class="row mt-5">
-        <div class="col-12">
+
+    </div>
+    <div class="row mt-5">
+        <div class="col-6">
             <h3 class="mb-3">Reviews</h3>
             {% if product.reviews|length > 0 %}
                 {% for review in product.reviews %}
@@ -32,10 +43,8 @@
                 </div>
             {% endif %}
         </div>
-    </div>
 
-    <div class="row mt-5">
-        <div class="col-3">
+        <div class="col-6">
             <h3 class="mb-3">Ratings</h3>
             {% if product.ratings|length > 0 %}
                 <p>Total ratings: {{ product.ratings|length }}</p>
