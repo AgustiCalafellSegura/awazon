@@ -1,0 +1,9 @@
+{% extends '@SonataAdmin/CRUD/base_list_field.html.twig' %}
+
+{% block field%}
+    {% if object.firstImage is not null %}
+        {#<img src="{{ vich_uploader_asset(object.firstImage, 'imageFile') | imagine_filter('50x50') }}" alt="{{ object.name }}" >#}
+        {#<img src="{{ object.firstImage | get_image_src('50x50') }}" alt="{{ object.name }}" >#}
+        {{ object.firstImage | get_image_html('50x50') |raw }}
+    {% endif %}
+{% endblock %}
