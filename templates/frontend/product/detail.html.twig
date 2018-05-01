@@ -10,7 +10,7 @@
                 {% for image in product.images %}
                     {% if not loop.first %}
                         <div class="col-4 mb-1">
-                            <img src="{{ vich_uploader_asset(image, 'imageFile') | imagine_filter('550xY') }}" class="img-fluid" alt="product.name">
+                            <img src="{{ image | get_image_src('150x150') }}" class="img-fluid" alt="product.name">
                         </div>
                     {% endif %}
                 {% endfor %}
