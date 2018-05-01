@@ -1,0 +1,22 @@
+{% extends "frontend/base.html.twig" %}
+
+{% block title %}{{ parent() }} · List of products{% endblock %}
+
+{% block body %}
+    <h3 class="mt-5">Products</h3>
+    <div class="row">
+        {% for product in products %}
+            <div class="col-sm">
+                <div class="card" >
+                    <img class="card-img-top" src="{{ product.firstImage | get_image_src('550xY') |raw }}" alt="{{ product.name }}" >
+                    <div class="card-body">
+                        <h5 class="card-title">{{  product.name }}  <span class="badge badge-warning">{{ product.price|number_format(2, ',', '.') }} €</span></h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <a href="{{ path('app_frontend_product_detail', {slug: product.slug}) }}" class="btn btn-primary">BUY!</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
