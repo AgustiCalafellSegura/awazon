@@ -6,9 +6,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * Class HomepageController.
+ * Class DefaultController.
  */
-class HomepageController extends Controller
+class DefaultController extends Controller
 {
     /**
      * @Route("/", name="app_frontend_homepage")
@@ -26,5 +26,13 @@ class HomepageController extends Controller
             'bestsellers' => $bestsellers,
             'mostrateds' => $mostrateds,
         ));
+    }
+
+    /**
+     * @Route("/credits", name="app_frontend_credits_page")
+     */
+    public function creditsPage()
+    {
+        return $this->render('frontend/credits.html.twig');
     }
 }

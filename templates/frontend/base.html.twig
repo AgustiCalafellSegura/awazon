@@ -45,8 +45,8 @@
             <div class="row pt-3 pb-3">
                 <div class="col-12">
                     <span class="text-muted">
-                        copyright ©  2018
-                    <a href="http://symfony.es/" class="badge badge-dark">Credit</a>
+                        copyright ©  {{ "now"|date("Y") }}
+                    <a href="{{ path('app_frontend_credits_page') }}" class="badge badge-dark">Credits</a>
                     <a href="https://www.enciclopedia.cat/content/politica-de-privacitat" class="badge badge-dark">política de privacitat</a>
                     condicions generals de compra
                     </span>
