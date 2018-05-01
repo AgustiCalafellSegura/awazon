@@ -53,4 +53,16 @@ class ProductController extends Controller
             'ratecounter' => array($counter1, $counter2, $counter3, $counter4, $counter5),
         ));
     }
+
+    /**
+     * @Route("/products", name="app_frontend_product_list")
+     */
+    public function productsList()
+    {
+        $products = $this->getDoctrine()->getRepository('App:Product')->findAll();
+
+        return $this->render('frontend/product/list.html.twig', array(
+            'products' => $products,
+        ));
+    }
 }
