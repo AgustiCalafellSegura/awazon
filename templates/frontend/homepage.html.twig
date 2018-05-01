@@ -14,7 +14,7 @@
         {% for product in products %}
             <div class="col-sm">
                 <div class="card" >
-                    <img class="card-img-top" src="{{ vich_uploader_asset(product.firstImage, 'imageFile') | imagine_filter('550xY') }}" alt="{{ product.name }}" >
+                    <img class="card-img-top" src="{{ product.firstImage | get_image_src('550xY') |raw }}" alt="{{ product.name }}" >
                     <div class="card-body">
                         <h5 class="card-title">{{  product.name }}  <span class="badge badge-warning">{{ product.price|number_format(2, ',', '.') }} €</span></h5>
                         <p class="card-text">{{ product.description }}</p>
@@ -29,7 +29,7 @@
         {% for bestseller in bestsellers %}
             <div class="col-sm">
                 <div class="card" >
-                    <img class="card-img-top" src="{{ vich_uploader_asset(bestseller[0].firstImage, 'imageFile') | imagine_filter('550xY') }}" alt="{{ bestseller[0].name }}" >
+                    <img class="card-img-top" src="{{ bestseller[0].firstImage | get_image_src('550xY') |raw }}" alt="{{ bestseller[0].name }}" >
                     <div class="card-body">
                         <h5 class="card-title">{{  bestseller[0].name }}  <span class="badge badge-warning">{{ bestseller[0].price|number_format(2, ',', '.') }} €</span></h5>
                         <p class="card-text">{{ bestseller[0].description }}</p>
@@ -44,7 +44,7 @@
         {% for mostrated in mostrateds %}
             <div class="col-sm">
                 <div class="card" >
-                    <img class="card-img-top" src="{{ vich_uploader_asset(mostrated.firstImage, 'imageFile') | imagine_filter('550xY')}}" alt="{{ mostrated.name }}" >
+                    <img class="card-img-top" src="{{ mostrated.firstImage | get_image_src('550xY') |raw }}" alt="{{ mostrated.name }}" >
                     <div class="card-body">
                         <h5 class="card-title">{{  mostrated.name }}   <span class="badge badge-warning">{{ mostrated.price|number_format(2, ',', '.') }} €</span></h5>
                         <p class="card-text">{{ mostrated.description }}</p>
