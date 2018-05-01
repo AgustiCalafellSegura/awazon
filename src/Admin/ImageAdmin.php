@@ -33,7 +33,7 @@ class ImageAdmin extends AbstractAdmin
 //                    'help' => 'help text'
                 )
             );
-        if ($this->getSubject()->getId()) {
+        if ($this->getSubject() && $this->getSubject()->getId()) {
             $formMapper
                 ->add(
                     'img_thumbnail',
