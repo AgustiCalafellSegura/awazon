@@ -27,6 +27,46 @@ liip_imagine:
                     size:          [550, null]
                     mode:          outbound
                     allow_upscale: true
+        300xY:
+
+            # set your image quality defaults
+            jpeg_quality:          75
+            png_compression_level: 8
+
+            # setup the filter steps to apply for this transformation
+            filters:
+
+                # auto rotate the image using EXIF metadata
+                auto_rotate: ~
+
+                # strip the image of all metadata
+                strip: ~
+
+                # scale and square the image to the given dimensions
+                thumbnail:
+                    size:          [300, null]
+                    mode:          outbound
+                    allow_upscale: true
+        50x50:
+
+            # set your image quality defaults
+            jpeg_quality:          85
+            png_compression_level: 8
+
+            # setup the filter steps to apply for this transformation
+            filters:
+
+                # auto rotate the image using EXIF metadata
+                auto_rotate: ~
+
+                # strip the image of all metadata
+                strip: ~
+
+                # scale and square the image to the given dimensions
+                thumbnail:
+                    size:          [50, 50]
+                    mode:          outbound
+                    allow_upscale: true
 
 #                grayscale: ~
 

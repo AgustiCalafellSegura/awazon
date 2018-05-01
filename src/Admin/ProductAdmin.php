@@ -132,6 +132,14 @@ class ProductAdmin extends AbstractAdmin
     {
         $listMapper
             ->add(
+                'img_thumbnail',
+                null,
+                array(
+                    'template' => 'backend/list_cell_image.html.twig',
+                    'label' => 'Image',
+                )
+            )
+            ->add(
                 'name',
                 null,
                 array(
