@@ -29,10 +29,26 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/credits", name="app_frontend_credits_page")
+     * @Route("/credits", name="app_frontend_credits")
      */
     public function creditsPage()
     {
         return $this->render('frontend/credits.html.twig');
+    }
+
+    /**
+     * @Route("/privacy-policy", name="app_frontend_privacy_policy")
+     */
+    public function privacyPolicy()
+    {
+        return $this->render('frontend/privacy_policy.html.twig');
+    }
+
+    /**
+     * @Route("/terms-of-service", name="app_frontend_terms_of_service")
+     */
+    public function termsOfService()
+    {
+        return $this->render('frontend/terms_of_service.html.twig');
     }
 }
