@@ -73,7 +73,13 @@ class ProductController extends Controller
         $product = new Product();
         $form = $this->createForm(ProductFormType::class, $product);
 
-        $products = $this->getDoctrine()->getRepository('App:Product')->findAll();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $products = $this->getDoctrine()->getRepository('App:Product')->findByName($product->getName());
+        } else {
+            $products = $this->getDoctrine()->getRepository('App:Product')->findAll();
+        }
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
