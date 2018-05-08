@@ -9,11 +9,14 @@ class FrontendTest extends WebTestCase
 {
     /**
      * Main tests
+     *
+     * @param $url
+     * @dataProvider buildURLS
      */
-    public function testMain()
+    public function testMain($url)
     {
         $client = $this->makeClient();
-        $client->request('GET', '/');
+        $client->request('GET', $url);
         $this->assertStatusCode(200, $client);
     }
 
@@ -26,7 +29,7 @@ class FrontendTest extends WebTestCase
             ['/credits'],
             ['/privacy-policy'],
             ['/terms-of-service'],
-            ['/product/ab'],
+            ['/product/matrix'],
         ];
     }
 }
