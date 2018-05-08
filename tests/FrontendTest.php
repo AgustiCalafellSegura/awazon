@@ -16,4 +16,17 @@ class FrontendTest extends WebTestCase
         $client->request('GET', '/');
         $this->assertStatusCode(200, $client);
     }
+
+    /**
+     * @return array
+     */
+    public function buildURLS()
+    {
+        return [
+            ['/credits'],
+            ['/privacy-policy'],
+            ['/terms-of-service'],
+            ['/product/ab'],
+        ];
+    }
 }
