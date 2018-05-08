@@ -2,7 +2,9 @@
 
 namespace App\Controller\Frontend;
 
+use App\Entity\Product;
 use App\Entity\Rating;
+use App\Form\ProductFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -64,6 +66,9 @@ class ProductController extends Controller
      */
     public function productsList(Request $request)
     {
+        $product = new Product();
+        $form = $this->createForm(ProductFormType::class, $product);
+
         $products = $this->getDoctrine()->getRepository('App:Product')->findAll();
 
         $paginator = $this->get('knp_paginator');
@@ -75,6 +80,7 @@ class ProductController extends Controller
 
         return $this->render('frontend/product/list.html.twig', array(
             'pagination' => $pagination,
+            'form' => $form->createView(),
         ));
     }
 }
