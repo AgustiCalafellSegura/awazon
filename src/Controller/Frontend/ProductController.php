@@ -2,8 +2,10 @@
 
 namespace App\Controller\Frontend;
 
+use App\Entity\Product;
 use App\Entity\Rating;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -19,6 +21,9 @@ class ProductController extends Controller
     {
         $product = $this->getDoctrine()->getRepository('App:Product')->findOneBy(array('slug' => $slug));
 
+        if (is_null($product)) {
+            throw new NotFoundHttpException();
+        }
         $counter1 = 0;
         $counter2 = 0;
         $counter3 = 0;
