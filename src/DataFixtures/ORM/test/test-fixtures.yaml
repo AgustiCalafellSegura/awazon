@@ -16,7 +16,6 @@ App\Entity\Product:
         price: <randomFloat(1,5)>
         category: "@category<numberBetween(1, 2)>"
         provider: "@provider<numberBetween(1, 4)>"
-
     product5:
         name: 'matrix'
         description: <sentence()>
@@ -59,3 +58,6 @@ App\Entity\Image:
     image{1..2}:
         image: <text(50)>
         product: "@product<numberBetween(1, 4)>"
+    image3:
+            image: <text(50)>
+            product: "@product5"
