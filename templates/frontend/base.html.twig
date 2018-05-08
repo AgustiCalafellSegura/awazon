@@ -19,11 +19,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             {# todo replace it by knp menu render #}
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_frontend_product_list') }}">Products</a>
-                </li>
-            </ul>
+            {#<ul class="navbar-nav mr-auto">#}
+                {#<li class="nav-item">#}
+                    {#<a class="nav-link" href="{{ path('app_frontend_product_list') }}">Products</a>#}
+                {#</li>#}
+            {#</ul>#}
+            <div class="container-fluid">
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                {{ knp_menu_render('main', {currentClass:'active'}) }}
+            </div>
         </div>
     </nav>
     <div class="container">
