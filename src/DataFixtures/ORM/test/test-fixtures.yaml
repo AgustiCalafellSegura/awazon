@@ -17,6 +17,13 @@ App\Entity\Product:
         category: "@category<numberBetween(1, 2)>"
         provider: "@provider<numberBetween(1, 4)>"
 
+    product5:
+        name: 'matrix'
+        description: <sentence()>
+        price: <randomFloat(1,5)>
+        category: "@category<numberBetween(1, 2)>"
+        provider: "@provider<numberBetween(1, 4)>"
+
 App\Entity\Customer:
     customer{1..2}:
         name: <word()>
