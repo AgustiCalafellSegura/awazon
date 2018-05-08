@@ -12,7 +12,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\CoreBundle\Form\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 /**
  * Class OrderAdmin.
@@ -27,7 +27,7 @@ class OrderAdmin extends AbstractAdmin
         $formMapper
             ->add(
                 'date',
-                TextType::class,
+                DateType::class,
                 array(
                     'required' => false,
                 )
@@ -49,7 +49,7 @@ class OrderAdmin extends AbstractAdmin
                 )
             )
             ->add(
-                'customer ',
+                'customer',
                 EntityType::class,
                 array(
                     'class' => Customer::class,
