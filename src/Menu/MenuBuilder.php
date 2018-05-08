@@ -26,16 +26,20 @@ class MenuBuilder
     public function createMainMenu(RequestStack $requestStack)
     {
         $menu = $this->factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'nav navbar-nav');
+        $menu->setChildrenAttribute('class', 'navbar-nav mr-auto');
 
-        $menu->addChild(
+        $productsItem = $menu->addChild(
             'Products',
             array(
                 'route' => 'app_frontend_product_list',
                 'label' => 'Products',
                 'current' => 'app_frontend_product_list' == $requestStack->getCurrentRequest()->get('_route'),
+                'class' => 'nav-item',
             )
         );
+
+        $productsItem->setAttribute('class', 'nav-item');
+        $productsItem->setLinkAttribute('class', 'nav-link');
 
         return $menu;
     }
