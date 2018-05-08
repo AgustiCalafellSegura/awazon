@@ -4,6 +4,7 @@
 
 {% block body %}
     <h3 class="mt-5">Products</h3>
+    {{ form(form) }}
     <div class="row">
         {% for product in pagination %}
             <div class="col-sm-3 mb-2">
@@ -23,6 +24,4 @@
             {{ knp_pagination_render(pagination) }}
         </div>
     </div>
-
-
 {% endblock %}

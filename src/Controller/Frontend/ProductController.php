@@ -4,6 +4,7 @@ namespace App\Controller\Frontend;
 
 use App\Entity\Product;
 use App\Entity\Rating;
+use App\Form\ProductFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
@@ -69,7 +70,16 @@ class ProductController extends Controller
      */
     public function productsList(Request $request)
     {
-        $products = $this->getDoctrine()->getRepository('App:Product')->findAll();
+        $product = new Product();
+        $form = $this->createForm(ProductFormType::class, $product);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $products = $this->getDoctrine()->getRepository('App:Product')->findByName($product->getName());
+        } else {
+            $products = $this->getDoctrine()->getRepository('App:Product')->findAll();
+        }
 
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -80,6 +90,7 @@ class ProductController extends Controller
 
         return $this->render('frontend/product/list.html.twig', array(
             'pagination' => $pagination,
+            'form' => $form->createView(),
         ));
     }
 }

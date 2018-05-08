@@ -132,4 +132,41 @@ class ProductRepository extends EntityRepository
     {
         return $this->findTopTenMostRatedProductsQ($rate)->getResult();
     }
+
+    /**
+     * @param string $name
+     *
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function findByNameQB($name)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.name LIKE :name')
+            ->setParameter('name', '%'.$name.'%')
+            ->orderBy('p.name', 'ASC')
+            ->addOrderBy('p.createdAt', 'DESC')
+        ;
+
+        return $qb;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return \Doctrine\ORM\Query
+     */
+    public function findByNameQ($name)
+    {
+        return $this->findByNameQB($name)->getQuery();
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return array
+     */
+    public function findByName($name)
+    {
+        return $this->findByNameQ($name)->getResult();
+    }
 }
