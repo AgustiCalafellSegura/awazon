@@ -2,12 +2,16 @@
 
 namespace App\Admin;
 
+use App\Entity\Customer;
+use App\Entity\Provider;
+use App\Repository\CustomerRepository;
+use App\Repository\ProviderRepository;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\CoreBundle\Form\Type\CollectionType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
@@ -36,20 +40,22 @@ class OrderAdmin extends AbstractAdmin
             )
             ->add(
                 'provider',
-                ModelType::class,
+                EntityType::class,
                 array(
-                    'attr' => array(
-                        'hidden' => true,
-                    ),
+                    'class' => Provider::class,
+                    'query_builder' => function (ProviderRepository $pr) {
+                        return $pr->findAllSortedByNameQB();
+                    },
                 )
             )
             ->add(
                 'customer ',
-                ModelType::class,
+                EntityType::class,
                 array(
-                    'attr' => array(
-                        'hidden' => true,
-                    ),
+                    'class' => Customer::class,
+                    'query_builder' => function (CustomerRepository $pr) {
+                        return $pr->findAllSortedByNameQB();
+                    },
                 )
             )
         ;
