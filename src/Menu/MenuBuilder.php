@@ -8,21 +8,38 @@
 
 namespace App\Menu;
 
+use App\Entity\Category;
+use App\Repository\CategoryRepository;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class MenuBuilder
 {
+    /**
+     * @var FactoryInterface
+     */
     private $factory;
 
     /**
-     * @param FactoryInterface $factory
+     * @var CategoryRepository
      */
-    public function __construct(FactoryInterface $factory)
+    private $categoryRepository;
+
+    /**
+     * @param FactoryInterface   $factory
+     * @param CategoryRepository $categoryRepository
+     */
+    public function __construct(FactoryInterface $factory, CategoryRepository $categoryRepository)
     {
         $this->factory = $factory;
+        $this->categoryRepository = $categoryRepository;
     }
 
+    /**
+     * @param RequestStack $requestStack
+     *
+     * @return \Knp\Menu\ItemInterface
+     */
     public function createMainMenu(RequestStack $requestStack)
     {
         $menu = $this->factory->createItem('root');
@@ -43,27 +60,32 @@ class MenuBuilder
 
         return $menu;
     }
-//TODO secondary menu with dinamic Category childs
-//    public function createCategoriesMenu(FactoryInterface $factory)
-//    {
-//        $menu = $this->factory->createItem('root');
-//        $menu->setChildrenAttribute('class', 'navbar-nav mr-auto');
-//
-//        foreach ($categories as $category){
-//            $productsItem = $menu->addChild(
-//                'Products',
-//                array(
-//                    'route' => 'app_frontend_product_list',
-//                    'label' => 'Products',
+
+    /**
+     * @return \Knp\Menu\ItemInterface
+     */
+    public function createCategoriesMenu()
+    {
+        $menu = $this->factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'navbar-nav mr-auto');
+
+        $categories = $this->categoryRepository->findAllSortedByName();
+
+        /** @var Category $category */
+        foreach ($categories as $category) {
+            $productsItem = $menu->addChild(
+                'Products',
+                array(
+                    'route' => 'app_frontend_product_list',
+                    'label' => $category->getName(),
 //                    'current' => 'app_frontend_product_list' == $requestStack->getCurrentRequest()->get('_route'),
-//                    'class' => 'nav-item',
-//                )
-//            );
-//        }
-//
-//        $productsItem->setAttribute('class', 'nav-item');
-//        $productsItem->setLinkAttribute('class', 'nav-link');
-//
-//        return $menu;
+                    'class' => 'nav-item',
+                )
+            );
+            $productsItem->setAttribute('class', 'nav-item');
+            $productsItem->setLinkAttribute('class', 'nav-link');
+        }
+
+        return $menu;
     }
 }
