@@ -65,17 +65,17 @@ class MenuBuilder
     /**
      * @return \Knp\Menu\ItemInterface
      */
-    public function createCategoriesMenu()
+    public function createCategoriesMenu(RequestStack $requestStack)
     {
         $menu = $this->factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'navbar-nav mr-auto');
+        $menu->setChildrenAttribute('class', 'nav nav-pills');
 
         $categories = $this->categoryRepository->findAllSortedByName();
 
         /** @var Category $category */
         foreach ($categories as $category) {
             $productsItem = $menu->addChild(
-                'Products',
+                $category->getName(),
                 array(
                     'route' => 'app_frontend_product_list',
                     'label' => $category->getName(),
