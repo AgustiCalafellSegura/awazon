@@ -75,7 +75,7 @@ class MenuBuilder
         /** @var Category $category */
         foreach ($categories as $category) {
             $productsItem = $menu->addChild(
-                $category->getName(),
+                $category->getSlug(),
                 array(
                     'route' => 'app_frontend_product_list',
                     'label' => $category->getName(),
