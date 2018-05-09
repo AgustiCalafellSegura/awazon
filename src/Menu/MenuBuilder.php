@@ -10,6 +10,7 @@ namespace App\Menu;
 
 use App\Entity\Category;
 use App\Repository\CategoryRepository;
+use Doctrine\ORM\EntityManager;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -26,13 +27,13 @@ class MenuBuilder
     private $categoryRepository;
 
     /**
-     * @param FactoryInterface   $factory
-     * @param CategoryRepository $categoryRepository
+     * @param FactoryInterface $factory
+     * @param EntityManager    $em
      */
-    public function __construct(FactoryInterface $factory, CategoryRepository $categoryRepository)
+    public function __construct(FactoryInterface $factory, EntityManager $em)
     {
         $this->factory = $factory;
-        $this->categoryRepository = $categoryRepository;
+        $this->categoryRepository = $em->getRepository('App:Category');
     }
 
     /**
