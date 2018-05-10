@@ -93,12 +93,16 @@ class MenuBuilder
                     ),
 
                     'label' => $category->getName(),
-//                    'current' => 'app_frontend_products_category' == $requestStack->getCurrentRequest()->get('_route'),
                     'class' => 'nav-item',
                 )
             );
             $productsItem->setAttribute('class', 'nav-item');
-            $productsItem->setLinkAttribute('class', 'nav-link');
+
+            if ($category->getSlug() == $requestStack->getCurrentRequest()->get('slug')) {
+                $productsItem->setLinkAttribute('class', 'nav-link active');
+            } else {
+                $productsItem->setLinkAttribute('class', 'nav-link');
+            }
         }
 
         return $menu;
