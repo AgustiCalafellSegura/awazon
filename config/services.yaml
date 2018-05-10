@@ -98,3 +98,7 @@ services:
         arguments: ["@request_stack"]
         tags:
             - { name: knp_menu.menu, alias: categories } # The alias is what is used to retrieve the menu
+
+    app.frequency_counter.manager:
+        class: App\Manager\FrequencyCounterManager
+        public: true
