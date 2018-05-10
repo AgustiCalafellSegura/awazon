@@ -13,6 +13,7 @@ use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManager;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Routing\RouterInterface;
 
 class MenuBuilder
 {
@@ -27,13 +28,20 @@ class MenuBuilder
     private $categoryRepository;
 
     /**
+     * @var RouterInterface
+     */
+    private $router;
+
+    /**
      * @param FactoryInterface $factory
      * @param EntityManager    $em
+     * @param RouterInterface  $router
      */
-    public function __construct(FactoryInterface $factory, EntityManager $em)
+    public function __construct(FactoryInterface $factory, EntityManager $em, RouterInterface $router)
     {
         $this->factory = $factory;
         $this->categoryRepository = $em->getRepository('App:Category');
+        $this->router = $router;
     }
 
     /**
@@ -63,6 +71,8 @@ class MenuBuilder
     }
 
     /**
+     * @param RequestStack $requestStack
+     *
      * @return \Knp\Menu\ItemInterface
      */
     public function createCategoriesMenu(RequestStack $requestStack)
@@ -77,9 +87,13 @@ class MenuBuilder
             $productsItem = $menu->addChild(
                 $category->getSlug(),
                 array(
-                    'route' => 'app_frontend_product_list',
+                    'route' => 'app_frontend_products_category',
+                    'routeParameters' => array(
+                        'slug' => $category->getSlug(),
+                    ),
+
                     'label' => $category->getName(),
-//                    'current' => 'app_frontend_product_list' == $requestStack->getCurrentRequest()->get('_route'),
+//                    'current' => 'app_frontend_products_category' == $requestStack->getCurrentRequest()->get('_route'),
                     'class' => 'nav-item',
                 )
             );

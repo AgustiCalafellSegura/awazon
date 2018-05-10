@@ -94,21 +94,6 @@ class ProductController extends Controller
         ));
     }
 
-//    /**
-//     * @Route("/products/{slug}", name="app_frontend_products_category")
-//     */
-//    public function productsCategory($slug)
-//    {
-//        $products = $this->getDoctrine()->getRepository('App:Product')->findBy(array('category' => $slug));
-//
-//        return $this->render(
-//            'frontend/product/categoryList.html.twig',
-//            array(
-//                'products' => $products,
-//            )
-//        );
-//    }
-
     /**
      * @Route("/products/{slug}", name="app_frontend_products_category")
      *
@@ -149,4 +134,26 @@ class ProductController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+    //TODO Create separate method.
+//    public function formFilterByName(Request $request)
+//    {
+//        $product = new Product();
+//        $form = $this->createForm(ProductFormType::class, $product);
+//
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid()) {
+//            $products = $this->getDoctrine()->getRepository('App:Product')->findProductsByCategoryAndName($category, $product->getName());
+//        } else {
+//            $products = $this->getDoctrine()->getRepository('App:Product')->findProductsByCategory($category);
+//        }
+//
+//        $paginator = $this->get('knp_paginator');
+//        $pagination = $paginator->paginate(
+//            $products, /* query NOT result */
+//            $request->query->getInt('page', 1)/*page number*/,
+//            8/*limit per page*/
+//        );
+//    }
 }

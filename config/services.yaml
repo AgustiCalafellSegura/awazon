@@ -83,7 +83,7 @@ services:
 
     app.menu_builder:
         class: App\Menu\MenuBuilder
-        arguments: ["@knp_menu.factory", "@doctrine.orm.default_entity_manager"]
+        arguments: ["@knp_menu.factory", "@doctrine.orm.default_entity_manager", "@router"]
 
     app.main_menu:
         class: Knp\Menu\MenuItem # the service definition requires setting the class
