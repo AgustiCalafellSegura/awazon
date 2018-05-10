@@ -93,4 +93,60 @@ class ProductController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+//    /**
+//     * @Route("/products/{slug}", name="app_frontend_products_category")
+//     */
+//    public function productsCategory($slug)
+//    {
+//        $products = $this->getDoctrine()->getRepository('App:Product')->findBy(array('category' => $slug));
+//
+//        return $this->render(
+//            'frontend/product/categoryList.html.twig',
+//            array(
+//                'products' => $products,
+//            )
+//        );
+//    }
+
+    /**
+     * @Route("/products/{slug}", name="app_frontend_products_category")
+     *
+     * @param Request $request
+     * @param string  $slug
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function productsCategory(Request $request, $slug)
+    {
+        $category = $this->getDoctrine()->getRepository('App:Category')->findOneBy(array('slug' => $slug));
+
+        if (is_null($category)) {
+            throw new NotFoundHttpException();
+        }
+
+        $product = new Product();
+        $form = $this->createForm(ProductFormType::class, $product);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            //TODO findProductsByCategoryAndName
+            $products = $this->getDoctrine()->getRepository('App:Product')->findProductsByCategoryAndName($category, $product->getName());
+        } else {
+            $products = $this->getDoctrine()->getRepository('App:Product')->findProductsByCategory($category);
+        }
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $products, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            8/*limit per page*/
+        );
+
+        return $this->render('frontend/product/list.html.twig', array(
+            'pagination' => $pagination,
+            'form' => $form->createView(),
+        ));
+    }
 }
