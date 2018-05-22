@@ -5,7 +5,7 @@ namespace App\Entity;
 /**
  * Class CartItem.
  */
-class CartItem extends AbstractBase
+class CartItem
 {
     /**
      * @var Product
