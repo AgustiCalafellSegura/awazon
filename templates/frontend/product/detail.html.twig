@@ -30,7 +30,7 @@
     <div class="row mt-5">
         <div class="col-6">
             <h3 class="mb-3">Reviews</h3>
-            {% if product.reviews|length > 0 %}
+            {% if product.reviews | length > 0 %}
                 {% for review in product.reviews %}
                     <blockquote class="blockquote">
                         <p class="mb-0">{{ review.review }}</p>
@@ -43,39 +43,38 @@
                 </div>
             {% endif %}
         </div>
-
         <div class="col-6">
             <h3 class="mb-3">Ratings</h3>
-            {% if product.ratings|length > 0 %}
-                <p>Total ratings: {{ product.ratings|length }}</p>
+            {% if product.ratings | length > 0 %}
+                <p>Total ratings: {{ product.ratings | length }}</p>
                 5 stars
                 <div class="progress mb-3">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[4]|number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[4]|number_format(0,'','') }}%;">
-                        {{ ratecounter[4]|number_format(0,'','') }}%
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[4] | number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[4]|number_format(0,'','') }}%;">
+                        {{ ratecounter[4] | number_format(0,'','') }}%
                     </div>
                 </div>
                 4 stars
                 <div class="progress mb-3">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[3]|number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[3]|number_format(0,'','') }}%;">
-                        {{ ratecounter[3]|number_format(0,'','') }}%
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[3] | number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[3]|number_format(0,'','') }}%;">
+                        {{ ratecounter[3] | number_format(0,'','') }}%
                     </div>
                 </div>
                 3 stars
                 <div class="progress mb-3">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[2]|number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[2]|number_format(0,'','') }}%;">
-                        {{ ratecounter[2]|number_format(0,'','') }}%
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[2] | number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[2]|number_format(0,'','') }}%;">
+                        {{ ratecounter[2] | number_format(0,'','') }}%
                     </div>
                 </div>
                 2 stars
                 <div class="progress mb-3">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[1]|number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[1]|number_format(0,'','') }}%;">
-                        {{ ratecounter[1]|number_format(0,'','') }}%
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[1] | number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[1]|number_format(0,'','') }}%;">
+                        {{ ratecounter[1] | number_format(0,'','') }}%
                     </div>
                 </div>
                 1 star
                 <div class="progress mb-3">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[0]|number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[0]|number_format(0,'','') }}%;">
-                        {{ ratecounter[0]|number_format(0,'','') }}%
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[0] | number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[0]|number_format(0,'','') }}%;">
+                        {{ ratecounter[0] | number_format(0,'','') }}%
                     </div>
                 </div>
             {% else %}
