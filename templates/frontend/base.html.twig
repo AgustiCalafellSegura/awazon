@@ -20,6 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="container-fluid">
                 {{ knp_menu_render('main', {currentClass:'active'}) }}
+                {{ render(controller('App\\Controller\\Frontend\\CartController::cartCounter')) }}
             </div>
         </div>
     </nav>

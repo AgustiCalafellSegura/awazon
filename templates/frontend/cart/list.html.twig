@@ -1,0 +1,27 @@
+{% extends "frontend/base.html.twig" %}
+
+{% block title %}{{ parent() }} · List of products added to cart {% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col">
+            <h1>Cart</h1>
+            <table>
+                <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Units</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in cart.items %}
+                    <tr>
+                        <td>{{ item.product }}</td>
+                        <td>{{ item.units }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
