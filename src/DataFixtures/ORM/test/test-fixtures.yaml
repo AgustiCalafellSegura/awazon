@@ -9,21 +9,21 @@ App\Entity\Category:
     category{1..2}:
         name (unique): <word()>
     category3:
-        name: technology
+        name: 'technology'
 
 App\Entity\Product:
     product{1..4}:
         name (unique): <word()>
         description: <sentence()>
         price: <randomFloat(1,5)>
-        category: "@category<numberBetween(1, 2)>"
-        provider: "@provider<numberBetween(1, 4)>"
+        category: '@category<numberBetween(1, 2)>'
+        provider: '@provider<numberBetween(1, 4)>'
     product5:
         name: 'matrix'
         description: <sentence()>
         price: <randomFloat(1,5)>
-        category: "@category3"
-        provider: "@provider<numberBetween(1, 4)>"
+        category: '@category3'
+        provider: '@provider<numberBetween(1, 4)>'
 
 App\Entity\Customer:
     customer{1..2}:
@@ -35,31 +35,28 @@ App\Entity\Customer:
 App\Entity\Order:
     order{1..2}:
         date: <dateTime()>
-        provider: "@provider<numberBetween(1, 4)>"
-        customer: "@customer<numberBetween(1, 2)>"
+        provider: '@provider<numberBetween(1, 4)>'
+        customer: '@customer<numberBetween(1, 2)>'
 
 App\Entity\OrderItem:
     orderitem{1..4}:
         units: <numberBetween(1,10)>
-        order: "@order<numberBetween(1, 2)>"
-        product: "@product<numberBetween(1, 4)>"
+        order: '@order<numberBetween(1, 2)>'
+        product: '@product<numberBetween(1, 4)>'
 
 App\Entity\Rating:
     rating{1..2}:
         rate: <numberBetween(1,5)>
-        customer: "@customer<numberBetween(1, 2)>"
-        product: "@product<numberBetween(1, 4)>"
+        customer: '@customer<numberBetween(1, 2)>'
+        product: '@product<numberBetween(1, 4)>'
 
 App\Entity\Review:
     review{1..2}:
         review: <sentence()>
-        customer: "@customer<numberBetween(1, 2)>"
-        product: "@product<numberBetween(1, 4)>"
+        customer: '@customer<numberBetween(1, 2)>'
+        product: '@product<numberBetween(1, 4)>'
 
 App\Entity\Image:
-    image{1..2}:
+    image{1..5}:
         image: <text(50)>
-        product: "@product<numberBetween(1, 4)>"
-    image3:
-        image: <text(50)>
-        product: "@product5"
+        product: '@product<current()>'
