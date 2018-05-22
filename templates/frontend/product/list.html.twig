@@ -3,8 +3,11 @@
 {% block title %}{{ parent() }} · List of products{% endblock %}
 
 {% block body %}
+    <div class="row mt-2">
+        {{ knp_menu_render('categories', {currentClass:'active'}) }}
+    </div>
     <h3 class="mt-5">Products</h3>
-    {{ form(form) }}
+        {{ form(form) }}
     <div class="row">
         {% for product in pagination %}
             <div class="col-sm-3 mb-2">

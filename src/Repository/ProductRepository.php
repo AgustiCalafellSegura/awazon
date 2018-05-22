@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Category;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -168,5 +169,84 @@ class ProductRepository extends EntityRepository
     public function findByName($name)
     {
         return $this->findByNameQ($name)->getResult();
+    }
+
+    /**
+     * @param Category $category
+     *
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function findProductsByCategoryQB(Category $category)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.category = :category')
+            ->setParameter('category', $category)
+            ->orderBy('p.name', 'ASC')
+            ->addOrderBy('p.createdAt', 'DESC')
+        ;
+
+        return $qb;
+    }
+
+    /**
+     * @param Category $category
+     *
+     * @return \Doctrine\ORM\Query
+     */
+    public function findProductsByCategoryQ(Category $category)
+    {
+        return $this->findProductsByCategoryQB($category)->getQuery();
+    }
+
+    /**
+     * @param Category $category
+     *
+     * @return array
+     */
+    public function findProductsByCategory(Category $category)
+    {
+        return $this->findProductsByCategoryQ($category)->getResult();
+    }
+
+    /**
+     * @param Category $category
+     * @param $name
+     *
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function findProductsByCategoryAndNameQB(Category $category, $name)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.category = :category')
+            ->andWhere('p.name LIKE :name')
+            ->setParameter('name', '%'.$name.'%')
+            ->setParameter('category', $category)
+            ->orderBy('p.name', 'ASC')
+            ->addOrderBy('p.createdAt', 'DESC')
+        ;
+
+        return $qb;
+    }
+
+    /**
+     * @param Category $category
+     * @param string   $name
+     *
+     * @return \Doctrine\ORM\Query
+     */
+    public function findProductsByCategoryAndNameQ(Category $category, $name)
+    {
+        return $this->findProductsByCategoryAndNameQB($category, $name)->getQuery();
+    }
+
+    /**
+     * @param Category $category
+     * @param string   $name
+     *
+     * @return array
+     */
+    public function findProductsByCategoryAndName(Category $category, $name)
+    {
+        return $this->findProductsByCategoryAndNameQ($category, $name)->getResult();
     }
 }
