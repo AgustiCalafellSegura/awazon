@@ -12,7 +12,9 @@
         {% for product in pagination %}
             <div class="col-sm-3 mb-2">
                 <div class="card" >
-                    <img class="card-img-top" src="{{ product.firstImage | get_image_src('550xY') |raw }}" alt="{{ product.name }}" >
+                    <a href="{{ path('app_frontend_product_detail', {slug: product.slug}) }}">
+                        <img class="card-img-top" src="{{ product.firstImage | get_image_src('550xY') |raw }}" alt="{{ product.name }} " >
+                    </a>
                     <div class="card-body">
                         <h5 class="card-title">{{  product.name }}  <span class="badge badge-warning">{{ product.price|number_format(2, ',', '.') }} €</span></h5>
                         <p class="card-text">{{ product.description }}</p>
