@@ -10,7 +10,7 @@ services:
         public: false
     App\:
         resource: "../src/*"
-        exclude: "../src/{Entity,Migrations,Tests,Kernel.php}"
+        exclude: "../src/{Admin,Entity,Repository,Migrations,Tests,Kernel.php}"
     App\Controller\:
         resource: "../src/Controller"
         tags: ["controller.service_arguments"]
@@ -20,7 +20,6 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: Category, group: Providers }
         public: true
-    # Admins
     admin.customer:
         class: App\Admin\CustomerAdmin
         arguments: [~, App\Entity\Customer, ~]
@@ -75,4 +74,31 @@ services:
         arguments: [~, App\Entity\Image, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Image, show_in_dashboard: true, group: Providers }
+        public: true
+
+    app.manager.image:
+        class: App\Manager\ImageManager
+        arguments: ['@vich_uploader.templating.helper.uploader_helper', '@liip_imagine.cache.manager']
+        public: true
+
+    app.menu_builder:
+        class: App\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory", "@doctrine.orm.default_entity_manager", "@router"]
+
+    app.main_menu:
+        class: Knp\Menu\MenuItem # the service definition requires setting the class
+        factory: ["@app.menu_builder", createMainMenu]
+        arguments: ["@request_stack"]
+        tags:
+            - { name: knp_menu.menu, alias: main } # The alias is what is used to retrieve the menu
+
+    app.category_menu:
+        class: Knp\Menu\MenuItem # the service definition requires setting the class
+        factory: ["@app.menu_builder", createCategoriesMenu]
+        arguments: ["@request_stack"]
+        tags:
+            - { name: knp_menu.menu, alias: categories } # The alias is what is used to retrieve the menu
+
+    app.frequency_counter.manager:
+        class: App\Manager\FrequencyCounterManager
         public: true

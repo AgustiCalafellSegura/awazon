@@ -7,14 +7,22 @@ App\Entity\Provider:
 
 App\Entity\Category:
     category{1..2}:
-        name: <word()>
+        name (unique): <word()>
+    category3:
+        name: technology
 
 App\Entity\Product:
     product{1..4}:
-        name: <word()>
+        name (unique): <word()>
         description: <sentence()>
         price: <randomFloat(1,5)>
         category: "@category<numberBetween(1, 2)>"
+        provider: "@provider<numberBetween(1, 4)>"
+    product5:
+        name: 'matrix'
+        description: <sentence()>
+        price: <randomFloat(1,5)>
+        category: "@category3"
         provider: "@provider<numberBetween(1, 4)>"
 
 App\Entity\Customer:
@@ -52,3 +60,6 @@ App\Entity\Image:
     image{1..2}:
         image: <text(50)>
         product: "@product<numberBetween(1, 4)>"
+    image3:
+        image: <text(50)>
+        product: "@product5"

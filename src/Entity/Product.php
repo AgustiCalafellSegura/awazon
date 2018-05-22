@@ -17,7 +17,7 @@ class Product extends AbstractBase
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      */
     private $name;
 
@@ -412,6 +412,18 @@ class Product extends AbstractBase
         $this->slug = $slug;
 
         return $this;
+    }
+
+    /**
+     * @return Image|null
+     */
+    public function getFirstImage()
+    {
+        if ($this->images->count() > 0) {
+            return $this->images[0];
+        }
+
+        return null;
     }
 
     /**

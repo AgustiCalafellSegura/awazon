@@ -3,12 +3,85 @@
 {% block title %}{{ parent() }} · the neverending store{% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div class="col-xs-3">
-            <h1>{{ product.name }}</h1>
+    <div class="row mt-5">
+        <div class="col-12 col-sm-4 col-md-3">
+            <img src="{{ vich_uploader_asset(product.firstImage, 'imageFile') | imagine_filter('550xY') }}" class="img-fluid" alt="product.name">
+            <div class="row mt-2">
+                {% for image in product.images %}
+                    {% if not loop.first %}
+                        <div class="col-4 mb-1">
+                            <img src="{{ image | get_image_src('150x150') }}" class="img-fluid" alt="product.name">
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-12 col-sm-8 col-md-9">
+            <h1>{{ product.name }} <span class="badge badge-warning">{{ product.price|number_format(2, ',', '.') }} €</span></h1>
             <p class="lead">
                 {{ product.description }}
             </p>
+            <button class="btn btn-primary" type="submit">Add Cart</button>
+        </div>
+    </div>
+    <div class="row mt-5">
+
+    </div>
+    <div class="row mt-5">
+        <div class="col-6">
+            <h3 class="mb-3">Reviews</h3>
+            {% if product.reviews | length > 0 %}
+                {% for review in product.reviews %}
+                    <blockquote class="blockquote">
+                        <p class="mb-0">{{ review.review }}</p>
+                        <footer class="blockquote-footer">{{ review.createdAt|date('d-m-Y') }} <cite title="Source Title">{{ review.customer.name }}</cite></footer>
+                    </blockquote>
+                {% endfor %}
+            {% else %}
+                <div class="alert alert-warning" role="alert">
+                    There are no reviews
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-6">
+            <h3 class="mb-3">Ratings</h3>
+            {% if product.ratings | length > 0 %}
+                <p>Total ratings: {{ product.ratings | length }}</p>
+                5 stars
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[4] | number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[4]|number_format(0,'','') }}%;">
+                        {{ ratecounter[4] | number_format(0,'','') }}%
+                    </div>
+                </div>
+                4 stars
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[3] | number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[3]|number_format(0,'','') }}%;">
+                        {{ ratecounter[3] | number_format(0,'','') }}%
+                    </div>
+                </div>
+                3 stars
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[2] | number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[2]|number_format(0,'','') }}%;">
+                        {{ ratecounter[2] | number_format(0,'','') }}%
+                    </div>
+                </div>
+                2 stars
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[1] | number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[1]|number_format(0,'','') }}%;">
+                        {{ ratecounter[1] | number_format(0,'','') }}%
+                    </div>
+                </div>
+                1 star
+                <div class="progress mb-3">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ ratecounter[0] | number_format(0,'','') }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ ratecounter[0]|number_format(0,'','') }}%;">
+                        {{ ratecounter[0] | number_format(0,'','') }}%
+                    </div>
+                </div>
+            {% else %}
+                <div class="alert alert-warning" role="alert">
+                    There are no ratings
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

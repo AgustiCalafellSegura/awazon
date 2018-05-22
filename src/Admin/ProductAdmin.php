@@ -4,8 +4,9 @@ namespace App\Admin;
 
 use App\Entity\Category;
 use App\Entity\Product;
+use App\Entity\Provider;
 use App\Repository\CategoryRepository;
-use App\Repository\ProductRepository;
+use App\Repository\ProviderRepository;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -82,8 +83,8 @@ class ProductAdmin extends AbstractAdmin
                 'provider',
                 EntityType::class,
                 array(
-                    'class' => Product::class,
-                    'query_builder' => function (ProductRepository $pr) {
+                    'class' => Provider::class,
+                    'query_builder' => function (ProviderRepository $pr) {
                         return $pr->findAllSortedByNameQB();
                     },
                 )
@@ -131,6 +132,14 @@ class ProductAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add(
+                'img_thumbnail',
+                null,
+                array(
+                    'template' => 'backend/list_cell_image.html.twig',
+                    'label' => 'Image',
+                )
+            )
             ->add(
                 'name',
                 null,

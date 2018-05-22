@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <title>{% block title %}Awazon{% endblock %}</title>
     <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+    <link rel="shortcut icon" href="favicon-32x32.ico" type="image/x-icon">
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
@@ -17,15 +18,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            {# todo replace it by knp menu render #}
-            {#<ul class="navbar-nav mr-auto">#}
-                {#<li class="nav-item active">#}
-                    {#<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>#}
-                {#</li>#}
-                {#<li class="nav-item">#}
-                    {#<a class="nav-link" href="#">Link</a>#}
-                {#</li>#}
-            {#</ul>#}
+            <div class="container-fluid">
+                {{ knp_menu_render('main', {currentClass:'active'}) }}
+            </div>
         </div>
     </nav>
     <div class="container">
@@ -39,6 +34,21 @@
         {# main body section #}
         {% block body %}{% endblock %}
     </div>
+    <footer class="footer bg-dark text-white">
+        <div class="container">
+            <div class="row pt-3 pb-3">
+                <div class="col-12">
+                    <span class="text-muted">
+                        ©  {{ "now"|date("Y") }}
+                    <a href="{{ path('app_frontend_credits') }}" class="badge badge-dark">{{ 'credits' | trans}}</a>
+                    <a href="{{ path('app_frontend_privacy_policy') }}" class="badge badge-dark">Política de privacitat</a>
+                    <a href="{{ path('app_frontend_terms_of_service') }}" class="badge badge-dark">Condicions generals de compra</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
     <script src="{{ asset('build/app.js') }}"></script>
     {% block javascripts %}{% endblock %}
 </body>
