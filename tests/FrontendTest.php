@@ -26,11 +26,13 @@ class FrontendTest extends WebTestCase
     public function buildURLS()
     {
         return [
+            ['/'],
+            ['/products'],
+            ['/products/technology'],
+            ['/product/matrix'],
             ['/credits'],
             ['/privacy-policy'],
             ['/terms-of-service'],
-            ['/products'],
-            ['/product/matrix'],
         ];
     }
 }

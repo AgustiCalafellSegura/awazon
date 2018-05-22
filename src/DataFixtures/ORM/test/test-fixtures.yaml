@@ -8,6 +8,8 @@ App\Entity\Provider:
 App\Entity\Category:
     category{1..2}:
         name (unique): <word()>
+    category3:
+        name: technology
 
 App\Entity\Product:
     product{1..4}:
@@ -20,7 +22,7 @@ App\Entity\Product:
         name: 'matrix'
         description: <sentence()>
         price: <randomFloat(1,5)>
-        category: "@category<numberBetween(1, 2)>"
+        category: "@category3"
         provider: "@provider<numberBetween(1, 4)>"
 
 App\Entity\Customer:
