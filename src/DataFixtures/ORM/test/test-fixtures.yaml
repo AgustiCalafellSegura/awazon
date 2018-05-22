@@ -57,9 +57,6 @@ App\Entity\Review:
         product: '@product<numberBetween(1, 4)>'
 
 App\Entity\Image:
-    image{1..2}:
+    image{1..5}:
         image: <text(50)>
-        product: '@product<numberBetween(1, 4)>'
-    image3:
-        image: <text(50)>
-        product: '@product5'
+        product: '@product<current()>'

@@ -2,6 +2,7 @@
 
 namespace App\Controller\Frontend;
 
+use App\Repository\ProductRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -15,6 +16,7 @@ class DefaultController extends Controller
      */
     public function viewHomepage()
     {
+        /** @var ProductRepository $qb */
         $qb = $this->getDoctrine()->getRepository('App:Product');
 
         $newproducts = $qb->findLastProductsAdded();
