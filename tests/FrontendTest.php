@@ -29,6 +29,7 @@ class FrontendTest extends WebTestCase
             ['/credits'],
             ['/privacy-policy'],
             ['/terms-of-service'],
+            ['/products'],
             ['/product/matrix'],
         ];
     }
