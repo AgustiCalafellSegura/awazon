@@ -7,11 +7,11 @@ App\Entity\Provider:
 
 App\Entity\Category:
     category{1..10}:
-        name: <word()>
+        name (unique): <word()>
 
 App\Entity\Product:
     product{1..100}:
-        name: <word()>
+        name (unique): <word()>
         description: <sentence()>
         price: <randomFloat(1,5)>
         category: '@category<numberBetween(1,10)>'
