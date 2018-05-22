@@ -21,7 +21,7 @@
             <p class="lead">
                 {{ product.description }}
             </p>
-            <button class="btn btn-primary" type="submit">Add Cart</button>
+            <a class="btn btn-primary" href="{{path('app_frontend_cart_add_product', {id: product.id})  }}">Add Cart</a>
         </div>
     </div>
     <div class="row mt-5">
