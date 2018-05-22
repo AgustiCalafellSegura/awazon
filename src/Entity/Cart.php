@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Class Cart.
  */
-class Cart extends AbstractBase
+class Cart
 {
     /**
      * @var CartItem[]

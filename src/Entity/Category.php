@@ -12,7 +12,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  * @ORM\Table(name="Categories")
  */
-class Category
+class Category extends AbstractBase
 {
     /**
      * @var string
